@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import waldoFactory from "../assets/waldoFactory.jpg"
 
 function Image3() {
 	return (
@@ -6,7 +7,9 @@ function Image3() {
 			<header>
 				<Link to="/">Return Home</Link>
 			</header>
-			<div>Image 3 Here</div>
+			<div>
+				<img src={waldoFactory} alt="" />
+			</div>
 		</>
 	);
 }

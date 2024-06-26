@@ -1,4 +1,9 @@
 import { Link } from "react-router-dom";
+import waldoBeach from "../assets/waldoBeach.jpg";
+import waldoDowntown from "../assets/waldoDowntown.jpg";
+import waldoFactory from "../assets/waldoFactory.jpg";
+import styled from "styled-components";
+import styles from "./HomePage.module.css";
 
 function HomePage() {
 	return (
@@ -29,31 +34,60 @@ function Body() {
 			<div className="gameRules">
 				<p>{gameRules}</p>
 			</div>
-			<div className="difficultyOptionsWrapper">
-				<div className="difficultyOptions">
-					<h1>Image Here</h1>
-					<h2>Title of Image Here</h2>
-					<Link to="/image">
-						<button>Click</button>
-					</Link>
-				</div>
-				<div className="difficultyOptions">
-					<h1>Image 2 Here</h1>
-					<h2>Title of Image 2 Here</h2>
-					<Link to="/image2">
-						<button>Click</button>
-					</Link>
-				</div>
-				<div className="difficultyOptions">
-					<h1>Image 3 Here</h1>
-					<h2>Title of Image 3 Here</h2>
-					<Link to="/image3">
-						<button>Click</button>
-					</Link>
-				</div>
-			</div>
+			<ImageWrapper>
+				<ImageCard>
+					<div className="difficultyOptions">
+						<img
+							className={styles.images}
+							src={waldoBeach}
+							alt=""
+						/>
+						<h2>Waldo Beach</h2>
+						<Link to="/image">
+							<button>Click</button>
+						</Link>
+					</div>
+				</ImageCard>
+				<ImageCard>
+					<div className="difficultyOptions">
+						<img
+							className={styles.images}
+							src={waldoDowntown}
+							alt=""
+						/>
+						<h2>Waldo Downtown</h2>
+						<Link to="/image2">
+							<button>Click</button>
+						</Link>
+					</div>
+				</ImageCard>
+				<ImageCard>
+					<div className="difficultyOptions">
+						<img
+							src={waldoFactory}
+							className={styles.images}
+							alt=""
+						/>
+						<h2>Waldo Factory</h2>
+						<Link to="/image3">
+							<button>Click</button>
+						</Link>
+					</div>
+				</ImageCard>
+			</ImageWrapper>
 		</>
 	);
 }
+
+const ImageCard = styled.section`
+	width: 25%;
+	height: 25%;
+`;
+
+const ImageWrapper = styled.section`
+	display: flex;
+	justify-content: space-between;
+	align-items: stretch;
+`;
 
 export default HomePage;
