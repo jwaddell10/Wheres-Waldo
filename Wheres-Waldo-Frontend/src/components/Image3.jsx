@@ -1,40 +1,64 @@
 import waldoFactory from "../assets/waldoFactory.jpg";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 
-function Image3() {
-	const [xCoordinates, setXCoordinates] = useState(null);
-	const [yCoordinates, setYCoordinates] = useState(null);
+export default function Image3() {
+	const [coordinates, setCoordinates] = useState({ x: null, y: null });
+	const [circles, setCircles] = useState([]);
+	const [circleVisible, setCircleVisible] = useState(false);
 	const [dropDownVisible, setDropDownVisible] = useState(false);
 
-	const handleClick = (e) => {
-		const xCoordinate = e.clientX;
-		const yCoordinate = e.clientY;
+	const handleClick = (event) => {
+		const rect = event.target.getBoundingClientRect();
+		const x = event.clientX - rect.left;
+		const y = event.clientY - rect.top;
 
-		setXCoordinates(xCoordinate);
-		setYCoordinates(yCoordinate);
+		setCoordinates({ x, y });
 		setDropDownVisible(!dropDownVisible);
-		//need to have dropdown
-		//need to have target box
+		setCircleVisible(!circleVisible);
+
+		let newCircle = (
+			<circle
+				key={uuidv4()}
+				cx={x}
+				cy={y}
+				r="25"
+				fill="none"
+				stroke="#FF6F69"
+				strokeWidth="5"
+			/>
+		);
+
+		setCircles(newCircle);
 	};
+
 	return (
-		<>
-			<div className="image3">
-				<img
-					src={waldoFactory}
-					onClick={(e) => {
-						handleClick(e);
-					}}
-					alt=""
+		<div className="image1" style={{ position: "relative" }}>
+			<img
+				src={waldoFactory}
+				alt="Waldo Factory"
+				style={{ width: "100%", height: "auto" }}
+			/>
+			<svg
+				onClick={handleClick}
+				style={{
+					position: "absolute",
+					top: 0,
+					left: 0,
+					width: "100%",
+					height: "100%",
+				}}
+			>
+				{circleVisible && circles}
+			</svg>
+			{dropDownVisible && (
+				<DropDown
+					xCoordinates={coordinates.x}
+					yCoordinates={coordinates.y}
 				/>
-				{dropDownVisible && (
-					<DropDown
-						xCoordinates={xCoordinates}
-						yCoordinates={yCoordinates}
-					/>
-				)}
-			</div>
-		</>
+			)}
+		</div>
 	);
 }
 
@@ -51,12 +75,12 @@ function DropDown({ xCoordinates, yCoordinates }) {
 }
 
 const DropDownStyled = styled.section`
-	top: ${(props) => props.y}px;
-	left: ${(props) => props.x}px;
+	top: ${(props) => props.y + 20}px;
+	left: ${(props) => props.x + 10}px;
 	position: absolute;
 	color: white;
 	border: 2px solid white;
-	background-color: red;
+	background-color: #ff6f69;
 	border-radius: 15px;
 `;
 
@@ -66,5 +90,3 @@ const DropDownItem = styled.section`
 	border: 1px solid white;
 	border-radius: 15px;
 `;
-
-export default Image3;
