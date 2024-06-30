@@ -60,4 +60,5 @@ const DropDownStyled = styled.section`
 	left: ${(props) => props.x}px;
 	position: absolute;
 `;
+
 export default Image2;

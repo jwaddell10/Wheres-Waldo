@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import waldoFactory from "../assets/waldoFactory.jpg"
+import waldoFactory from "../assets/waldoFactory.jpg";
 import { useState } from "react";
 import styled from "styled-components";
 
@@ -59,4 +59,5 @@ const DropDownStyled = styled.section`
 	left: ${(props) => props.x}px;
 	position: absolute;
 `;
+
 export default Image3;
