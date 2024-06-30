@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import waldoFactory from "../assets/waldoFactory.jpg";
 import { useState } from "react";
 import styled from "styled-components";
@@ -20,10 +19,7 @@ function Image3() {
 	};
 	return (
 		<>
-			<header>
-				<Link to="/">Return Home</Link>
-			</header>
-			<div className="image1">
+			<div className="image3">
 				<img
 					src={waldoFactory}
 					onClick={(e) => {
@@ -46,9 +42,9 @@ function DropDown({ xCoordinates, yCoordinates }) {
 	return (
 		<DropDownStyled x={xCoordinates} y={yCoordinates}>
 			<div className="dropDown">
-				<option value="Waldo">Waldo</option>
-				<option value="Wenda">Wenda</option>
-				<option value="Odlaw">Odlaw</option>
+				<DropDownItem>Waldo</DropDownItem>
+				<DropDownItem>Wenda</DropDownItem>
+				<DropDownItem>Odlaw</DropDownItem>
 			</div>
 		</DropDownStyled>
 	);
@@ -58,6 +54,17 @@ const DropDownStyled = styled.section`
 	top: ${(props) => props.y}px;
 	left: ${(props) => props.x}px;
 	position: absolute;
+	color: white;
+	border: 2px solid white;
+	background-color: red;
+	border-radius: 15px;
+`;
+
+const DropDownItem = styled.section`
+	margin: 1.25rem;
+	padding: 0.5rem;
+	border: 1px solid white;
+	border-radius: 15px;
 `;
 
 export default Image3;
