@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 export default function Image2() {
 	const [coordinates, setCoordinates] = useState({ x: null, y: null });
-	const [circles, setCircles] = useState([]);
+	const [circles, setCircles] = useState(null);
 	const [circleVisible, setCircleVisible] = useState(false);
 	const [dropDownVisible, setDropDownVisible] = useState(false);
 
