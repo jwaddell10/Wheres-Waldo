@@ -9,7 +9,7 @@ export default function Image1() {
 	const [circleVisible, setCircleVisible] = useState(false);
 	const [dropDownVisible, setDropDownVisible] = useState(false);
 
-	const handleClick = (event) => {
+	const addCircleAndDropDownMenu = (event) => {
 		const rect = event.target.getBoundingClientRect();
 		const x = event.clientX - rect.left;
 		const y = event.clientY - rect.top;
@@ -41,7 +41,7 @@ export default function Image1() {
 				style={{ width: "100%", height: "auto" }}
 			/>
 			<svg
-				onClick={handleClick}
+				onClick={addCircleAndDropDownMenu}
 				style={{
 					position: "absolute",
 					top: 0,
