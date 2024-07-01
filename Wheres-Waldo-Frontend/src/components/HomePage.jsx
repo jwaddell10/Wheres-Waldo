@@ -19,7 +19,7 @@ function Header() {
 	return (
 		<>
 			<div className="title">
-				<h1>{title}</h1>
+				<h1 role="title">{title}</h1>
 			</div>
 		</>
 	);
@@ -32,7 +32,7 @@ function Body() {
 	return (
 		<>
 			<div className="gameRules">
-				<p>{gameRules}</p>
+				<p role="gameRules">{gameRules}</p>
 			</div>
 			<ImageWrapper>
 				<ImageCard>
@@ -41,6 +41,7 @@ function Body() {
 							className={styles.images}
 							src={waldoBeach}
 							alt=""
+							role="Image1"
 						/>
 						<h2>Waldo Beach</h2>
 						<Link to="/image">
@@ -54,6 +55,7 @@ function Body() {
 							className={styles.images}
 							src={waldoDowntown}
 							alt=""
+							role="Image2"
 						/>
 						<h2>Waldo Downtown</h2>
 						<Link to="/image2">
@@ -67,6 +69,7 @@ function Body() {
 							src={waldoFactory}
 							className={styles.images}
 							alt=""
+							role="Image3"
 						/>
 						<h2>Waldo Factory</h2>
 						<Link to="/image3">

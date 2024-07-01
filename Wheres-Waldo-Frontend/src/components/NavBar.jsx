@@ -5,7 +5,7 @@ function NavBar() {
 		<>
 			<Link to="/">Home</Link>
 			<Link to="/leaderboard">LeaderBoard</Link>
-            <Outlet />
+			<Outlet />
 		</>
 	);
 }
