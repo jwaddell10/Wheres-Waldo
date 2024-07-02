@@ -9,7 +9,7 @@ export default function Image3() {
 	const [circleVisible, setCircleVisible] = useState(false);
 	const [dropDownVisible, setDropDownVisible] = useState(false);
 
-	const handleClick = (event) => {
+	const addCircleAndDropDownMenu = (event) => {
 		const rect = event.target.getBoundingClientRect();
 		const x = event.clientX - rect.left;
 		const y = event.clientY - rect.top;
@@ -34,14 +34,15 @@ export default function Image3() {
 	};
 
 	return (
-		<div className="image1" style={{ position: "relative" }}>
+		<div className="image3" style={{ position: "relative" }}>
 			<img
 				src={waldoFactory}
 				alt="Waldo Factory"
 				style={{ width: "100%", height: "auto" }}
 			/>
 			<svg
-				onClick={handleClick}
+				title="circleAndDropDownMenu"
+				onClick={addCircleAndDropDownMenu}
 				style={{
 					position: "absolute",
 					top: 0,

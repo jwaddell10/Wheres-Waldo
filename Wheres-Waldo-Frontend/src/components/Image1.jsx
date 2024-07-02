@@ -21,6 +21,7 @@ export default function Image1() {
 		let newCircle = (
 			<circle
 				key={uuidv4()}
+				title="circle"
 				cx={x}
 				cy={y}
 				r="25"
@@ -41,6 +42,7 @@ export default function Image1() {
 				style={{ width: "100%", height: "auto" }}
 			/>
 			<svg
+				title="circleAndDropDownMenu"
 				onClick={addCircleAndDropDownMenu}
 				style={{
 					position: "absolute",
