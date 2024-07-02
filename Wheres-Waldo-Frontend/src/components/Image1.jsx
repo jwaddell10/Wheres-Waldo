@@ -56,6 +56,7 @@ export default function Image1() {
 			</svg>
 			{dropDownVisible && (
 				<DropDown
+					role="Dropdown"
 					xCoordinates={coordinates.x}
 					yCoordinates={coordinates.y}
 				/>

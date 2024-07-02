@@ -21,6 +21,7 @@ export default function Image2() {
 		let newCircle = (
 			<circle
 				key={uuidv4()}
+				title="circle"
 				cx={x}
 				cy={y}
 				r="25"
