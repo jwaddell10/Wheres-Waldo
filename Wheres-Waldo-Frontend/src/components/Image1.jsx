@@ -2,6 +2,7 @@ import { useState } from "react";
 import waldoBeach from "../assets/waldoBeach.jpg";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
+import PropTypes from 'prop-types';
 
 export default function Image1() {
 	const [coordinates, setCoordinates] = useState({ x: null, y: null });
@@ -91,3 +92,8 @@ const DropDownItem = styled.section`
 	border: 1px solid white;
 	border-radius: 15px;
 `;
+
+DropDown.propTypes = {
+	xCoordinates: PropTypes.number,
+	yCoordinates: PropTypes.number,
+}
