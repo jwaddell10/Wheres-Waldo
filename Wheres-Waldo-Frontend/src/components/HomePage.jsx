@@ -28,6 +28,7 @@ function Header() {
 function Body() {
 	const gameRules =
 		"This is a photo tagging app. I'm putting the rules here. Select your option below";
+		console.log('Image ID:', import.meta.env.VITE_IMAGE_ID);
 
 	return (
 		<>
@@ -44,7 +45,7 @@ function Body() {
 							role="Image1"
 						/>
 						<h2>Waldo Beach</h2>
-						<Link to="/image">
+						<Link to={`/image/${import.meta.env.VITE_IMAGE_ID}`}>
 							<button>Click</button>
 						</Link>
 					</div>

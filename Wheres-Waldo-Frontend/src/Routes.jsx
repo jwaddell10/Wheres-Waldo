@@ -14,7 +14,7 @@ const router = createBrowserRouter([
 		children: [
 			{ path: "/", element: <HomePage /> },
 			{ path: "/leaderboard", element: <LeaderBoard /> },
-			{ path: "/image", element: <Image1 /> },
+			{ path: "/image/1bb6360e0cfa8ee657f231da8f5d185b", element: <Image1 /> },
 			{ path: "/image2", element: <Image2 /> },
 			{ path: "/image3", element: <Image3 /> },
 		],

@@ -3,8 +3,11 @@ import waldoBeach from "../assets/waldoBeach.jpg";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import PropTypes from 'prop-types';
+import UserClickPost from "./UserClickPost";
 
 export default function Image1() {
+	const imageId = "1bb6360e0cfa8ee657f231da8f5d185b"
+	console.log(imageId, 'this is imageid')
 	const [coordinates, setCoordinates] = useState({ x: null, y: null });
 	const [circles, setCircles] = useState(null);
 	const [circleVisible, setCircleVisible] = useState(false);
@@ -44,7 +47,10 @@ export default function Image1() {
 			/>
 			<svg
 				title="circleAndDropDownMenu"
-				onClick={addCircleAndDropDownMenu}
+				onClick={(event) => {
+					addCircleAndDropDownMenu(event);
+					UserClickPost(imageId)
+				}}
 				style={{
 					position: "absolute",
 					top: 0,
