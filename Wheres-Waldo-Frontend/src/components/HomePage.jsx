@@ -59,7 +59,7 @@ function Body() {
 							role="Image2"
 						/>
 						<h2>Waldo Downtown</h2>
-						<Link to="/image2">
+						<Link to={`/image/${import.meta.env.VITE_IMAGE2_ID}`}>
 							<button>Click</button>
 						</Link>
 					</div>
@@ -73,7 +73,7 @@ function Body() {
 							role="Image3"
 						/>
 						<h2>Waldo Factory</h2>
-						<Link to="/image3">
+						<Link to={`/image/${import.meta.env.VITE_IMAGE3_ID}`}>
 							<button>Click</button>
 						</Link>
 					</div>

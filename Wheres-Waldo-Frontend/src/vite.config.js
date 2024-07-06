@@ -1,7 +1,7 @@
 /// <reference types="vitest" />
 // @vitest-environment jsdom
 import { defineConfig } from "vite";
-import react from '@vitejs/plugin-react'
+import react from "react";
 
 export default defineConfig({
 	plugins: [react()],

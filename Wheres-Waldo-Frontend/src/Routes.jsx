@@ -14,9 +14,9 @@ const router = createBrowserRouter([
 		children: [
 			{ path: "/", element: <HomePage /> },
 			{ path: "/leaderboard", element: <LeaderBoard /> },
-			{ path: "/image/1bb6360e0cfa8ee657f231da8f5d185b", element: <Image1 /> },
-			{ path: "/image2", element: <Image2 /> },
-			{ path: "/image3", element: <Image3 /> },
+			{ path: `/image/${import.meta.env.VITE_IMAGE_ID}`, element: <Image1 /> },
+			{ path: `/image/${import.meta.env.VITE_IMAGE2_ID}`, element: <Image2 /> },
+			{ path: `/image/${import.meta.env.VITE_IMAGE3_ID}`, element: <Image3 /> },
 		],
 	},
 ]);

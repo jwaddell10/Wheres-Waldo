@@ -16,7 +16,7 @@ test("Image2 Component", () => {
 	);
 
 	// Check that the element is not present before the click
-	// expect(() => screen.getByTitle("circle")).toThrow();
+	expect(() => screen.getByTitle("circle")).toThrow();
 	const clickAbleImage = screen.getByTitle("circleAndDropDownMenu");
 
 	// Perform the click event and check if element is present

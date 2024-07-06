@@ -3,8 +3,10 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import UserClickPost from "./UserClickPost";
 
 export default function Image2() {
+	const imageId = import.meta.env.VITE_IMAGE2_ID;
 	const [coordinates, setCoordinates] = useState({ x: null, y: null });
 	const [circles, setCircles] = useState(null);
 	const [circleVisible, setCircleVisible] = useState(false);
@@ -44,7 +46,10 @@ export default function Image2() {
 			/>
 			<svg
 				title="circleAndDropDownMenu"
-				onClick={addCircleAndDropDownMenu}
+				onClick={(event) => {
+					addCircleAndDropDownMenu(event);
+					UserClickPost(imageId);
+				}}
 				style={{
 					position: "absolute",
 					top: 0,
