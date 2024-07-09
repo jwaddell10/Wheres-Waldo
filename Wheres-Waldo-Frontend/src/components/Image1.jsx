@@ -6,14 +6,17 @@ import PropTypes from 'prop-types';
 import UserClickPost from "./UserClickPost";
 
 export default function Image1() {
-	const imageId = "1bb6360e0cfa8ee657f231da8f5d185b"
-	console.log(imageId, 'this is imageid')
+	const imageId = import.meta.env.VITE_IMAGE_ID
 	const [coordinates, setCoordinates] = useState({ x: null, y: null });
 	const [circles, setCircles] = useState(null);
 	const [circleVisible, setCircleVisible] = useState(false);
 	const [dropDownVisible, setDropDownVisible] = useState(false);
 
+	const { sendUserClicks } = UserClickPost();
+
 	const addCircleAndDropDownMenu = (event) => {
+		// UserClickPost(imageId)
+
 		const rect = event.target.getBoundingClientRect();
 		const x = event.clientX - rect.left;
 		const y = event.clientY - rect.top;
@@ -21,6 +24,7 @@ export default function Image1() {
 		setCoordinates({ x, y });
 		setDropDownVisible(!dropDownVisible);
 		setCircleVisible(!circleVisible);
+		sendUserClicks(`http://localhost:3000/image/${imageId}`, coordinates)
 
 		let newCircle = (
 			<circle
@@ -49,7 +53,6 @@ export default function Image1() {
 				title="circleAndDropDownMenu"
 				onClick={(event) => {
 					addCircleAndDropDownMenu(event);
-					UserClickPost(imageId)
 				}}
 				style={{
 					position: "absolute",

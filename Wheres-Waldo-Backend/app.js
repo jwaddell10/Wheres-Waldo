@@ -1,4 +1,5 @@
 var createError = require("http-errors");
+const cors = require('cors')
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
@@ -18,18 +19,18 @@ async function main() {
 	await mongoose.connect(mongoDB);
 	console.log("connected");
 }
-// view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "jade");
 
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(cors())
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "jade");
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -65,9 +66,7 @@ app.use(function (err, req, res, next) {
 
 	const uploadImages = async () => {
 		for (const image in images) {
-			console.log(image, "this is image");
 			const result = await cloudinary.uploader.upload(images[image]);
-			console.log(result, "this is result");
 		}
 	};
 
