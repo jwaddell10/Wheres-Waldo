@@ -1,14 +1,13 @@
 const express = require("express");
+const puzzle = require("../models/puzzle");
 const router = express.Router();
-const puzzleController = "../controllers/puzzleController.js";
+const puzzleController = require("../controllers/puzzleController");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
 	res.render("index", { title: "Express" });
 });
 
-router.post("/image/:imageId", function (req, res) {
-	console.log('is this running?')
-});
+router.post("/image/:imageId", puzzleController.clickPost)
 
 module.exports = router;

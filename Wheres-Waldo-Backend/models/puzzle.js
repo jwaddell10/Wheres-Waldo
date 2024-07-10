@@ -11,6 +11,16 @@ const puzzleSchema = new Schema({
 		ref: "Character",
 		required: true,
 	},
+    image: {
+        publicId: {
+            type: String,
+            required: true
+        },
+        url: {
+            type: String,
+            required: true,
+        }
+    }
 });
 
 module.exports = mongoose.model("Puzzle", puzzleSchema);

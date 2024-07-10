@@ -4,6 +4,7 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const uploadToCloudinary = require('./services/cloudinary.js');
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -48,47 +49,9 @@ app.use(function (err, req, res, next) {
 	res.render("error");
 });
 
-(async function () {
-	// Configuration
-	cloudinary.config({
-		cloud_name: "dak6py2ng",
-		api_key: "375799247189141",
-		api_secret: process.env.CLOUDINARY_KEY, // Click 'View Credentials' below to copy your API secret
-	});
-
-	const images = [
-		"../wheres-waldo-frontend/src/assets/waldoBeach.jpg",
-		"../wheres-waldo-frontend/src/assets/waldoDowntown.jpg",
-		"../wheres-waldo-frontend/src/assets/waldoFactory.jpg",
-	];
-
-	// Upload an image
-
-	const uploadImages = async () => {
-		for (const image in images) {
-			const result = await cloudinary.uploader.upload(images[image]);
-		}
-	};
-
-	await uploadImages();
-
-	// // Optimize delivery by resizing and applying auto-format and auto-quality
-	// const optimizeUrl = cloudinary.url(images, {
-	// 	fetch_format: "auto",
-	// 	quality: "auto",
-	// });
-
-	// console.log(optimizeUrl);
-
-	// // Transform the image: auto-crop to square aspect_ratio
-	// const autoCropUrl = cloudinary.url(images, {
-	// 	crop: "auto",
-	// 	gravity: "auto",
-	// 	width: 500,
-	// 	height: 500,
-	// });
-
-	// console.log(autoCropUrl);
-})();
+process.on('unhandledRejection', (reason, promise) => {
+  console.log(reason, promise);
+  // Application specific error-handling here
+});
 
 module.exports = app;
