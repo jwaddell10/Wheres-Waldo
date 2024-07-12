@@ -1,6 +1,7 @@
 // cloudinaryUploader.js
 const cloudinary = require('cloudinary').v2;
 require("dotenv").config();
+const Puzzle = require('../models/puzzle')
 
 // Configuration
 cloudinary.config({
@@ -21,6 +22,8 @@ const uploadToCloudinary = async () => {
         try {
             const result = await cloudinary.uploader.upload(image);
             uploadedImages.push(result);
+
+            const waldoBeach = uploadedImages[0]
         } catch (error) {
             console.error(`Error uploading ${image}:`, error);
         }
@@ -28,4 +31,4 @@ const uploadToCloudinary = async () => {
     return uploadedImages;
 };
 
-module.exports = uploadToCloudinary;
+// module.exports = uploadToCloudinary;

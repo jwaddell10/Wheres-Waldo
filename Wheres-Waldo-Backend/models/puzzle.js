@@ -6,21 +6,11 @@ const puzzleSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	character: {
-		type: Schema.Types.ObjectId,
-		ref: "Character",
-		required: true,
-	},
-    image: {
-        publicId: {
-            type: String,
-            required: true
-        },
-        url: {
-            type: String,
-            required: true,
-        }
-    }
+	// character: {
+	// 	type: Schema.Types.ObjectId,
+	// 	ref: "Character",
+	// 	required: true,
+	// },
 });
 
 module.exports = mongoose.model("Puzzle", puzzleSchema);
