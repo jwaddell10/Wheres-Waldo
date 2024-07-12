@@ -1,7 +1,5 @@
-import { useEffect } from "react";
-
 export default function UserClickPost() {
-	const sendUserClicks = async (url, characters, coordinates, imageId) => {
+	const sendUserClicks = async (url, selectedCharacter, coordinates, imageId) => {
 		try {
 			const response = await fetch(url,
 				{
@@ -10,7 +8,7 @@ export default function UserClickPost() {
 						"Content-Type": "application/json",
 					},
                     body: JSON.stringify({
-                        characters,
+                        selectedCharacter,
                         coordinates,
                         imageId,
                     })

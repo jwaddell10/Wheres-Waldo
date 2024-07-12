@@ -20,10 +20,14 @@ const uploadToCloudinary = async () => {
     const uploadedImages = [];
     for (const image of images) {
         try {
+
+            //get specific image, get characters on image
             const result = await cloudinary.uploader.upload(image);
             uploadedImages.push(result);
 
             const waldoBeach = uploadedImages[0]
+            waldoBeach.name = "Waldo Beach"
+            
         } catch (error) {
             console.error(`Error uploading ${image}:`, error);
         }
