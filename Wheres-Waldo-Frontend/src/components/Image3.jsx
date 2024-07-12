@@ -11,6 +11,7 @@ export default function Image3() {
 	const [circles, setCircles] = useState(null);
 	const [circleVisible, setCircleVisible] = useState(false);
 	const [dropDownVisible, setDropDownVisible] = useState(false);
+	const { sendUserClicks } = UserClickPost();
 
 	const addCircleAndDropDownMenu = (event) => {
 		const rect = event.target.getBoundingClientRect();
@@ -35,6 +36,16 @@ export default function Image3() {
 		);
 
 		setCircles(newCircle);
+	};
+
+	const handleClick = (event) => {
+		const selectedCharacter = event.target.innerText;
+		sendUserClicks(
+			`http://localhost:3000/image/${imageId}`,
+			selectedCharacter,
+			coordinates,
+			imageId
+		);
 	};
 
 	return (
@@ -62,21 +73,41 @@ export default function Image3() {
 			</svg>
 			{dropDownVisible && (
 				<DropDown
+					role="Dropdown"
 					xCoordinates={coordinates.x}
 					yCoordinates={coordinates.y}
+					onClick={handleClick}
 				/>
 			)}
 		</div>
 	);
 }
 
-function DropDown({ xCoordinates, yCoordinates }) {
+function DropDown({ xCoordinates, yCoordinates, onClick }) {
 	return (
 		<DropDownStyled x={xCoordinates} y={yCoordinates}>
 			<div className="dropDown">
-				<DropDownItem>Waldo</DropDownItem>
-				<DropDownItem>Wenda</DropDownItem>
-				<DropDownItem>Odlaw</DropDownItem>
+				<DropDownItem
+					onClick={(event) => {
+						onClick(event);
+					}}
+				>
+					Waldo
+				</DropDownItem>
+				<DropDownItem
+					onClick={(event) => {
+						onClick(event);
+					}}
+				>
+					Wenda
+				</DropDownItem>
+				<DropDownItem
+					onClick={(event) => {
+						onClick(event);
+					}}
+				>
+					Odlaw
+				</DropDownItem>
 			</div>
 		</DropDownStyled>
 	);
@@ -102,4 +133,5 @@ const DropDownItem = styled.section`
 DropDown.propTypes = {
 	xCoordinates: PropTypes.number,
 	yCoordinates: PropTypes.number,
+	onClick: PropTypes.func,
 };

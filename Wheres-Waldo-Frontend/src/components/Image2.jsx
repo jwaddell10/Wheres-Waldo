@@ -11,6 +11,7 @@ export default function Image2() {
 	const [circles, setCircles] = useState(null);
 	const [circleVisible, setCircleVisible] = useState(false);
 	const [dropDownVisible, setDropDownVisible] = useState(false);
+	const { sendUserClicks } = UserClickPost();
 
 	const addCircleAndDropDownMenu = (event) => {
 		const rect = event.target.getBoundingClientRect();
@@ -37,6 +38,16 @@ export default function Image2() {
 		setCircles(newCircle);
 	};
 
+	const handleClick = (event) => {
+		const selectedCharacter = event.target.innerText;
+		sendUserClicks(
+			`http://localhost:3000/image/${imageId}`,
+			selectedCharacter,
+			coordinates,
+			imageId
+		);
+	};
+
 	return (
 		<div className="image2" style={{ position: "relative" }}>
 			<img
@@ -48,7 +59,6 @@ export default function Image2() {
 				title="circleAndDropDownMenu"
 				onClick={(event) => {
 					addCircleAndDropDownMenu(event);
-					UserClickPost(imageId);
 				}}
 				style={{
 					position: "absolute",
@@ -62,21 +72,48 @@ export default function Image2() {
 			</svg>
 			{dropDownVisible && (
 				<DropDown
+					role="Dropdown"
 					xCoordinates={coordinates.x}
 					yCoordinates={coordinates.y}
+					onClick={handleClick}
 				/>
 			)}
 		</div>
 	);
 }
 
-function DropDown({ xCoordinates, yCoordinates }) {
+function DropDown({ xCoordinates, yCoordinates, onClick }) {
 	return (
 		<DropDownStyled x={xCoordinates} y={yCoordinates}>
-			<DropDownItem>Waldo</DropDownItem>
-			<DropDownItem>Wizard</DropDownItem>
-			<DropDownItem>Wenda</DropDownItem>
-			<DropDownItem>Odlaw</DropDownItem>
+			<DropDownItem
+				onClick={(event) => {
+					onClick(event);
+				}}
+			>
+				Waldo
+			</DropDownItem>
+			<DropDownItem
+				onClick={(event) => {
+					onClick(event);
+				}}
+			>
+				Wizard
+			</DropDownItem>
+			<DropDownItem
+				onClick={(event) => {
+					onClick(event);
+				}}
+			>
+				Wenda
+			</DropDownItem>
+
+			<DropDownItem
+				onClick={(event) => {
+					onClick(event);
+				}}
+			>
+				Odlaw
+			</DropDownItem>
 		</DropDownStyled>
 	);
 }
@@ -101,4 +138,5 @@ const DropDownItem = styled.section`
 DropDown.propTypes = {
 	xCoordinates: PropTypes.number,
 	yCoordinates: PropTypes.number,
+	onClick: PropTypes.func,
 };
