@@ -12,7 +12,7 @@ cloudinary.config({
 
 const getImages = async () => {
 	try {
-		const result = await cloudinary.v2.search
+		const result = await cloudinary.search
 			.expression("resource_type:image")
 			.execute();
 		return result;
