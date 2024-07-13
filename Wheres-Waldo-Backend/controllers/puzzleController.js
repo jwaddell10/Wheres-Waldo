@@ -25,6 +25,8 @@ exports.clickPost = async (req, res, next) => {
 					.filter((assetId) => assetId === req.body.assetId)
 			);
 
+        
+
 	} catch (error) {
 		console.error("Error in puzzle controller:", error);
 		next(error);

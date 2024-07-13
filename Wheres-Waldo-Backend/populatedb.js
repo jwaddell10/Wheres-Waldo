@@ -1,11 +1,35 @@
 const mongoose = require("mongoose");
 const Character = require("./models/character.js");
+const asyncHandler = require("express-async-handler");
 const Puzzle = require("./models/puzzle.js");
-const cloudinary = require("cloudinary");
+const cloudinary = require("cloudinary").v2;
 require("dotenv").config();
-
+const { getImages } = require("./services/cloudinary.js");
 const characters = [];
 const puzzles = [];
+
+cloudinary.config({
+	cloud_name: process.env.CLOUD_NAME,
+	api_key: process.env.API_KEY,
+	api_secret: process.env.API_SECRET,
+});
+
+async function image() {
+	await cloudinary.v2.search
+		.expression("resource_type:image")
+		.execute()
+		.then((result) => console.log(result), "this is results");
+}
+image();
+
+const images = async () => {
+    await getImages();
+}
+
+images();
+
+
+
 
 const mongoDB = process.env.MONGODB_KEY;
 main().catch((err) => console.log(err));
@@ -16,7 +40,7 @@ async function main() {
 	await Promise.all([Puzzle.deleteMany(), Character.deleteMany()]);
 
 	await createPuzzle();
-    await createCharacter();
+	await createCharacter();
 }
 
 async function characterCreate(index, name, puzzle, coordinates) {
@@ -51,26 +75,26 @@ async function puzzleCreate(index, name) {
 // }
 
 async function createWaldoCharacters(puzzles) {
-    const waldoCoordinates = [
-        {x: 362, y: 251},
-        {x: 101, y: 454},
-        {x: 341, y: 99},
-    ]
+	const waldoCoordinates = [
+		{ x: 362, y: 251 },
+		{ x: 101, y: 454 },
+		{ x: 341, y: 99 },
+	];
 
-    const waldoCharacters = puzzles.map((puzzle, index) => ({
-        name: "Waldo",
-        puzzle: {
-            type: puzzle._id,
-            coordinates: waldoCoordinates[index],
-        }
-    }));
+	const waldoCharacters = puzzles.map((puzzle, index) => ({
+		name: "Waldo",
+		puzzle: {
+			type: puzzle._id,
+			coordinates: waldoCoordinates[index],
+		},
+	}));
 
-    const createdCharacters = await Character.insertMany(waldoCharacters)
-    createdCharacters.forEach(character => {
-        console.log(`Added character: ${JSON.stringify(character)}`);
-    });
+	const createdCharacters = await Character.insertMany(waldoCharacters);
+	createdCharacters.forEach((character) => {
+		console.log(`Added character: ${JSON.stringify(character)}`);
+	});
 
-    return createdCharacters;
+	return createdCharacters;
 }
 
 async function createPuzzle() {
@@ -82,8 +106,8 @@ async function createPuzzle() {
 }
 
 async function createCharacter() {
-    await Promise.all([
-        // characterCreate(index, name puzzle coords)
-        characterCreate(0, "Waldo", puzzles[0], [364, 255])
-    ])
+	await Promise.all([
+		// characterCreate(index, name puzzle coords)
+		characterCreate(0, "Waldo", puzzles[0], [364, 255]),
+	]);
 }
