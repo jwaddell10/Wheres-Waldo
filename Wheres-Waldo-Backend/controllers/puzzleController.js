@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 const Puzzle = require("../models/puzzle.js");
+const Character = require("../models/character.js")
 const uploadToCloudinary = require("../services/cloudinary.js");
 const cloudinary = require("cloudinary");
 
@@ -8,12 +9,13 @@ const cloudinary = require("cloudinary");
 
 exports.clickPost = async (req, res, next) => {
 	try {
-		// https://api.cloudinary.com/v1_1/:cloud_name/:action
-
+        console.log(req.body, 'this is req body')
         //get image, get characters, get coordinates
-        console.log(req.body, 'this is reqbody')
         const characters = req.body.characters
-
+        const x = () => {
+			
+		}
+        const y = req.body.coordinates.y
 		const image = await cloudinary.v2.search
 			.expression("resource_type:image")
 			.sort_by("public_id", "desc")
@@ -24,7 +26,8 @@ exports.clickPost = async (req, res, next) => {
 					.map((item) => item.asset_id)
 					.filter((assetId) => assetId === req.body.assetId)
 			);
-
+        const match = await Character.findOne({ coordinates: [x, y] })
+        console.log(match, 'this is match')
         
 
 	} catch (error) {

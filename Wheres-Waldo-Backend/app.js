@@ -13,7 +13,7 @@ mongoose.set("strictQuery", false);
 require("dotenv").config();
 
 var app = express();
-const cloudinary = require("cloudinary").v2;
+
 const mongoDB = process.env.MONGODB_KEY;
 main().catch((err) => console.log(err));
 async function main() {

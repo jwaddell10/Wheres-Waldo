@@ -15,8 +15,6 @@ export default function Image1() {
 	const { sendUserClicks } = UserClickPost();
 
 	const addCircleAndDropDownMenu = (event) => {
-		// UserClickPost(imageId)
-
 		const rect = event.target.getBoundingClientRect();
 		const x = event.clientX - rect.left;
 		const y = event.clientY - rect.top;
