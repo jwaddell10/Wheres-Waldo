@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 const Puzzle = require("../models/puzzle.js");
-const Character = require("../models/character.js")
+const Character = require("../models/character.js");
 const uploadToCloudinary = require("../services/cloudinary.js");
 const cloudinary = require("cloudinary");
 
@@ -9,27 +9,55 @@ const cloudinary = require("cloudinary");
 
 exports.clickPost = async (req, res, next) => {
 	try {
-        console.log(req.body, 'this is req body')
-        //get image, get characters, get coordinates
-        const characters = req.body.characters
-        const x = () => {
-			
-		}
-        const y = req.body.coordinates.y
-		const image = await cloudinary.v2.search
-			.expression("resource_type:image")
-			.sort_by("public_id", "desc")
-			.max_results(30)
-			.execute()
-			.then((result) =>
-				result.resources
-					.map((item) => item.asset_id)
-					.filter((assetId) => assetId === req.body.assetId)
-			);
-        const match = await Character.findOne({ coordinates: [x, y] })
-        console.log(match, 'this is match')
-        
+		console.log(req.body, "this is req body");
+		//get image, get characters, get coordinates
+		// const characters = req.body.selectedCharacter;
+		const character = await Character.find({
+			name: req.body.selectedCharacter,
+			puzzle: req.body.imageId,
+		});
+		const characterCoordinates = character[0].coordinates;
+		const characterX = characterCoordinates[0];
+		const characterY = characterCoordinates[1];
+		const x = req.body.coordinates.x;
+		const y = req.body.coordinates.y;
+		const bottomLeft = [x - 25, y - 25];
+		const bottomLeftX = bottomLeft[0];
+		const bottomLeftY = bottomLeft[1];
+		const topRight = [x + 25, y + 25];
+		const topRightX = topRight[0];
+		const topRightY = topRight[1];
 
+		function withinBounds(
+			characterX,
+			characterY,
+			bottomLeftX,
+			bottomLeftY,
+			topRightX,
+			topRightY
+		) {
+			if (
+				characterX >= bottomLeftX &&
+				characterX <= topRightX &&
+				characterY >= bottomLeftY &&
+				characterY <= topRightY
+			) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		const match = withinBounds(
+			characterX,
+			characterY,
+			bottomLeftX,
+			bottomLeftY,
+			topRightX,
+			topRightY
+		);
+		if (match === true) {
+			res.json({ character });
+		}
 	} catch (error) {
 		console.error("Error in puzzle controller:", error);
 		next(error);

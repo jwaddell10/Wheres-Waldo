@@ -65,6 +65,7 @@ async function createCharacter() {
 		characterCreate(0, "Waldo", puzzles[0], [364, 255]),
         characterCreate(1, "Waldo", puzzles[1], [101, 454]),
 		characterCreate(2, "Waldo", puzzles[2], [341, 99]),
+		characterCreate(0, "Wizard", puzzles[0], [428, 258]),
         characterCreate(1, "Wizard", puzzles[1], [338, 472]),
         characterCreate(0, "Odlaw", puzzles[0], [167, 253]),
         characterCreate(1, "Odlaw", puzzles[1], [267, 587]),
