@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import UserClickPost from "./UserClickPost";
+import CharacterNavBar from "./CharacterNavBar";
 
 export default function Image2() {
 	const imageId = import.meta.env.VITE_IMAGE2_ID;
@@ -49,36 +50,41 @@ export default function Image2() {
 	};
 
 	return (
-		<div className="image2" style={{ position: "relative" }}>
-			<img
-				src={waldoDowntown}
-				alt="Waldo Downtown"
-				style={{ width: "100%", height: "auto" }}
+		<>
+			<CharacterNavBar
+				characters={["wally", "wenda", "wizard", "odlaw"]}
 			/>
-			<svg
-				title="circleAndDropDownMenu"
-				onClick={(event) => {
-					addCircleAndDropDownMenu(event);
-				}}
-				style={{
-					position: "absolute",
-					top: 0,
-					left: 0,
-					width: "100%",
-					height: "100%",
-				}}
-			>
-				{circleVisible && circles}
-			</svg>
-			{dropDownVisible && (
-				<DropDown
-					role="Dropdown"
-					xCoordinates={coordinates.x}
-					yCoordinates={coordinates.y}
-					onClick={handleClick}
+			<div className="image2" style={{ position: "relative" }}>
+				<img
+					src={waldoDowntown}
+					alt="Waldo Downtown"
+					style={{ width: "100%", height: "auto" }}
 				/>
-			)}
-		</div>
+				<svg
+					title="circleAndDropDownMenu"
+					onClick={(event) => {
+						addCircleAndDropDownMenu(event);
+					}}
+					style={{
+						position: "absolute",
+						top: 0,
+						left: 0,
+						width: "100%",
+						height: "100%",
+					}}
+				>
+					{circleVisible && circles}
+				</svg>
+				{dropDownVisible && (
+					<DropDown
+						role="Dropdown"
+						xCoordinates={coordinates.x}
+						yCoordinates={coordinates.y}
+						onClick={handleClick}
+					/>
+				)}
+			</div>
+		</>
 	);
 }
 

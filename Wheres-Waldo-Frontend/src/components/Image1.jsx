@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import UserClickPost from "./UserClickPost";
+import CharacterNavBar from "./CharacterNavBar";
 
 export default function Image1() {
 	const imageId = import.meta.env.VITE_IMAGE_ID;
@@ -39,47 +40,55 @@ export default function Image1() {
 		setCircles(newCircle);
 	};
 
-	const handleClick = (event) => {
+	const handleClick = async (event) => {
 		const selectedCharacter = event.target.innerText;
-		sendUserClicks(
+		const result = await sendUserClicks(
 			`http://localhost:3000/image/${imageId}`,
 			selectedCharacter,
 			coordinates,
 			imageId
 		);
+
+		return result;
 	};
 
 	return (
-		<div className="image1" style={{ position: "relative" }}>
-			<img
-				src={waldoBeach}
-				alt="Waldo Beach"
-				style={{ width: "100%", height: "auto" }}
+		<>
+			<CharacterNavBar
+				style={{ display: "flex" }}
+				characters={["wally", "wizard", "odlaw"]}
 			/>
-			<svg
-				title="circleAndDropDownMenu"
-				onClick={(event) => {
-					addCircleAndDropDownMenu(event);
-				}}
-				style={{
-					position: "absolute",
-					top: 0,
-					left: 0,
-					width: "100%",
-					height: "100%",
-				}}
-			>
-				{circleVisible && circles}
-			</svg>
-			{dropDownVisible && (
-				<DropDown
-					role="Dropdown"
-					xCoordinates={coordinates.x}
-					yCoordinates={coordinates.y}
-					onClick={handleClick}
+			<div className="image1" style={{ position: "relative" }}>
+				<img
+					src={waldoBeach}
+					alt="Waldo Beach"
+					style={{ width: "100%", height: "auto" }}
 				/>
-			)}
-		</div>
+				<svg
+					title="circleAndDropDownMenu"
+					onClick={(event) => {
+						addCircleAndDropDownMenu(event);
+					}}
+					style={{
+						position: "absolute",
+						top: 0,
+						left: 0,
+						width: "100%",
+						height: "100%",
+					}}
+				>
+					{circleVisible && circles}
+				</svg>
+				{dropDownVisible && (
+					<DropDown
+						role="Dropdown"
+						xCoordinates={coordinates.x}
+						yCoordinates={coordinates.y}
+						onClick={handleClick}
+					/>
+				)}
+			</div>
+		</>
 	);
 }
 
