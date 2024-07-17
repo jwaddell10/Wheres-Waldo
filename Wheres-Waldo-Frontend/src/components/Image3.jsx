@@ -8,6 +8,7 @@ import CharacterNavBar from "./CharacterNavBar";
 
 export default function Image3() {
 	const imageId = import.meta.env.VITE_IMAGE3_ID;
+	const characters = ["waldo", "wenda", "odlaw"]
 	const [coordinates, setCoordinates] = useState({ x: null, y: null });
 	const [circles, setCircles] = useState(null);
 	const [circleVisible, setCircleVisible] = useState(false);
@@ -51,7 +52,7 @@ export default function Image3() {
 
 	return (
 		<>
-			<CharacterNavBar characters={["wally", "wenda", "odlaw"]} />
+			<CharacterNavBar characters={characters} />
 			<div className="image3" style={{ position: "relative" }}>
 				<img
 					src={waldoFactory}

@@ -28,8 +28,6 @@ function Header() {
 function Body() {
 	const gameRules =
 		"This is a photo tagging app. I'm putting the rules here. Select your option below";
-		console.log('Image ID:', import.meta.env.VITE_IMAGE_ID);
-
 	return (
 		<>
 			<div className="gameRules">

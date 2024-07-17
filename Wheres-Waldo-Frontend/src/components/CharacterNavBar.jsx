@@ -32,7 +32,8 @@ const StyledNavBar = styled.section`
 `;
 
 const StyledDiv = styled.div`
-	width: 10%;
+	width: 80px;
+    height: 80px;
 	border: 5px solid #338aff;
 	outline: 1px solid black;
 	border-radius: 50%;

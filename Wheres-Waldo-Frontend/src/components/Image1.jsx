@@ -8,6 +8,7 @@ import CharacterNavBar from "./CharacterNavBar";
 
 export default function Image1() {
 	const imageId = import.meta.env.VITE_IMAGE_ID;
+	const characters = ["wally", "wizard", "odlaw"]
 	const [coordinates, setCoordinates] = useState({ x: null, y: null });
 	const [circles, setCircles] = useState(null);
 	const [circleVisible, setCircleVisible] = useState(false);
@@ -49,6 +50,7 @@ export default function Image1() {
 			imageId
 		);
 
+
 		return result;
 	};
 
@@ -56,7 +58,7 @@ export default function Image1() {
 		<>
 			<CharacterNavBar
 				style={{ display: "flex" }}
-				characters={["wally", "wizard", "odlaw"]}
+				characters={characters}
 			/>
 			<div className="image1" style={{ position: "relative" }}>
 				<img
@@ -85,6 +87,7 @@ export default function Image1() {
 						xCoordinates={coordinates.x}
 						yCoordinates={coordinates.y}
 						onClick={handleClick}
+						imageId={imageId}
 					/>
 				)}
 			</div>
@@ -92,12 +95,23 @@ export default function Image1() {
 	);
 }
 
-function DropDown({ xCoordinates, yCoordinates, onClick }) {
+function DropDown({ xCoordinates, yCoordinates, onClick, imageId }) {
+	const characters = ['wally', 'wizard', 'odlaw']
+
+	const checkIfCharactersFound = async () => {
+		try {
+			const response = await fetch(`http://localhost:3000/image/${imageId}`)
+			console.log(response, 'this is response')
+		} catch(error) {
+			console.log(error, 'this is error')
+		}
+	}
 	return (
 		<DropDownStyled x={xCoordinates} y={yCoordinates}>
 			<DropDownItem
 				onClick={(event) => {
 					onClick(event);
+					checkIfCharactersFound();
 				}}
 			>
 				Waldo
