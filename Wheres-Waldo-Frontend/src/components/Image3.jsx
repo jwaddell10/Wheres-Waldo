@@ -8,7 +8,7 @@ import CharacterNavBar from "./CharacterNavBar";
 
 export default function Image3() {
 	const imageId = import.meta.env.VITE_IMAGE3_ID;
-	const characters = ["waldo", "wenda", "odlaw"]
+	const characters = ["wally", "wenda", "odlaw"]
 	const [coordinates, setCoordinates] = useState({ x: null, y: null });
 	const [circles, setCircles] = useState(null);
 	const [circleVisible, setCircleVisible] = useState(false);

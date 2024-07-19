@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">89.78% </span>
+                <span class="strong">90.14% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>123/137</span>
+                <span class='fraction'>128/142</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">89.78% </span>
+                <span class="strong">90.14% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>123/137</span>
+                <span class='fraction'>128/142</span>
             </div>
         
             
@@ -200,13 +200,20 @@
 <a name='L135'></a><a href='#L135'>135</a>
 <a name='L136'></a><a href='#L136'>136</a>
 <a name='L137'></a><a href='#L137'>137</a>
-<a name='L138'></a><a href='#L138'>138</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
@@ -260,6 +267,8 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -280,6 +289,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
@@ -343,9 +353,11 @@ import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import UserClickPost from "./UserClickPost";
+import CharacterNavBar from "./CharacterNavBar";
 &nbsp;
 export default function Image3() {
 	const imageId = import.meta.env.VITE_IMAGE3_ID;
+	const characters = ["waldo", "wenda", "odlaw"]
 	const [coordinates, setCoordinates] = useState({ x: null, y: null });
 	const [circles, setCircles] = useState(null);
 	const [circleVisible, setCircleVisible] = useState(false);
@@ -388,37 +400,40 @@ export default function Image3() {
 <span class="cstat-no" title="statement not covered" >	};</span>
 &nbsp;
 	return (
-		&lt;div className="image3" style={{ position: "relative" }}&gt;
-			&lt;img
-				src={waldoFactory}
-				alt="Waldo Factory"
-				style={{ width: "100%", height: "auto" }}
-			/&gt;
-			&lt;svg
-				title="circleAndDropDownMenu"
-				onClick={(event) =&gt; {
-					addCircleAndDropDownMenu(event);
-					UserClickPost(imageId);
-				}}
-				style={{
-					position: "absolute",
-					top: 0,
-					left: 0,
-					width: "100%",
-					height: "100%",
-				}}
-			&gt;
-				{circleVisible &amp;&amp; circles}
-			&lt;/svg&gt;
-			{dropDownVisible &amp;&amp; (
-				&lt;DropDown
-					role="Dropdown"
-					xCoordinates={coordinates.x}
-					yCoordinates={coordinates.y}
-					onClick={handleClick}
+		&lt;&gt;
+			&lt;CharacterNavBar characters={characters} /&gt;
+			&lt;div className="image3" style={{ position: "relative" }}&gt;
+				&lt;img
+					src={waldoFactory}
+					alt="Waldo Factory"
+					style={{ width: "100%", height: "auto" }}
 				/&gt;
-			)}
-		&lt;/div&gt;
+				&lt;svg
+					title="circleAndDropDownMenu"
+					onClick={(event) =&gt; {
+						addCircleAndDropDownMenu(event);
+						UserClickPost(imageId);
+					}}
+					style={{
+						position: "absolute",
+						top: 0,
+						left: 0,
+						width: "100%",
+						height: "100%",
+					}}
+				&gt;
+					{circleVisible &amp;&amp; circles}
+				&lt;/svg&gt;
+				{dropDownVisible &amp;&amp; (
+					&lt;DropDown
+						role="Dropdown"
+						xCoordinates={coordinates.x}
+						yCoordinates={coordinates.y}
+						onClick={handleClick}
+					/&gt;
+				)}
+			&lt;/div&gt;
+		&lt;/&gt;
 	);
 }
 &nbsp;
@@ -481,7 +496,7 @@ DropDown.propTypes = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-07-12T21:30:42.520Z
+                at 2024-07-18T14:14:01.905Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -18,6 +18,7 @@ export default function Image1() {
 
 	const addCircleAndDropDownMenu = (event) => {
 		const rect = event.target.getBoundingClientRect();
+		console.log(rect, 'this is rect')
 		const x = event.clientX - rect.left;
 		const y = event.clientY - rect.top;
 

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export default function CharacterNavBar({ characters }) {
+    console.log(characters, 'this is characters')
 	return (
 		<>
 			<StyledNavBar>
