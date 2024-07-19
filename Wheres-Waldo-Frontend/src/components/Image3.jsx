@@ -10,7 +10,10 @@ export default function Image3() {
 	const imageId = import.meta.env.VITE_IMAGE3_ID;
 	const characters = ["wally", "wenda", "odlaw"];
 	const [coordinates, setCoordinates] = useState({ x: null, y: null });
-	const [dropDownCoordinates, setDropDownCoordinates] = useState({ x: null, y: null})
+	const [dropDownCoordinates, setDropDownCoordinates] = useState({
+		x: null,
+		y: null,
+	});
 	const [circles, setCircles] = useState(null);
 	const [circleVisible, setCircleVisible] = useState(false);
 	const [dropDownVisible, setDropDownVisible] = useState(false);
@@ -19,16 +22,15 @@ export default function Image3() {
 	const addCircleAndDropDownMenu = (event) => {
 		const rect = event.target.getBoundingClientRect();
 		const { width, height } = event.target.getBoundingClientRect();
-		const { offsetX, offsetY } = event.nativeEvent; 
+		const { offsetX, offsetY } = event.nativeEvent;
 		const dropDownX = event.clientX - rect.left;
 		const dropDownY = event.clientY - rect.top;
 		const x = Math.round((offsetX / width) * 100);
 		const y = Math.round((offsetY / height) * 100);
 		setCoordinates({ x, y });
-		setDropDownCoordinates({ dropDownX, dropDownY })
+		setDropDownCoordinates({ dropDownX, dropDownY });
 		setDropDownVisible(!dropDownVisible);
 		setCircleVisible(!circleVisible);
-		console.log(dropDownCoordinates, "this is coords");
 
 		let newCircle = (
 			<circle

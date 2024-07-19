@@ -10,6 +10,7 @@ export default function Image2() {
 	const imageId = import.meta.env.VITE_IMAGE2_ID;
 	const characters = ["wally", "wenda", "wizard", "odlaw"]
 	const [coordinates, setCoordinates] = useState({ x: null, y: null });
+	const [dropDownCoordinates, setDropDownCoordinates] = useState({ x: null, y: null})
 	const [circles, setCircles] = useState(null);
 	const [circleVisible, setCircleVisible] = useState(false);
 	const [dropDownVisible, setDropDownVisible] = useState(false);
@@ -17,10 +18,14 @@ export default function Image2() {
 
 	const addCircleAndDropDownMenu = (event) => {
 		const rect = event.target.getBoundingClientRect();
-		const x = event.clientX - rect.left;
-		const y = event.clientY - rect.top;
-
+		const { width, height } = event.target.getBoundingClientRect();
+		const { offsetX, offsetY } = event.nativeEvent; 
+		const dropDownX = event.clientX - rect.left;
+		const dropDownY = event.clientY - rect.top;
+		const x = Math.round((offsetX / width) * 100);
+		const y = Math.round((offsetY / height) * 100);
 		setCoordinates({ x, y });
+		setDropDownCoordinates({ dropDownX, dropDownY })
 		setDropDownVisible(!dropDownVisible);
 		setCircleVisible(!circleVisible);
 
