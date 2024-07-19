@@ -8,9 +8,12 @@ import CharacterNavBar from "./CharacterNavBar";
 
 export default function Image2() {
 	const imageId = import.meta.env.VITE_IMAGE2_ID;
-	const characters = ["wally", "wenda", "wizard", "odlaw"]
+	const characters = ["wally", "wenda", "wizard", "odlaw"];
 	const [coordinates, setCoordinates] = useState({ x: null, y: null });
-	const [dropDownCoordinates, setDropDownCoordinates] = useState({ x: null, y: null})
+	const [dropDownCoordinates, setDropDownCoordinates] = useState({
+		x: null,
+		y: null,
+	});
 	const [circles, setCircles] = useState(null);
 	const [circleVisible, setCircleVisible] = useState(false);
 	const [dropDownVisible, setDropDownVisible] = useState(false);
@@ -19,13 +22,13 @@ export default function Image2() {
 	const addCircleAndDropDownMenu = (event) => {
 		const rect = event.target.getBoundingClientRect();
 		const { width, height } = event.target.getBoundingClientRect();
-		const { offsetX, offsetY } = event.nativeEvent; 
+		const { offsetX, offsetY } = event.nativeEvent;
 		const dropDownX = event.clientX - rect.left;
 		const dropDownY = event.clientY - rect.top;
 		const x = Math.round((offsetX / width) * 100);
 		const y = Math.round((offsetY / height) * 100);
 		setCoordinates({ x, y });
-		setDropDownCoordinates({ dropDownX, dropDownY })
+		setDropDownCoordinates({ dropDownX, dropDownY });
 		setDropDownVisible(!dropDownVisible);
 		setCircleVisible(!circleVisible);
 
@@ -57,9 +60,7 @@ export default function Image2() {
 
 	return (
 		<>
-			<CharacterNavBar
-				characters={characters}
-			/>
+			<CharacterNavBar characters={characters} />
 			<div className="image2" style={{ position: "relative" }}>
 				<img
 					src={waldoDowntown}
@@ -84,8 +85,8 @@ export default function Image2() {
 				{dropDownVisible && (
 					<DropDown
 						role="Dropdown"
-						xCoordinates={coordinates.x}
-						yCoordinates={coordinates.y}
+						xCoordinates={dropDownCoordinates.dropDownX}
+						yCoordinates={dropDownCoordinates.dropDownY}
 						onClick={handleClick}
 					/>
 				)}

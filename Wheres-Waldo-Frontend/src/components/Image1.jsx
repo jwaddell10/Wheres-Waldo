@@ -8,9 +8,12 @@ import CharacterNavBar from "./CharacterNavBar";
 
 export default function Image1() {
 	const imageId = import.meta.env.VITE_IMAGE_ID;
-	const characters = ["wally", "wizard", "odlaw"]
+	const characters = ["wally", "wizard", "odlaw"];
 	const [coordinates, setCoordinates] = useState({ x: null, y: null });
-	const [dropDownCoordinates, setDropDownCoordinates] = useState({ x: null, y: null})
+	const [dropDownCoordinates, setDropDownCoordinates] = useState({
+		x: null,
+		y: null,
+	});
 	const [circles, setCircles] = useState(null);
 	const [circleVisible, setCircleVisible] = useState(false);
 	const [dropDownVisible, setDropDownVisible] = useState(false);
@@ -20,13 +23,13 @@ export default function Image1() {
 	const addCircleAndDropDownMenu = (event) => {
 		const rect = event.target.getBoundingClientRect();
 		const { width, height } = event.target.getBoundingClientRect();
-		const { offsetX, offsetY } = event.nativeEvent; 
+		const { offsetX, offsetY } = event.nativeEvent;
 		const dropDownX = event.clientX - rect.left;
 		const dropDownY = event.clientY - rect.top;
 		const x = Math.round((offsetX / width) * 100);
 		const y = Math.round((offsetY / height) * 100);
 		setCoordinates({ x, y });
-		setDropDownCoordinates({ dropDownX, dropDownY })
+		setDropDownCoordinates({ dropDownX, dropDownY });
 		setDropDownVisible(!dropDownVisible);
 		setCircleVisible(!circleVisible);
 
@@ -54,7 +57,6 @@ export default function Image1() {
 			coordinates,
 			imageId
 		);
-
 
 		return result;
 	};
@@ -101,16 +103,18 @@ export default function Image1() {
 }
 
 function DropDown({ xCoordinates, yCoordinates, onClick, imageId }) {
-	const characters = ['wally', 'wizard', 'odlaw']
+	const characters = ["wally", "wizard", "odlaw"];
 
 	const checkIfCharactersFound = async () => {
 		try {
-			const response = await fetch(`http://localhost:3000/image/${imageId}`)
-			console.log(response, 'this is response')
-		} catch(error) {
-			console.log(error, 'this is error')
+			const response = await fetch(
+				`http://localhost:3000/image/${imageId}`
+			);
+			console.log(response, "this is response");
+		} catch (error) {
+			console.log(error, "this is error");
 		}
-	}
+	};
 	return (
 		<DropDownStyled x={xCoordinates} y={yCoordinates}>
 			<DropDownItem

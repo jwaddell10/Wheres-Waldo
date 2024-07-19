@@ -7,15 +7,16 @@ const cloudinary = require("cloudinary");
 
 // imageController.js
 
-exports.clickPost = async (req, res, next) => {
+exports.clickPost = asyncHandler(async (req, res, next) => {
 	try {
-		console.log(req.body, "this is req body");
-		//get image, get characters, get coordinates
-		// const characters = req.body.selectedCharacter;
+		// //start timer, if 3 circles are sent back end game
+		// testFunction();
+		console.log(req.body, 'this is reqbody')
 		const character = await Character.find({
 			name: req.body.selectedCharacter,
 			puzzle: req.body.imageId,
 		});
+		// const allCharacters = await Character.find({puzzle: req.body.imageId})
 		const characterCoordinates = character[0].coordinates;
 		const characterX = characterCoordinates[0];
 		const characterY = characterCoordinates[1];
@@ -28,7 +29,7 @@ exports.clickPost = async (req, res, next) => {
 		const topRightX = topRight[0];
 		const topRightY = topRight[1];
 
-		function withinBounds(
+		function checkTarget(
 			characterX,
 			characterY,
 			bottomLeftX,
@@ -47,7 +48,7 @@ exports.clickPost = async (req, res, next) => {
 				return false;
 			}
 		}
-		const match = withinBounds(
+		const match = checkTarget(
 			characterX,
 			characterY,
 			bottomLeftX,
@@ -55,6 +56,7 @@ exports.clickPost = async (req, res, next) => {
 			topRightX,
 			topRightY
 		);
+		console.log(characterX, bottomLeftX, topRightX, characterY, bottomLeftY, topRightY, 'this is match')
 		if (match === true) {
 			res.json({ character });
 		}
@@ -62,4 +64,4 @@ exports.clickPost = async (req, res, next) => {
 		console.error("Error in puzzle controller:", error);
 		next(error);
 	}
-};
+});
