@@ -22,10 +22,10 @@ exports.clickPost = asyncHandler(async (req, res, next) => {
 		const characterY = characterCoordinates[1];
 		const x = req.body.coordinates.x;
 		const y = req.body.coordinates.y;
-		const bottomLeft = [x - 25, y - 25];
+		const bottomLeft = [x - 4, y - 4];
 		const bottomLeftX = bottomLeft[0];
 		const bottomLeftY = bottomLeft[1];
-		const topRight = [x + 25, y + 25];
+		const topRight = [x + 4, y + 4];
 		const topRightX = topRight[0];
 		const topRightY = topRight[1];
 
@@ -56,7 +56,7 @@ exports.clickPost = asyncHandler(async (req, res, next) => {
 			topRightX,
 			topRightY
 		);
-		console.log(characterX, bottomLeftX, topRightX, characterY, bottomLeftY, topRightY, 'this is match')
+		console.log(match, 'this is match')
 		if (match === true) {
 			res.json({ character });
 		}
