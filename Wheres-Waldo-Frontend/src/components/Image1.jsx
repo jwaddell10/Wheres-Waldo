@@ -37,8 +37,8 @@ export default function Image1() {
 			<circle
 				key={uuidv4()}
 				title="circle"
-				cx={x}
-				cy={y}
+				cx={dropDownX}
+				cy={dropDownY}
 				r="25"
 				fill="none"
 				stroke="#FF6F69"
@@ -77,6 +77,7 @@ export default function Image1() {
 					title="circleAndDropDownMenu"
 					onClick={(event) => {
 						addCircleAndDropDownMenu(event);
+						UserClickPost(imageId);
 					}}
 					style={{
 						position: "absolute",
@@ -103,7 +104,6 @@ export default function Image1() {
 }
 
 function DropDown({ xCoordinates, yCoordinates, onClick, imageId }) {
-	const characters = ["wally", "wizard", "odlaw"];
 
 	const checkIfCharactersFound = async () => {
 		try {

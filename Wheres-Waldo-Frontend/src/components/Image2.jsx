@@ -36,8 +36,8 @@ export default function Image2() {
 			<circle
 				key={uuidv4()}
 				title="circle"
-				cx={x}
-				cy={y}
+				cx={dropDownX}
+				cy={dropDownY}
 				r="25"
 				fill="none"
 				stroke="#FF6F69"
@@ -71,6 +71,7 @@ export default function Image2() {
 					title="circleAndDropDownMenu"
 					onClick={(event) => {
 						addCircleAndDropDownMenu(event);
+						UserClickPost(imageId);
 					}}
 					style={{
 						position: "absolute",
