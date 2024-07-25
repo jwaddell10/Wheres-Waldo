@@ -7,16 +7,40 @@ const cloudinary = require("cloudinary");
 
 // imageController.js
 
+//gamecontroller
+//start game
+//play game
+//end game
+
+// const timer = () => {
+
+// }
+
+exports.startGame = asyncHandler(async (req, res, next) => {
+	//initialize timer
+
+	function counter() {
+		let count = 0;
+		setInterval(() => {
+			count++;
+			// console.log(count, 'count')
+		}, 1);
+	}
+	counter();
+});
+
+//get characters, get coordinates, get puzzle
+// const characters = await Character.find({ puzzle: req.params.imageId})
+// const characterCoordinates = characters.map((item) => ({coordinates: item.coordinates, name: item.name}))
+
 exports.clickPost = asyncHandler(async (req, res, next) => {
 	try {
 		// //start timer, if 3 circles are sent back end game
 		// testFunction();
-		console.log(req.body, 'this is reqbody')
 		const character = await Character.find({
 			name: req.body.selectedCharacter,
 			puzzle: req.body.imageId,
 		});
-		// const allCharacters = await Character.find({puzzle: req.body.imageId})
 		const characterCoordinates = character[0].coordinates;
 		const characterX = characterCoordinates[0];
 		const characterY = characterCoordinates[1];
@@ -56,7 +80,6 @@ exports.clickPost = asyncHandler(async (req, res, next) => {
 			topRightX,
 			topRightY
 		);
-		console.log(match, 'this is match')
 		if (match === true) {
 			res.json({ character });
 		}
