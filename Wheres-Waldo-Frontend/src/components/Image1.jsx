@@ -5,6 +5,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import UserClickPost from "./UserClickPost";
 import CharacterNavBar from "./CharacterNavBar";
+import Counter from "./Counter";
 
 export default function Image1() {
 	const imageId = import.meta.env.VITE_IMAGE_ID;
@@ -63,6 +64,7 @@ export default function Image1() {
 
 	return (
 		<>
+			<Counter />
 			<CharacterNavBar
 				style={{ display: "flex" }}
 				characters={characters}
@@ -104,7 +106,6 @@ export default function Image1() {
 }
 
 function DropDown({ xCoordinates, yCoordinates, onClick, imageId }) {
-
 	const checkIfCharactersFound = async () => {
 		try {
 			const response = await fetch(

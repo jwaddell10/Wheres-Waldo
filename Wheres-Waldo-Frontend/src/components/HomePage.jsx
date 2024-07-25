@@ -28,6 +28,39 @@ function Header() {
 function Body() {
 	const gameRules =
 		"This is a photo tagging app. I'm putting the rules here. Select your option below";
+
+	const startGame = async () => {
+		const imageId = import.meta.env.VITE_IMAGE_ID; //need to pass an ID to backend for route
+		try {
+			const response = await fetch(`http://localhost:3000/image/${imageId}`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
+
+			const data = await response.json()
+			console.log(data, 'this is data')
+		} catch(error) {
+			console.log(error, 'this is error')
+		}
+		
+	};
+
+	// const response = await fetch(url,
+	// 	{
+	// 		method: "POST",
+	// 		headers: {
+	// 			"Content-Type": "application/json",
+	// 		},
+	// 		body: JSON.stringify({
+	// 			selectedCharacter,
+	// 			coordinates,
+	// 			imageId,
+	// 		})
+	// 	}
+	// );
+	
 	return (
 		<>
 			<div className="gameRules">
@@ -44,7 +77,7 @@ function Body() {
 						/>
 						<h2>Waldo Beach</h2>
 						<Link to={`/image/${import.meta.env.VITE_IMAGE_ID}`}>
-							<button>Click</button>
+							<button onClick={startGame}>Click</button>
 						</Link>
 					</div>
 				</ImageCard>
@@ -58,7 +91,13 @@ function Body() {
 						/>
 						<h2>Waldo Downtown</h2>
 						<Link to={`/image/${import.meta.env.VITE_IMAGE2_ID}`}>
-							<button>Click</button>
+							<button
+								onClick={(event) => {
+									startGame;
+								}}
+							>
+								Click
+							</button>
 						</Link>
 					</div>
 				</ImageCard>
@@ -72,7 +111,7 @@ function Body() {
 						/>
 						<h2>Waldo Factory</h2>
 						<Link to={`/image/${import.meta.env.VITE_IMAGE3_ID}`}>
-							<button>Click</button>
+							<button onClick={startGame}>Click</button>
 						</Link>
 					</div>
 				</ImageCard>
