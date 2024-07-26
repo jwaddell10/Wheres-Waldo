@@ -5,6 +5,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import UserClickPost from "./UserClickPost";
 import CharacterNavBar from "./CharacterNavBar";
+import Counter from "./Counter";
 
 export default function Image2() {
 	const imageId = import.meta.env.VITE_IMAGE2_ID;
@@ -60,6 +61,7 @@ export default function Image2() {
 
 	return (
 		<>
+			<Counter />
 			<CharacterNavBar characters={characters} />
 			<div className="image2" style={{ position: "relative" }}>
 				<img

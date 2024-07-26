@@ -31,14 +31,4 @@ export default function Counter() {
 			clearInterval(intervalId);
 		};
 	}, []);
-
-	// function counter() {
-	//     let count = 0;
-	//     setInterval(() => {
-	//         count++
-	//         setTime(count)
-	//     }, 1000)
-	// }
-	// counter();
-	return <div>{time}</div>;
 }

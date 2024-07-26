@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import UserClickPost from "./UserClickPost";
 import CharacterNavBar from "./CharacterNavBar";
 import Counter from "./Counter";
+import FetchCharacterInfo from "./FetchCharacterInfo";
 
 export default function Image1() {
 	const imageId = import.meta.env.VITE_IMAGE_ID;
@@ -20,6 +21,9 @@ export default function Image1() {
 	const [dropDownVisible, setDropDownVisible] = useState(false);
 
 	const { sendUserClicks } = UserClickPost();
+
+	const { gameCharacters, characterCoordinates } =
+		FetchCharacterInfo(imageId);
 
 	const addCircleAndDropDownMenu = (event) => {
 		const rect = event.target.getBoundingClientRect();
@@ -79,7 +83,7 @@ export default function Image1() {
 					title="circleAndDropDownMenu"
 					onClick={(event) => {
 						addCircleAndDropDownMenu(event);
-						UserClickPost(imageId);
+						// UserClickPost(imageId);
 					}}
 					style={{
 						position: "absolute",
@@ -96,8 +100,11 @@ export default function Image1() {
 						role="Dropdown"
 						xCoordinates={dropDownCoordinates.dropDownX}
 						yCoordinates={dropDownCoordinates.dropDownY}
-						onClick={handleClick}
+						coordinates={coordinates}
+						characterCoordinates={characterCoordinates}
+						// onClick={handleClick}
 						imageId={imageId}
+						characters={characters}
 					/>
 				)}
 			</div>
@@ -105,37 +112,75 @@ export default function Image1() {
 	);
 }
 
-function DropDown({ xCoordinates, yCoordinates, onClick, imageId }) {
-	const checkIfCharactersFound = async () => {
-		try {
-			const response = await fetch(
-				`http://localhost:3000/image/${imageId}`
-			);
-			console.log(response, "this is response");
-		} catch (error) {
-			console.log(error, "this is error");
+function DropDown({
+	coordinates,
+	characterCoordinates,
+	xCoordinates,
+	yCoordinates,
+}) {
+	const checkIfCharactersFound = (coordinates, characterCoordinates) => {
+		//current plan, match coordinates with selected character, see if there's a match (I probably can just see if the coords
+		//match anything since the game is so small...)
+	
+		const x = coordinates.x
+		const y = coordinates.y
+		const bottomLeftX = [x - 5]
+		const bottomLeftY = [y - 5]
+		const topRightX = [x + 5]
+		const topRightY = [y + 5]
+		const characterX = characterCoordinates.map((coords) => coords[0])
+		const characterY = characterCoordinates.map((coords) => coords[1])
+
+		function checkTarget(
+			characterX,
+			characterY,
+			bottomLeftX,
+			bottomLeftY,
+			topRightX,
+			topRightY
+		) {
+			if (
+				characterX >= bottomLeftX &&
+				characterX <= topRightX &&
+				characterY >= bottomLeftY &&
+				characterY <= topRightY
+			) {
+				return true;
+			} else {
+				return false;
+			}
 		}
+		const match = checkTarget(
+			characterX,
+			characterY,
+			bottomLeftX,
+			bottomLeftY,
+			topRightX,
+			topRightY
+		);
+		console.log(match, 'this is match')
+
+		//if match is true, draw a circle, if circles = character.length, res.json game is over and display this to user
 	};
 	return (
 		<DropDownStyled x={xCoordinates} y={yCoordinates}>
 			<DropDownItem
-				onClick={(event) => {
-					onClick(event);
-					checkIfCharactersFound();
+				onClick={() => {
+					checkIfCharactersFound(coordinates, characterCoordinates);
 				}}
 			>
 				Waldo
 			</DropDownItem>
 			<DropDownItem
-				onClick={(event) => {
-					onClick(event);
+				onClick={() => {
+					checkIfCharactersFound(coordinates, characterCoordinates);
 				}}
 			>
 				Wizard
 			</DropDownItem>
 			<DropDownItem
-				onClick={(event) => {
-					onClick(event);
+				onClick={() => {
+					checkIfCharactersFound(coordinates, characterCoordinates);
 				}}
 			>
 				Odlaw
