@@ -16,14 +16,14 @@ const cloudinary = require("cloudinary");
 
 // }
 
-exports.startGame = asyncHandler(async (req, res, next) => {
+exports.game = asyncHandler(async (req, res, next) => {
 	//initialize timer
 
 	function counter() {
 		let count = 0;
 		setInterval(() => {
 			count++;
-			// console.log(count, 'count')
+			// console.log(count, 'this is count')
 		}, 1);
 	}
 	counter();
@@ -80,6 +80,7 @@ exports.clickPost = asyncHandler(async (req, res, next) => {
 			topRightX,
 			topRightY
 		);
+		console.log(match, 'this is match')
 		if (match === true) {
 			res.json({ character });
 		}

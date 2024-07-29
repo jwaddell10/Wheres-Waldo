@@ -9,9 +9,9 @@ const characterController = require("../controllers/characterController")
 // });
 
 router.get("/image/:imageId", characterController.charactersGet)
-
+// router.post("/image/:imageId", gameController.game)
 // router.post("/image/:imageId", gameController.clickPost)
-router.post("/image/:imageId", gameController.startGame)
+
 // router.get("/image/:imageId", gameController.startGame)
 
 module.exports = router; 

@@ -6,6 +6,9 @@ import PropTypes from "prop-types";
 import UserClickPost from "./UserClickPost";
 import CharacterNavBar from "./CharacterNavBar";
 import Counter from "./Counter";
+import FetchCharacterInfo from "./FetchCharacterInfo";
+import CheckTarget from "./CheckTarget";
+import Circle from "./Circle";
 
 export default function Image3() {
 	const imageId = import.meta.env.VITE_IMAGE3_ID;
@@ -16,9 +19,18 @@ export default function Image3() {
 		y: null,
 	});
 	const [circles, setCircles] = useState(null);
+	const [matchCircles, setMatchCircles] = useState([]);
 	const [circleVisible, setCircleVisible] = useState(false);
 	const [dropDownVisible, setDropDownVisible] = useState(false);
-	const { sendUserClicks } = UserClickPost();
+
+	const { addCircle } = Circle({
+		matchCircles,
+		setMatchCircles,
+		dropDownCoordinates,
+	});
+
+	const { gameCharacters, characterCoordinates } =
+		FetchCharacterInfo(imageId);
 
 	const addCircleAndDropDownMenu = (event) => {
 		const rect = event.target.getBoundingClientRect();
@@ -49,16 +61,6 @@ export default function Image3() {
 		setCircles(newCircle);
 	};
 
-	const handleClick = (event) => {
-		const selectedCharacter = event.target.innerText;
-		sendUserClicks(
-			`http://localhost:3000/image/${imageId}`,
-			selectedCharacter,
-			coordinates,
-			imageId
-		);
-	};
-
 	return (
 		<>
 			<Counter />
@@ -84,13 +86,19 @@ export default function Image3() {
 					}}
 				>
 					{circleVisible && circles}
+					{matchCircles}
 				</svg>
 				{dropDownVisible && (
 					<DropDown
 						role="Dropdown"
 						xCoordinates={dropDownCoordinates.dropDownX}
 						yCoordinates={dropDownCoordinates.dropDownY}
-						onClick={handleClick}
+						coordinates={coordinates}
+						characterCoordinates={characterCoordinates}
+						gameCharacters={gameCharacters}
+						addCircle={addCircle}
+						imageId={imageId}
+						characters={characters}
 					/>
 				)}
 			</div>
@@ -98,32 +106,71 @@ export default function Image3() {
 	);
 }
 
-function DropDown({ xCoordinates, yCoordinates, onClick }) {
+function DropDown({
+	addCircle,
+	coordinates,
+	characterCoordinates,
+	gameCharacters,
+	xCoordinates,
+	yCoordinates,
+}) {
+
+	const imageId = import.meta.env.VITE_IMAGE3_ID;
+
+	const checkIfCharactersFound = (
+		event,
+		coordinates,
+		characterCoordinates
+	) => {
+		const x = coordinates.x;
+		const y = coordinates.y;
+
+		const match = CheckTarget(
+			event, imageId, x, y, gameCharacters, characterCoordinates
+		);
+		// console.log(CheckTarget(event, imageId, x, y, gameCharacters, characterCoordinates))
+
+		if (match === true) {
+			addCircle(coordinates);
+			setMatchCircles()
+		}
+
+	};
 	return (
 		<DropDownStyled x={xCoordinates} y={yCoordinates}>
-			<div className="dropDown">
-				<DropDownItem
-					onClick={(event) => {
-						onClick(event);
-					}}
-				>
-					Waldo
-				</DropDownItem>
-				<DropDownItem
-					onClick={(event) => {
-						onClick(event);
-					}}
-				>
-					Wenda
-				</DropDownItem>
-				<DropDownItem
-					onClick={(event) => {
-						onClick(event);
-					}}
-				>
-					Odlaw
-				</DropDownItem>
-			</div>
+			<DropDownItem
+				onClick={(event) => {
+					checkIfCharactersFound(
+						event,
+						coordinates,
+						characterCoordinates
+					);
+				}}
+			>
+				Waldo
+			</DropDownItem>
+			<DropDownItem
+				onClick={(event) => {
+					checkIfCharactersFound(
+						event,
+						coordinates,
+						characterCoordinates
+					);
+				}}
+			>
+				Wenda
+			</DropDownItem>
+			<DropDownItem
+				onClick={(event) => {
+					checkIfCharactersFound(
+						event,
+						coordinates,
+						characterCoordinates
+					);
+				}}
+			>
+				Odlaw
+			</DropDownItem>
 		</DropDownStyled>
 	);
 }

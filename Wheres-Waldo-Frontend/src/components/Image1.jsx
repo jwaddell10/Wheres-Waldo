@@ -7,6 +7,8 @@ import UserClickPost from "./UserClickPost";
 import CharacterNavBar from "./CharacterNavBar";
 import Counter from "./Counter";
 import FetchCharacterInfo from "./FetchCharacterInfo";
+import Circle from "./Circle";
+import CheckTarget from "./CheckTarget";
 
 export default function Image1() {
 	const imageId = import.meta.env.VITE_IMAGE_ID;
@@ -17,8 +19,17 @@ export default function Image1() {
 		y: null,
 	});
 	const [circles, setCircles] = useState(null);
+	const [matchCircles, setMatchCircles] = useState([]);
 	const [circleVisible, setCircleVisible] = useState(false);
 	const [dropDownVisible, setDropDownVisible] = useState(false);
+	const [matchedCharacters, setMatchedCharacters] = useState([]);
+
+	const { addCircle } = Circle({
+		characters,
+		matchCircles,
+		setMatchCircles,
+		dropDownCoordinates,
+	});
 
 	const { sendUserClicks } = UserClickPost();
 
@@ -54,18 +65,6 @@ export default function Image1() {
 		setCircles(newCircle);
 	};
 
-	const handleClick = async (event) => {
-		const selectedCharacter = event.target.innerText;
-		const result = await sendUserClicks(
-			`http://localhost:3000/image/${imageId}`,
-			selectedCharacter,
-			coordinates,
-			imageId
-		);
-
-		return result;
-	};
-
 	return (
 		<>
 			<Counter />
@@ -94,6 +93,7 @@ export default function Image1() {
 					}}
 				>
 					{circleVisible && circles}
+					{matchCircles}
 				</svg>
 				{dropDownVisible && (
 					<DropDown
@@ -102,7 +102,8 @@ export default function Image1() {
 						yCoordinates={dropDownCoordinates.dropDownY}
 						coordinates={coordinates}
 						characterCoordinates={characterCoordinates}
-						// onClick={handleClick}
+						gameCharacters={gameCharacters}
+						addCircle={addCircle}
 						imageId={imageId}
 						characters={characters}
 					/>
@@ -113,74 +114,64 @@ export default function Image1() {
 }
 
 function DropDown({
+	addCircle,
 	coordinates,
 	characterCoordinates,
+	gameCharacters,
 	xCoordinates,
 	yCoordinates,
 }) {
-	const checkIfCharactersFound = (coordinates, characterCoordinates) => {
-		//current plan, match coordinates with selected character, see if there's a match (I probably can just see if the coords
-		//match anything since the game is so small...)
-	
-		const x = coordinates.x
-		const y = coordinates.y
-		const bottomLeftX = [x - 5]
-		const bottomLeftY = [y - 5]
-		const topRightX = [x + 5]
-		const topRightY = [y + 5]
-		const characterX = characterCoordinates.map((coords) => coords[0])
-		const characterY = characterCoordinates.map((coords) => coords[1])
+	const imageId = import.meta.env.VITE_IMAGE_ID;
 
-		function checkTarget(
-			characterX,
-			characterY,
-			bottomLeftX,
-			bottomLeftY,
-			topRightX,
-			topRightY
-		) {
-			if (
-				characterX >= bottomLeftX &&
-				characterX <= topRightX &&
-				characterY >= bottomLeftY &&
-				characterY <= topRightY
-			) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-		const match = checkTarget(
-			characterX,
-			characterY,
-			bottomLeftX,
-			bottomLeftY,
-			topRightX,
-			topRightY
+	const checkIfCharactersFound = (
+		event,
+		coordinates,
+		characterCoordinates
+	) => {
+		const x = coordinates.x;
+		const y = coordinates.y;
+
+		const match = CheckTarget(
+			event, imageId, x, y, gameCharacters, characterCoordinates
 		);
-		console.log(match, 'this is match')
 
-		//if match is true, draw a circle, if circles = character.length, res.json game is over and display this to user
+		if (match === true) {
+			console.log("its a match");
+			addCircle(coordinates);
+		}
+
 	};
 	return (
 		<DropDownStyled x={xCoordinates} y={yCoordinates}>
 			<DropDownItem
-				onClick={() => {
-					checkIfCharactersFound(coordinates, characterCoordinates);
+				onClick={(event) => {
+					checkIfCharactersFound(
+						event,
+						coordinates,
+						characterCoordinates
+					);
 				}}
 			>
 				Waldo
 			</DropDownItem>
 			<DropDownItem
-				onClick={() => {
-					checkIfCharactersFound(coordinates, characterCoordinates);
+				onClick={(event) => {
+					checkIfCharactersFound(
+						event,
+						coordinates,
+						characterCoordinates
+					);
 				}}
 			>
 				Wizard
 			</DropDownItem>
 			<DropDownItem
-				onClick={() => {
-					checkIfCharactersFound(coordinates, characterCoordinates);
+				onClick={(event) => {
+					checkIfCharactersFound(
+						event,
+						coordinates,
+						characterCoordinates
+					);
 				}}
 			>
 				Odlaw
