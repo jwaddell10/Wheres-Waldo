@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import waldoBeach from "../assets/waldoBeach.jpg";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import UserClickPost from "./UserClickPost";
 import CharacterNavBar from "./CharacterNavBar";
 import Counter from "./Counter";
 import FetchCharacterInfo from "./FetchCharacterInfo";
 import Circle from "./Circle";
 import CheckTarget from "./CheckTarget";
+import EndGame from "./EndGame";
 
 export default function Image1() {
 	const imageId = import.meta.env.VITE_IMAGE_ID;
@@ -23,6 +23,13 @@ export default function Image1() {
 	const [circleVisible, setCircleVisible] = useState(false);
 	const [dropDownVisible, setDropDownVisible] = useState(false);
 	const [matchedCharacters, setMatchedCharacters] = useState([]);
+	const [userName, setUserName] = useState(null);
+
+	useEffect(() => {
+		if (matchedCharacters.length === characters.length) {
+			EndGame(imageId, userName, setUserName);
+		}
+	}, [matchedCharacters]);
 
 	const { addCircle } = Circle({
 		characters,
@@ -65,6 +72,10 @@ export default function Image1() {
 
 	return (
 		<>
+			{" "}
+			{matchedCharacters.length === characters.length && (
+				<EndGame imageId={imageId} />
+			)}
 			<Counter />
 			<CharacterNavBar
 				style={{ display: "flex" }}
@@ -101,6 +112,7 @@ export default function Image1() {
 						coordinates={coordinates}
 						characterCoordinates={characterCoordinates}
 						gameCharacters={gameCharacters}
+						characters={characters}
 						addCircle={addCircle}
 						matchedCharacters={matchedCharacters}
 						setMatchedCharacters={setMatchedCharacters}
@@ -120,6 +132,7 @@ function DropDown({
 	yCoordinates,
 	matchedCharacters,
 	setMatchedCharacters,
+	characters,
 }) {
 	const imageId = import.meta.env.VITE_IMAGE_ID;
 	const checkIfCharactersFound = (
@@ -147,6 +160,7 @@ function DropDown({
 			if (matchedCharacters.includes(characterName)) {
 				return;
 			}
+
 			setMatchedCharacters((prevCharacter) => [
 				...prevCharacter,
 				characterName,
