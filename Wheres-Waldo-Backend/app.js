@@ -5,6 +5,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const uploadToCloudinary = require('./services/cloudinary.js');
+const session = require('express-session')
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -20,6 +21,14 @@ async function main() {
 	await mongoose.connect(mongoDB);
 	console.log("connected");
 }
+
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
 
 app.use(logger("dev"));
 app.use(express.json());

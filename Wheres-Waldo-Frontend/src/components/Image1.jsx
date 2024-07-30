@@ -9,6 +9,7 @@ import FetchCharacterInfo from "./FetchCharacterInfo";
 import Circle from "./Circle";
 import CheckTarget from "./CheckTarget";
 import EndGame from "./EndGame";
+import AddScoreForm from "./AddScoreForm";
 
 export default function Image1() {
 	const imageId = import.meta.env.VITE_IMAGE_ID;
@@ -24,12 +25,12 @@ export default function Image1() {
 	const [dropDownVisible, setDropDownVisible] = useState(false);
 	const [matchedCharacters, setMatchedCharacters] = useState([]);
 	const [userName, setUserName] = useState(null);
-
-	// useEffect(() => {
-	// 	if (matchedCharacters.length === characters.length) {
-	// 		EndGame(userName, setUserName);
-	// 	}
-	// }, [matchedCharacters]);
+	// console.log(EndGame, 'this is endgame')
+	useEffect(() => {
+		if (matchedCharacters.length === characters.length) {
+			EndGame();
+		}
+	}, [matchedCharacters]);
 
 	const { addCircle } = Circle({
 		characters,
@@ -73,7 +74,7 @@ export default function Image1() {
 	return (
 		<>
 			{matchedCharacters.length === characters.length && (
-				<EndGame imageId={imageId} />
+				<AddScoreForm imageId={imageId} />
 			)}
 			<Counter />
 			<CharacterNavBar

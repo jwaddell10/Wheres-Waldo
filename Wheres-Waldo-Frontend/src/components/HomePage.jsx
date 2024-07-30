@@ -33,7 +33,7 @@ function Body() {
 		const imageId = import.meta.env.VITE_IMAGE_ID;
 		try {
 			const response = await fetch(
-				`http://localhost:3000/image/${imageId}`,
+				`http://localhost:3000/image/${imageId}/gameStart`,
 				{
 					method: "POST",
 					headers: {
@@ -41,9 +41,6 @@ function Body() {
 					},
 				}
 			);
-
-			const data = await response.json();
-			console.log(data, "this is data");
 		} catch (error) {
 			console.log(error, "this is error");
 		}

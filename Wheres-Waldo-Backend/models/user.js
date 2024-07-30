@@ -6,10 +6,6 @@ const userSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	startDate: {
-		type: Date,
-		required: true,
-	},
 	time: {
 		type: Number,
 		required: true,
