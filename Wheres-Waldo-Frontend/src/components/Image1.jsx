@@ -25,11 +25,11 @@ export default function Image1() {
 	const [matchedCharacters, setMatchedCharacters] = useState([]);
 	const [userName, setUserName] = useState(null);
 
-	useEffect(() => {
-		if (matchedCharacters.length === characters.length) {
-			EndGame(imageId, userName, setUserName);
-		}
-	}, [matchedCharacters]);
+	// useEffect(() => {
+	// 	if (matchedCharacters.length === characters.length) {
+	// 		EndGame(userName, setUserName);
+	// 	}
+	// }, [matchedCharacters]);
 
 	const { addCircle } = Circle({
 		characters,
@@ -72,7 +72,6 @@ export default function Image1() {
 
 	return (
 		<>
-			{" "}
 			{matchedCharacters.length === characters.length && (
 				<EndGame imageId={imageId} />
 			)}

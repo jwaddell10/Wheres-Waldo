@@ -1,4 +1,4 @@
-export default function CheckTarget(event, imageId, x, y, gameCharacters, matchedCharacters, setMatchedCharacters) {
+export default function CheckTarget(event, imageId, x, y, gameCharacters) {
 	const characterName = event.target.innerText;
 
 	const checkTarget = (characterCoordinates) => {

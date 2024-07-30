@@ -1,13 +1,16 @@
-export default function EndGame(imageId, userName, setUserName) {
-	const endGame = async (event) => {
+export default function EndGame() {
+	const endGame = (event) => {
+		const form = event.target;
+		const formData = new FormData(form);
+		const formDataObj = Object.fromEntries(formData.entries());
 		event.preventDefault();
-		await fetch(`http://localhost:3000/image/${imageId}`, {
+		fetch(`http://localhost:3000/leaderboard`, {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
 			},
-			body: JSON.STRINGIFY({ userName }),
+			body: JSON.stringify({ formDataObj }),
 		});
 	};
 
@@ -17,7 +20,6 @@ export default function EndGame(imageId, userName, setUserName) {
 				<input
 					type="text"
 					name="user"
-					onChange={(e) => setUserName(e.target.value)}
 					placeholder="Enter your username"
 					required
 				/>

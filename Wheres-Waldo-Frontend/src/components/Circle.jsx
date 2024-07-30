@@ -1,11 +1,7 @@
 export default function Circle({
-    event,
-	characters,
 	matchCircles,
 	setMatchCircles,
 	dropDownCoordinates,
-	matchedCharacters,
-	setMatchedCharacters,
 }) {
 	const addCircle = () => {
 		let [x, y] = [

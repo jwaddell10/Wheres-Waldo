@@ -13,7 +13,7 @@ export default function FetchCharacterInfo(imageId) {
 				const characterCoords = data.characters.map(
 					(character) => character.coordinates
 				);
-                
+
 				setCharacterCoordinates(characterCoords);
 				setGameCharacters(data);
 			});
