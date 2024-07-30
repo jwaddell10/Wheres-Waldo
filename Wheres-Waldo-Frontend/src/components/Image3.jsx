@@ -22,6 +22,7 @@ export default function Image3() {
 	const [matchCircles, setMatchCircles] = useState([]);
 	const [circleVisible, setCircleVisible] = useState(false);
 	const [dropDownVisible, setDropDownVisible] = useState(false);
+	const [matchedCharacters, setMatchedCharacters] = useState([]);
 
 	const { addCircle } = Circle({
 		matchCircles,
@@ -99,6 +100,8 @@ export default function Image3() {
 						addCircle={addCircle}
 						imageId={imageId}
 						characters={characters}
+						matchedCharacters={matchedCharacters}
+						setMatchedCharacters={setMatchedCharacters}
 					/>
 				)}
 			</div>
@@ -113,10 +116,10 @@ function DropDown({
 	gameCharacters,
 	xCoordinates,
 	yCoordinates,
+	matchedCharacters,
+	setMatchedCharacters,
 }) {
-
-	const imageId = import.meta.env.VITE_IMAGE3_ID;
-
+	const imageId = import.meta.env.VITE_IMAGE_ID;
 	const checkIfCharactersFound = (
 		event,
 		coordinates,
@@ -125,16 +128,29 @@ function DropDown({
 		const x = coordinates.x;
 		const y = coordinates.y;
 
+		const characterName = event.target.innerText;
+
 		const match = CheckTarget(
-			event, imageId, x, y, gameCharacters, characterCoordinates
+			event,
+			imageId,
+			x,
+			y,
+			gameCharacters,
+			characterCoordinates,
+			matchedCharacters,
+			setMatchedCharacters
 		);
-		// console.log(CheckTarget(event, imageId, x, y, gameCharacters, characterCoordinates))
 
 		if (match === true) {
+			if (matchedCharacters.includes(characterName)) {
+				return;
+			}
+			setMatchedCharacters((prevCharacter) => [
+				...prevCharacter,
+				characterName,
+			]);
 			addCircle(coordinates);
-			setMatchCircles()
 		}
-
 	};
 	return (
 		<DropDownStyled x={xCoordinates} y={yCoordinates}>

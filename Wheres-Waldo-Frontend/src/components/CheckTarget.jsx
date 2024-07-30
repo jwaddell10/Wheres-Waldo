@@ -1,6 +1,5 @@
-export default function CheckTarget(event, imageId, x, y, gameCharacters) {
+export default function CheckTarget(event, imageId, x, y, gameCharacters, matchedCharacters, setMatchedCharacters) {
 	const characterName = event.target.innerText;
-    console.log(characterName, 'this is charname', event, 'event', imageId, 'imageId', x, 'x', y, 'y', gameCharacters, 'gamechars')
 
 	const checkTarget = (characterCoordinates) => {
 		if (
@@ -18,6 +17,7 @@ export default function CheckTarget(event, imageId, x, y, gameCharacters) {
 	const selectedCharacter = gameCharacters.characters.filter(
 		(character) => character.name === characterName
 	);
+
 
 	return checkTarget(selectedCharacter[0].coordinates);
 }

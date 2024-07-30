@@ -31,8 +31,6 @@ export default function Image1() {
 		dropDownCoordinates,
 	});
 
-	const { sendUserClicks } = UserClickPost();
-
 	const { gameCharacters, characterCoordinates } =
 		FetchCharacterInfo(imageId);
 
@@ -104,8 +102,8 @@ export default function Image1() {
 						characterCoordinates={characterCoordinates}
 						gameCharacters={gameCharacters}
 						addCircle={addCircle}
-						imageId={imageId}
-						characters={characters}
+						matchedCharacters={matchedCharacters}
+						setMatchedCharacters={setMatchedCharacters}
 					/>
 				)}
 			</div>
@@ -120,9 +118,10 @@ function DropDown({
 	gameCharacters,
 	xCoordinates,
 	yCoordinates,
+	matchedCharacters,
+	setMatchedCharacters,
 }) {
 	const imageId = import.meta.env.VITE_IMAGE_ID;
-
 	const checkIfCharactersFound = (
 		event,
 		coordinates,
@@ -131,15 +130,29 @@ function DropDown({
 		const x = coordinates.x;
 		const y = coordinates.y;
 
+		const characterName = event.target.innerText;
+
 		const match = CheckTarget(
-			event, imageId, x, y, gameCharacters, characterCoordinates
+			event,
+			imageId,
+			x,
+			y,
+			gameCharacters,
+			characterCoordinates,
+			matchedCharacters,
+			setMatchedCharacters
 		);
 
 		if (match === true) {
-			console.log("its a match");
+			if (matchedCharacters.includes(characterName)) {
+				return;
+			}
+			setMatchedCharacters((prevCharacter) => [
+				...prevCharacter,
+				characterName,
+			]);
 			addCircle(coordinates);
 		}
-
 	};
 	return (
 		<DropDownStyled x={xCoordinates} y={yCoordinates}>

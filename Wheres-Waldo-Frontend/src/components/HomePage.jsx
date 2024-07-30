@@ -30,7 +30,7 @@ function Body() {
 		"This is a photo tagging app. I'm putting the rules here. Select your option below";
 
 	const startGame = async () => {
-		const imageId = import.meta.env.VITE_IMAGE_ID; //need to pass an ID to backend for route
+		const imageId = import.meta.env.VITE_IMAGE_ID;
 		try {
 			const response = await fetch(`http://localhost:3000/image/${imageId}`, {
 				method: "POST",
