@@ -12,6 +12,8 @@ const startTimer = () => {
     //get the current date in setInterval function, then compare to old date every X amount of time
 }
 
-exports.gameStart = () => {
-    console.log('this is a test')
-}
+exports.addUser = asyncHandler(async (req, res, next) => {
+    console.log(req.body.formDataObj, 'this is req')
+    const user = await User.find({name: req.body.formDataObj.user})
+    console.log(user, 'this is user')
+})
