@@ -2,18 +2,36 @@ const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 const Puzzle = require("../models/puzzle.js");
 const Character = require("../models/character.js");
+const User = require("../models/user.js");
 const uploadToCloudinary = require("../services/cloudinary.js");
 const cloudinary = require("cloudinary");
 
 let gameStartTime = null;
+let endTime = null;
+let seconds = null;
 
 exports.startGame = asyncHandler(async (req, res, next) => {
-	gameStartTime = Date.now();
+	gameStartTime = req.requestTime;
+	return gameStartTime;
 });
 
 exports.endGame = asyncHandler(async (req, res, next) => {
-	const endTime = Date.now();
-	const duration = endTime - gameStartTime
-	const seconds = duration / 1000;
-	next();
+	endTime = req.requestTime;
+	const duration = endTime - gameStartTime;
+	seconds = duration / 1000;
+});
+
+exports.addUser = asyncHandler(async (req, res, next) => {
+	const user = await User.find({ name: req.body.formDataObj.user });
+	const puzzle = await Puzzle.findById(req.params.imageId);
+
+	if (!user.length) {
+		const createdUser = new User({
+			name: req.body.formDataObj.user,
+			time: seconds,
+			puzzle: puzzle,
+		});
+
+		await createdUser.save();
+	}
 });

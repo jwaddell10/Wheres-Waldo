@@ -1,11 +1,11 @@
 var createError = require("http-errors");
-const cors = require('cors')
+const cors = require("cors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-const uploadToCloudinary = require('./services/cloudinary.js');
-const session = require('express-session')
+const uploadToCloudinary = require("./services/cloudinary.js");
+const session = require("express-session");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -22,20 +22,29 @@ async function main() {
 	console.log("connected");
 }
 
-app.set('trust proxy', 1) // trust first proxy
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
-}))
+app.set("trust proxy", 1);
+app.use(
+	session({
+		secret: "keyboard cat",
+		resave: false,
+		saveUninitialized: true,
+		cookie: { secure: true },
+	})
+);
+
+const requestTime = function (req, res, next) {
+	req.requestTime = Date.now();
+	next();
+};
+
+app.use(requestTime);
 
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-app.use(cors())
+app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
@@ -58,9 +67,9 @@ app.use(function (err, req, res, next) {
 	res.render("error");
 });
 
-process.on('unhandledRejection', (reason, promise) => {
-  console.log(reason, promise);
-  // Application specific error-handling here
+process.on("unhandledRejection", (reason, promise) => {
+	console.log(reason, promise);
+	// Application specific error-handling here
 });
 
 module.exports = app;

@@ -10,10 +10,11 @@ const userSchema = new Schema({
 		type: Number,
 		required: true,
 	},
-	// completed: {
-	// 	type: Boolean,
-	// 	required: true,
-	// },
+	puzzle: {
+		type: Schema.Types.ObjectId,
+		ref: "Puzzle",
+		required: true,
+	}
 });
 
 module.exports = mongoose.model("User", userSchema);
