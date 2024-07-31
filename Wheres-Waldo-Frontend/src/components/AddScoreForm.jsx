@@ -4,8 +4,7 @@ export default function AddScoreForm({ imageId }) {
 		const form = event.target;
 		const formData = new FormData(form);
 		const formDataObj = Object.fromEntries(formData.entries());
-		console.log(formDataObj, "this is form dataobj");
-		fetch(`http://localhost:3000/image/${imageId}/gameEnd`, {
+		fetch(`http://localhost:3000/image/${imageId}/leaderboard`, {
 			method: "POST",
 			headers: {
 				Accept: "application/json",

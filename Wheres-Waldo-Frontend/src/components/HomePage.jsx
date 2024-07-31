@@ -29,8 +29,7 @@ function Body() {
 	const gameRules =
 		"This is a photo tagging app. I'm putting the rules here. Select your option below";
 
-	const startGame = async () => {
-		const imageId = import.meta.env.VITE_IMAGE_ID;
+	const startGame = async (imageId) => {
 		try {
 			const response = await fetch(
 				`http://localhost:3000/image/${imageId}/gameStart`,
@@ -41,6 +40,8 @@ function Body() {
 					},
 				}
 			);
+
+			return response;
 		} catch (error) {
 			console.log(error, "this is error");
 		}
@@ -62,7 +63,13 @@ function Body() {
 						/>
 						<h2>Waldo Beach</h2>
 						<Link to={`/image/${import.meta.env.VITE_IMAGE_ID}`}>
-							<button onClick={startGame}>Click</button>
+							<button
+								onClick={() => {
+									startGame(import.meta.env.VITE_IMAGE_ID);
+								}}
+							>
+								Click
+							</button>
 						</Link>
 					</div>
 				</ImageCard>
@@ -78,7 +85,7 @@ function Body() {
 						<Link to={`/image/${import.meta.env.VITE_IMAGE2_ID}`}>
 							<button
 								onClick={() => {
-									startGame;
+									startGame(import.meta.env.VITE_IMAGE2_ID);
 								}}
 							>
 								Click
@@ -96,7 +103,13 @@ function Body() {
 						/>
 						<h2>Waldo Factory</h2>
 						<Link to={`/image/${import.meta.env.VITE_IMAGE3_ID}`}>
-							<button onClick={startGame}>Click</button>
+							<button
+								onClick={() => {
+									startGame(import.meta.env.VITE_IMAGE3_ID);
+								}}
+							>
+								Click
+							</button>
 						</Link>
 					</div>
 				</ImageCard>

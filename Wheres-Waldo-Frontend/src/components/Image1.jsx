@@ -25,7 +25,7 @@ export default function Image1() {
 	const [dropDownVisible, setDropDownVisible] = useState(false);
 	const [matchedCharacters, setMatchedCharacters] = useState([]);
 	const [userName, setUserName] = useState(null);
-	// console.log(EndGame, 'this is endgame')
+
 	useEffect(() => {
 		if (matchedCharacters.length === characters.length) {
 			EndGame();
@@ -132,7 +132,6 @@ function DropDown({
 	yCoordinates,
 	matchedCharacters,
 	setMatchedCharacters,
-	characters,
 }) {
 	const imageId = import.meta.env.VITE_IMAGE_ID;
 	const checkIfCharactersFound = (

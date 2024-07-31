@@ -1,5 +1,5 @@
 import waldoDowntown from "../assets/waldoDowntown.jpg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import PropTypes from "prop-types";
@@ -9,6 +9,8 @@ import Counter from "./Counter";
 import FetchCharacterInfo from "./FetchCharacterInfo";
 import CheckTarget from "./CheckTarget";
 import Circle from "./Circle";
+import AddScoreForm from "./AddScoreForm";
+import EndGame from "./EndGame";
 
 export default function Image2() {
 	const imageId = import.meta.env.VITE_IMAGE2_ID;
@@ -29,6 +31,12 @@ export default function Image2() {
 		setMatchCircles,
 		dropDownCoordinates,
 	});
+
+	useEffect(() => {
+		if (matchedCharacters.length === characters.length) {
+			EndGame();
+		}
+	}, [matchedCharacters]);
 
 	const { gameCharacters, characterCoordinates } =
 		FetchCharacterInfo(imageId);
@@ -64,6 +72,9 @@ export default function Image2() {
 
 	return (
 		<>
+			{matchedCharacters.length === characters.length && (
+				<AddScoreForm imageId={imageId} />
+			)}
 			<Counter />
 			<CharacterNavBar characters={characters} />
 			<div className="image2" style={{ position: "relative" }}>
