@@ -22,16 +22,13 @@ exports.endGame = asyncHandler(async (req, res, next) => {
 });
 
 exports.addUser = asyncHandler(async (req, res, next) => {
-	const user = await User.find({ name: req.body.formDataObj.user });
 	const puzzle = await Puzzle.findById(req.params.imageId);
 
-	if (!user.length) {
-		const createdUser = new User({
-			name: req.body.formDataObj.user,
-			time: seconds,
-			puzzle: puzzle,
-		});
+	const createdUser = new User({
+		name: req.body.formDataObj.user,
+		time: seconds,
+		puzzle: puzzle,
+	});
 
-		await createdUser.save();
-	}
+	await createdUser.save();
 });
