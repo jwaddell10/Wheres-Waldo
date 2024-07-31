@@ -24,7 +24,6 @@ export default function Image1() {
 	const [circleVisible, setCircleVisible] = useState(false);
 	const [dropDownVisible, setDropDownVisible] = useState(false);
 	const [matchedCharacters, setMatchedCharacters] = useState([]);
-	const [userName, setUserName] = useState(null);
 
 	useEffect(() => {
 		if (matchedCharacters.length === characters.length) {
