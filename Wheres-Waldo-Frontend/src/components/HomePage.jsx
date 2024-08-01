@@ -119,14 +119,15 @@ function Body() {
 }
 
 const ImageCard = styled.section`
-	width: 25%;
-	height: 25%;
 `;
 
 const ImageWrapper = styled.section`
 	display: flex;
 	justify-content: space-between;
 	align-items: stretch;
+	max-width: 100%;
+	max-height: 100%;
+	gap: 1rem;
 `;
 
 export default HomePage;

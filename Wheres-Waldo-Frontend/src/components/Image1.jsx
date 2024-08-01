@@ -62,9 +62,11 @@ export default function Image1() {
 				cx={dropDownX}
 				cy={dropDownY}
 				r="25"
-				fill="none"
-				stroke="#FF6F69"
-				strokeWidth="5"
+				stroke="black"
+				fill="white"
+				fillOpacity="0.3"
+				strokeWidth="7"
+				strokeDasharray="10 5"
 			/>
 		);
 
@@ -210,14 +212,13 @@ const DropDownStyled = styled.section`
 	left: ${(props) => props.x + 10}px;
 	position: absolute;
 	color: white;
-	border: 2px solid white;
-	background-color: #ff6f69;
+	background-color: black;
 	border-radius: 15px;
 `;
 
 const DropDownItem = styled.section`
 	font-size: 15px;
-	margin: 0.5rem;
+	margin: 5px;
 	padding: 0.5rem;
 	border: 1px solid white;
 	border-radius: 15px;

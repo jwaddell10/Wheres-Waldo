@@ -1,4 +1,7 @@
 .images {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
     height: 200px;
-    width: 200px;
 }

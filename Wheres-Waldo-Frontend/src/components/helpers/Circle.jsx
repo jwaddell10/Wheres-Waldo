@@ -13,7 +13,7 @@ export default function Circle({
 				cx={x}
 				cy={y}
 				r="20"
-				stroke="blue"
+				stroke="#4d4dff"
 				fill="none"
 				strokeWidth="5"
 			/>

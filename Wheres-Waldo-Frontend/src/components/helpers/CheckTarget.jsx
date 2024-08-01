@@ -3,10 +3,10 @@ export default function CheckTarget(event, imageId, x, y, gameCharacters) {
 
 	const checkTarget = (characterCoordinates) => {
 		if (
-			characterCoordinates[0] >= x - 5 &&
-			characterCoordinates[0] <= x + 5 &&
-			characterCoordinates[1] >= y - 5 &&
-			characterCoordinates[1] <= y + 5
+			characterCoordinates[0] >= x - 2 &&
+			characterCoordinates[0] <= x + 2 &&
+			characterCoordinates[1] >= y - 2 &&
+			characterCoordinates[1] <= y + 2
 		) {
 			return true;
 		} else {
