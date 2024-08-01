@@ -22,8 +22,6 @@ export default function Circle({
 		let allCircles = [...matchCircles, newCircle];
 
 		setMatchCircles(allCircles);
-		// setMatchedCharacters((prevItems) => [...prevItems, selectedCharacters]);
-		// matchedh;
 	};
 
 	return { addCircle };

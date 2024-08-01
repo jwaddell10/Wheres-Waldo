@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-
+//found this solution on stackoverflow... so can't take credit for it...
 export default function Counter() {
+	// eslint-disable-next-line no-unused-vars
 	const [count, setCount] = useState(null);
 	const [time, setTime] = useState(null);
 
@@ -30,5 +32,6 @@ export default function Counter() {
 		return () => {
 			clearInterval(intervalId);
 		};
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 }

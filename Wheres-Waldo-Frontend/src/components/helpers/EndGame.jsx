@@ -12,7 +12,7 @@ export default async function EndGame() {
 				}
 			);
 
-
+			return response;
 		} catch (error) {
 			console.log(error, "this is error");
 		}

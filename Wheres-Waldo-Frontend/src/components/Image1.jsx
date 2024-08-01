@@ -3,13 +3,13 @@ import waldoBeach from "../assets/waldoBeach.jpg";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import CharacterNavBar from "./CharacterNavBar";
-import Counter from "./Counter";
-import FetchCharacterInfo from "./FetchCharacterInfo";
-import Circle from "./Circle";
-import CheckTarget from "./CheckTarget";
-import EndGame from "./EndGame";
-import AddScoreForm from "./AddScoreForm";
+import CharacterNavBar from "./helpers/CharacterNavBar";
+import Counter from "./helpers/Counter";
+import FetchCharacterInfo from "./helpers/FetchCharacterInfo";
+import Circle from "./helpers/Circle";
+import CheckTarget from "./helpers/CheckTarget";
+import EndGame from "./helpers/EndGame";
+import AddScoreForm from "./helpers/AddScoreForm";
 
 export default function Image1() {
 	const imageId = import.meta.env.VITE_IMAGE_ID;
@@ -29,6 +29,7 @@ export default function Image1() {
 		if (matchedCharacters.length === characters.length) {
 			EndGame();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [matchedCharacters]);
 
 	const { addCircle } = Circle({
@@ -90,7 +91,6 @@ export default function Image1() {
 					title="circleAndDropDownMenu"
 					onClick={(event) => {
 						addCircleAndDropDownMenu(event);
-						// UserClickPost(imageId);
 					}}
 					style={{
 						position: "absolute",
@@ -226,4 +226,10 @@ DropDown.propTypes = {
 	xCoordinates: PropTypes.number,
 	yCoordinates: PropTypes.number,
 	onClick: PropTypes.func,
+	addCircle: PropTypes.func,
+	coordinates: PropTypes.object,
+	characterCoordinates: PropTypes.array,
+	gameCharacters: PropTypes.object,
+	matchedCharacters: PropTypes.array,
+	setMatchedCharacters: PropTypes.func,
 };

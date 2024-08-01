@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export default function AddScoreForm({ imageId }) {
 	const submitScore = (event) => {
 		event.preventDefault();
@@ -27,4 +29,8 @@ export default function AddScoreForm({ imageId }) {
 			</form>
 		</>
 	);
+}
+
+AddScoreForm.propTypes = {
+	imageId: PropTypes.string,
 }

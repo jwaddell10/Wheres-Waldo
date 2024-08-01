@@ -4,13 +4,13 @@ import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import UserClickPost from "./UserClickPost";
-import CharacterNavBar from "./CharacterNavBar";
-import Counter from "./Counter";
-import FetchCharacterInfo from "./FetchCharacterInfo";
-import CheckTarget from "./CheckTarget";
-import Circle from "./Circle";
-import AddScoreForm from "./AddScoreForm";
-import EndGame from "./EndGame";
+import CharacterNavBar from "./helpers/CharacterNavBar";
+import Counter from "./helpers/Counter";
+import FetchCharacterInfo from "./helpers/FetchCharacterInfo";
+import CheckTarget from "./helpers/CheckTarget";
+import Circle from "./helpers/Circle";
+import AddScoreForm from "./helpers/AddScoreForm";
+import EndGame from "./helpers/EndGame";
 
 export default function Image3() {
 	const imageId = import.meta.env.VITE_IMAGE3_ID;
@@ -36,6 +36,7 @@ export default function Image3() {
 		if (matchedCharacters.length === characters.length) {
 			EndGame();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [matchedCharacters]);
 
 	const { gameCharacters, characterCoordinates } =
@@ -223,4 +224,10 @@ DropDown.propTypes = {
 	xCoordinates: PropTypes.number,
 	yCoordinates: PropTypes.number,
 	onClick: PropTypes.func,
+	addCircle: PropTypes.func,
+	coordinates: PropTypes.object,
+	characterCoordinates: PropTypes.array,
+	gameCharacters: PropTypes.object,
+	matchedCharacters: PropTypes.array,
+	setMatchedCharacters: PropTypes.func,
 };

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from "prop-types"
 
 export default function CharacterNavBar({ characters }) {
 	return (
@@ -44,3 +45,7 @@ const StyledDiv = styled.div`
 const StyledImage = styled.img`
 	width: 100%;
 `;
+
+CharacterNavBar.propTypes = {
+	characters: PropTypes.array,
+}

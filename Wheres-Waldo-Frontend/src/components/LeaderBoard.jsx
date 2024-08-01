@@ -9,7 +9,6 @@ function LeaderBoard() {
 		fetch(`http://localhost:3000/leaderboard`)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data, "this is data");
 				setScores(data);
 			})
 			.catch((error) => {
@@ -25,7 +24,7 @@ function LeaderBoard() {
 				.map((item) => (
 					<div key={uuidv4()}>
 						<li style={{ listStyleType: "none" }}>
-							{item.name} {item.time}s
+							User: {item.name} {item.time}s
 						</li>
 					</div>
 				))}

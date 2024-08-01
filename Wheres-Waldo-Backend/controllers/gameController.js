@@ -1,10 +1,6 @@
 const asyncHandler = require("express-async-handler");
-const { body, validationResult } = require("express-validator");
 const Puzzle = require("../models/puzzle.js");
-const Character = require("../models/character.js");
 const User = require("../models/user.js");
-const uploadToCloudinary = require("../services/cloudinary.js");
-const cloudinary = require("cloudinary");
 
 let gameStartTime = null;
 let endTime = null;
