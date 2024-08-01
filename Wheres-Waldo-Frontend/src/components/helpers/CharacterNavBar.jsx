@@ -33,8 +33,8 @@ const StyledNavBar = styled.section`
 `;
 
 const StyledDiv = styled.div`
-	width: 80px;
-    height: 80px;
+	width: 5vw;
+    height: auto;
 	border: 5px solid #338aff;
 	outline: 1px solid black;
 	border-radius: 50%;
@@ -44,6 +44,7 @@ const StyledDiv = styled.div`
 
 const StyledImage = styled.img`
 	width: 100%;
+	height: 90%;
 `;
 
 CharacterNavBar.propTypes = {

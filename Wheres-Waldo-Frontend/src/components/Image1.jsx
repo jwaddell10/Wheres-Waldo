@@ -29,7 +29,7 @@ export default function Image1() {
 		if (matchedCharacters.length === characters.length) {
 			EndGame();
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [matchedCharacters]);
 
 	const { addCircle } = Circle({
@@ -216,7 +216,8 @@ const DropDownStyled = styled.section`
 `;
 
 const DropDownItem = styled.section`
-	margin: 1.25rem;
+	font-size: 15px;
+	margin: 0.5rem;
 	padding: 0.5rem;
 	border: 1px solid white;
 	border-radius: 15px;
