@@ -13,7 +13,10 @@ const router = createBrowserRouter([
 		element: <NavBar />,
 		children: [
 			{ path: "/", element: <HomePage /> },
-			{ path: "/leaderboard", element: <LeaderBoard /> },
+			{ path: "/leaderboard", element: <LeaderBoard />},
+			{ path: `/image/${import.meta.env.VITE_IMAGE_ID}/leaderboard`, element: <LeaderBoard /> },
+			{ path: `/image/${import.meta.env.VITE_IMAGE2_ID}/leaderboard`, element: <LeaderBoard /> },
+			{ path: `/image/${import.meta.env.VITE_IMAGE3_ID}/leaderboard`, element: <LeaderBoard /> },
 			{ path: `/image/${import.meta.env.VITE_IMAGE_ID}`, element: <Image1 /> },
 			{ path: `/image/${import.meta.env.VITE_IMAGE2_ID}`, element: <Image2 /> },
 			{ path: `/image/${import.meta.env.VITE_IMAGE3_ID}`, element: <Image3 /> },
