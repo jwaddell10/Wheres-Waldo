@@ -15,20 +15,16 @@ function HomePage() {
 }
 
 function Header() {
-	const title = "Where's Waldo! A photo tagging game";
 	return (
 		<>
 			<div className="title">
-				<h1 role="title">{title}</h1>
+				<h1 role="title">Where's Waldo</h1>
 			</div>
 		</>
 	);
 }
 
 function Body() {
-	const gameRules =
-		"This is a photo tagging app. I'm putting the rules here. Select your option below";
-
 	const startGame = async (imageId) => {
 		try {
 			const response = await fetch(
@@ -50,7 +46,11 @@ function Body() {
 	return (
 		<>
 			<div className="gameRules">
-				<p role="gameRules">{gameRules}</p>
+				<p role="gameRules">
+					Welcome to Where's Waldo! To play, click on the button below
+					each image to select your puzzle. The timer starts once you
+					select your image. Good luck!
+				</p>
 			</div>
 			<ImageWrapper>
 				<ImageCard>
@@ -118,8 +118,7 @@ function Body() {
 	);
 }
 
-const ImageCard = styled.section`
-`;
+const ImageCard = styled.section``;
 
 const ImageWrapper = styled.section`
 	display: flex;

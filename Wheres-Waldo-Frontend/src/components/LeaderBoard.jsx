@@ -25,6 +25,10 @@ export default function LeaderBoard() {
 	return (
 		<>
 			<Wrapper>
+				<h1 style={{ fontSize: "20px"}}>
+					Welcome to the Leaderboard! Click on the button below the image to view the
+					scores
+				</h1>
 				<ImageWrapper>
 					<div className="difficultyOptions">
 						<img
@@ -128,7 +132,7 @@ const ScoresTableStyle = styled.li`
 	gap: 1rem;
 	justify-items: start;
 	padding-left: 10px;
-    padding: 0.25rem 0 0.25rem 0.5rem;
+	padding: 0.25rem 0 0.25rem 0.5rem;
 	border: 1px solid white;
 `;
 
@@ -151,8 +155,8 @@ const ImageWrapper = styled.section`
 	display: flex;
 	justify-content: space-between;
 	align-items: stretch;
-	width: 100vw;
-	height: auto;
+	max-width: 100%;
+	max-height: 100%;
 	gap: 1rem;
 `;
 
@@ -163,6 +167,6 @@ const Wrapper = styled.section`
 `;
 
 ScoresTable.propTypes = {
-    scores: PropTypes.array,
-    isActive: PropTypes.bool,
-}
+	scores: PropTypes.array,
+	isActive: PropTypes.bool,
+};

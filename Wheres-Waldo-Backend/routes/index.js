@@ -11,6 +11,6 @@ router.post("/image/:imageId/gameEnd", gameController.endGame);
 
 router.post("/image/:imageId/leaderboard", gameController.addUser);
 
-router.get("/leaderboard", userController.getUsers)
+router.get("/image/:imageId/leaderboard", userController.getUsers)
 
 module.exports = router;
