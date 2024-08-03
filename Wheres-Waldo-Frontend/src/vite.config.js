@@ -8,7 +8,10 @@ export default defineConfig({
 	test: {
 		globals: true,
 		environment: "jsdom",
-    // setupFiles: ['/vitest.config.js'],
+
+		setupFilesAfterEnv: ["<Main>/setup-jest.js"],
+
+		// setupFiles: ['/vitest.config.js'],
 		coverage: {
 			provider: "istanbul",
 			reporter: ["text", "json", "html"],

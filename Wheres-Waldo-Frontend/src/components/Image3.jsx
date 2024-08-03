@@ -3,12 +3,11 @@ import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import UserClickPost from "./UserClickPost";
 import CharacterNavBar from "./helpers/CharacterNavBar";
 import Counter from "./helpers/Counter";
 import FetchCharacterInfo from "./helpers/FetchCharacterInfo";
-import CheckTarget from "./helpers/CheckTarget";
-import Circle from "./helpers/Circle";
+import checkTarget from "./helpers/CheckTarget";
+import useCircle from "./helpers/Circle";
 import AddScoreForm from "./helpers/AddScoreForm";
 import EndGame from "./helpers/EndGame";
 
@@ -26,7 +25,7 @@ export default function Image3() {
 	const [dropDownVisible, setDropDownVisible] = useState(false);
 	const [matchedCharacters, setMatchedCharacters] = useState([]);
 
-	const { addCircle } = Circle({
+	const { addCircle } = useCircle({
 		matchCircles,
 		setMatchCircles,
 		dropDownCoordinates,
@@ -90,7 +89,6 @@ export default function Image3() {
 					title="circleAndDropDownMenu"
 					onClick={(event) => {
 						addCircleAndDropDownMenu(event);
-						UserClickPost(imageId);
 					}}
 					style={{
 						position: "absolute",
@@ -144,7 +142,7 @@ function DropDown({
 
 		const characterName = event.target.innerText;
 
-		const match = CheckTarget(
+		const match = checkTarget(
 			event,
 			imageId,
 			x,

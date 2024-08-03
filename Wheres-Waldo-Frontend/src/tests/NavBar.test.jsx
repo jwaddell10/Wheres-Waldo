@@ -9,4 +9,8 @@ import { test, expect } from "vitest";
 
 test("NavBar renders", () => {
     render(<MemoryRouter><NavBar /></MemoryRouter>)
+
+    //NavBar links render
+    screen.getByText("Home")
+    screen.getByText("LeaderBoard")
 })

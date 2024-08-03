@@ -1,4 +1,4 @@
-export default function Circle({
+export default function useCircle({
 	matchCircles,
 	setMatchCircles,
 	dropDownCoordinates,

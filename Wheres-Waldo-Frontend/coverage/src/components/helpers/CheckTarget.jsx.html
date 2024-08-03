@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/components/UserClickPost.jsx</title>
+    <title>Code coverage report for src/components/helpers/CheckTarget.jsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../prettify.css" />
-    <link rel="stylesheet" href="../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../sort-arrow-sprite.png);
+            background-image: url(../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/components</a> UserClickPost.jsx</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/components/helpers</a> CheckTarget.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">15.38% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/26</span>
+                <span class='fraction'>0/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">15.38% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/26</span>
+                <span class='fraction'>0/23</span>
             </div>
         
             
@@ -86,11 +86,7 @@
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
+<a name='L24'></a><a href='#L24'>24</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -113,34 +109,29 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export default function UserClickPost() {
-	const sendUserClicks = <span class="fstat-no" title="function not covered" >async (url, selectedCharacter, coordinates, imageId) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >		try {</span>
-<span class="cstat-no" title="statement not covered" >			const response = await fetch(url,</span>
-<span class="cstat-no" title="statement not covered" >				{</span>
-<span class="cstat-no" title="statement not covered" >					method: "POST",</span>
-<span class="cstat-no" title="statement not covered" >					headers: {</span>
-<span class="cstat-no" title="statement not covered" >						"Content-Type": "application/json",</span>
-<span class="cstat-no" title="statement not covered" >					},</span>
-<span class="cstat-no" title="statement not covered" >                    body: JSON.stringify({</span>
-<span class="cstat-no" title="statement not covered" >                        selectedCharacter,</span>
-<span class="cstat-no" title="statement not covered" >                        coordinates,</span>
-<span class="cstat-no" title="statement not covered" >                        imageId,</span>
-<span class="cstat-no" title="statement not covered" >                    })</span>
-<span class="cstat-no" title="statement not covered" >				}</span>
-<span class="cstat-no" title="statement not covered" >			);</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >export default function checkTarget(event, imageId, x, y, gameCharacters) {</span></span>
+<span class="cstat-no" title="statement not covered" >	const characterName = event.target.innerText;</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >			const data = await response.json();</span>
-<span class="cstat-no" title="statement not covered" >			return data;</span>
-<span class="cstat-no" title="statement not covered" >		} catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >			console.log(error, "this is error");</span>
-<span class="cstat-no" title="statement not covered" >            throw error;</span>
+<span class="cstat-no" title="statement not covered" >	const checkTarget = (characterCoordinates) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >		if (</span>
+<span class="cstat-no" title="statement not covered" >			characterCoordinates[0] &gt;= x - 2 &amp;&amp;</span>
+<span class="cstat-no" title="statement not covered" >			characterCoordinates[0] &lt;= x + 2 &amp;&amp;</span>
+<span class="cstat-no" title="statement not covered" >			characterCoordinates[1] &gt;= y - 2 &amp;&amp;</span>
+<span class="cstat-no" title="statement not covered" >			characterCoordinates[1] &lt;= y + 2</span>
+<span class="cstat-no" title="statement not covered" >		) {</span>
+<span class="cstat-no" title="statement not covered" >			return true;</span>
+<span class="cstat-no" title="statement not covered" >		} else {</span>
+<span class="cstat-no" title="statement not covered" >			return false;</span>
 <span class="cstat-no" title="statement not covered" >		}</span>
 <span class="cstat-no" title="statement not covered" >	};</span>
-	return { sendUserClicks }
-}
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >	const selectedCharacter = gameCharacters.characters.filter(</span>
+<span class="cstat-no" title="statement not covered" >		(character) =&gt; character.name === characterName</span>
+<span class="cstat-no" title="statement not covered" >	);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >	return checkTarget(selectedCharacter[0].coordinates);</span>
+<span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -148,16 +139,16 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-07-18T14:14:01.905Z
+                at 2024-08-02T15:52:59.080Z
             </div>
-        <script src="../../prettify.js"></script>
+        <script src="../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../sorter.js"></script>
-        <script src="../../block-navigation.js"></script>
+        <script src="../../../sorter.js"></script>
+        <script src="../../../block-navigation.js"></script>
     </body>
 </html>
     

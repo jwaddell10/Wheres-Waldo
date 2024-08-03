@@ -18,16 +18,16 @@ export default function LeaderBoard() {
 				setScores(data);
 			})
 			.catch((error) => {
-				console.error("Error fetching leaderboard:", error);
+				throw new Error(error)
 			});
 	};
 
 	return (
 		<>
 			<Wrapper>
-				<h1 style={{ fontSize: "20px"}}>
-					Welcome to the Leaderboard! Click on the button below the image to view the
-					scores
+				<h1 style={{ fontSize: "20px" }}>
+					Welcome to the Leaderboard! Click on the button below the
+					image to view the scores
 				</h1>
 				<ImageWrapper>
 					<div className="difficultyOptions">
@@ -167,6 +167,6 @@ const Wrapper = styled.section`
 `;
 
 ScoresTable.propTypes = {
-	scores: PropTypes.array,
+	// scores: PropTypes.object,
 	isActive: PropTypes.bool,
 };
