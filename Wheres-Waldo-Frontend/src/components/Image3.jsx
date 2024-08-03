@@ -35,7 +35,7 @@ export default function Image3() {
 		if (matchedCharacters.length === characters.length) {
 			EndGame();
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [matchedCharacters]);
 
 	const { gameCharacters, characterCoordinates } =
@@ -77,9 +77,11 @@ export default function Image3() {
 			{matchedCharacters.length === characters.length && (
 				<AddScoreForm imageId={imageId} />
 			)}
-			<Counter />
-			<CharacterNavBar characters={characters} />
 			<div className="image3" style={{ position: "relative" }}>
+				<CharacterNavBar
+					style={{ position: "absolute", display: "flex" }}
+					characters={characters}
+				/>
 				<img
 					src={waldoFactory}
 					alt="Waldo Factory"

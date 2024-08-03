@@ -18,7 +18,9 @@ function Header() {
 	return (
 		<>
 			<div className="title">
-				<h1 role="title">Where's Waldo</h1>
+				<h1 className={styles.text} role="title">
+					Where's Waldo
+				</h1>
 			</div>
 		</>
 	);
@@ -46,7 +48,7 @@ function Body() {
 	return (
 		<>
 			<div className="gameRules">
-				<p role="gameRules">
+				<p style={{ color: "red" }} role="gameRules">
 					Welcome to Where's Waldo! To play, click on the button below
 					each image to select your puzzle. The timer starts once you
 					select your image. Good luck!
@@ -61,7 +63,7 @@ function Body() {
 							alt=""
 							role="Image1"
 						/>
-						<h2>Waldo Beach</h2>
+						<h2 style={{ color: "red" }}>Waldo Beach</h2>
 						<Link to={`/image/${import.meta.env.VITE_IMAGE_ID}`}>
 							<button
 								onClick={() => {
@@ -81,7 +83,7 @@ function Body() {
 							alt=""
 							role="Image2"
 						/>
-						<h2>Waldo Downtown</h2>
+						<h2 style={{ color: "red" }}>Waldo Downtown</h2>
 						<Link to={`/image/${import.meta.env.VITE_IMAGE2_ID}`}>
 							<button
 								onClick={() => {
@@ -101,7 +103,7 @@ function Body() {
 							alt=""
 							role="Image3"
 						/>
-						<h2>Waldo Factory</h2>
+						<h2 style={{ color: "red" }}>Waldo Factory</h2>
 						<Link to={`/image/${import.meta.env.VITE_IMAGE3_ID}`}>
 							<button
 								onClick={() => {

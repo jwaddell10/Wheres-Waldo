@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 //found this solution on stackoverflow... so can't take credit for it...
 export default function Counter() {
 	const [time, setTime] = useState(null);
@@ -30,5 +31,15 @@ export default function Counter() {
 		};
 	}, []);
 
-	return <>{time}</>;
+	return (
+		<>
+			<StyledCounterContainer>Time: {time}</StyledCounterContainer>
+		</>
+	);
 }
+
+const StyledCounterContainer = styled.section`
+	background: white;
+	opacity: 0.8;
+	color: black;
+`;

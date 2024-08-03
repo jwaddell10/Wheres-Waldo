@@ -18,16 +18,15 @@ export default function LeaderBoard() {
 				setScores(data);
 			})
 			.catch((error) => {
-				throw new Error(error)
+				throw new Error(error);
 			});
 	};
 
 	return (
 		<>
 			<Wrapper>
-				<h1 style={{ fontSize: "20px" }}>
-					Welcome to the Leaderboard! Click on the button below the
-					image to view the scores
+				<h1 className={styles.text} style={{ fontSize: "20px" }}>
+					Click on the button below the image to view the scores
 				</h1>
 				<ImageWrapper>
 					<div className="difficultyOptions">
@@ -37,7 +36,7 @@ export default function LeaderBoard() {
 							alt=""
 							role="Image1"
 						/>
-						<h2>Waldo Beach</h2>
+						<h2 className={styles.text}>Waldo Beach</h2>
 						<Link
 							to={`/image/${
 								import.meta.env.VITE_IMAGE_ID
@@ -60,7 +59,7 @@ export default function LeaderBoard() {
 							alt=""
 							role="Image2"
 						/>
-						<h2>Waldo Downtown</h2>
+						<h2 className={styles.text}>Waldo Downtown</h2>
 						<Link
 							to={`/image/${
 								import.meta.env.VITE_IMAGE2_ID
@@ -83,7 +82,7 @@ export default function LeaderBoard() {
 							alt=""
 							role="Image3"
 						/>
-						<h2>Waldo Factory</h2>
+						<h2 className={styles.text}>Waldo Factory</h2>
 						<Link
 							to={`/image/${
 								import.meta.env.VITE_IMAGE3_ID
@@ -112,7 +111,7 @@ function ScoresTable({ scores, isActive }) {
 	return (
 		<>
 			{isActive && scores && scores.length > 0 && (
-				<ScoresContainer>
+				<ScoresContainer className={styles.text}>
 					{scores.map((item, index) => (
 						<ScoresTableStyle key={index}>
 							<ScoresWrapper>{index + 1}</ScoresWrapper>
@@ -133,7 +132,7 @@ const ScoresTableStyle = styled.li`
 	justify-items: start;
 	padding-left: 10px;
 	padding: 0.25rem 0 0.25rem 0.5rem;
-	border: 1px solid white;
+	border: 1px solid red;
 `;
 
 const ScoresWrapper = styled.div`
@@ -147,7 +146,7 @@ const ScoresContainer = styled.ul`
 	padding: 0;
 	margin-top: 10px;
 	width: 100%;
-	border: 1px solid white;
+	border: 1px solid red;
 	max-width: 600px;
 `;
 

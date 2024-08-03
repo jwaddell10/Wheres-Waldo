@@ -77,9 +77,11 @@ export default function Image2() {
 			{matchedCharacters.length === characters.length && (
 				<AddScoreForm imageId={imageId} />
 			)}
-			<Counter />
-			<CharacterNavBar characters={characters} />
 			<div className="image2" style={{ position: "relative" }}>
+			<CharacterNavBar
+					style={{ position: "absolute", display: "flex" }}
+					characters={characters}
+				/>
 				<img
 					src={waldoDowntown}
 					alt="Waldo Downtown"
