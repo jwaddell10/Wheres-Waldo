@@ -78,11 +78,14 @@ export default function Image1() {
 			{matchedCharacters.length === characters.length && (
 				<AddScoreForm imageId={imageId} />
 			)}
-			<Counter />
-			<CharacterNavBar
-				style={{ display: "flex" }}
-				characters={characters}
-			/>
+			<div>
+				<Counter />
+				<CharacterNavBar
+					style={{ display: "flex" }}
+					characters={characters}
+				/>
+			</div>
+
 			<div className="image1" style={{ position: "relative" }}>
 				<img
 					src={waldoBeach}
