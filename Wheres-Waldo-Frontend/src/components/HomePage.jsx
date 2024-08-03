@@ -49,69 +49,62 @@ function Body() {
 		<>
 			<div className="gameRules">
 				<p style={{ color: "red" }} role="gameRules">
-					Welcome to Where's Waldo! To play, click on the button below
-					each image to select your puzzle. The timer starts once you
+					Welcome to Where's Waldo! To play, click on an image below to play. The timer starts once you
 					select your image. Good luck!
 				</p>
 			</div>
 			<ImageWrapper>
 				<ImageCard>
 					<div className="difficultyOptions">
-						<img
-							className={styles.images}
-							src={waldoBeach}
-							alt=""
-							role="Image1"
-						/>
 						<h2 style={{ color: "red" }}>Waldo Beach</h2>
-						<Link to={`/image/${import.meta.env.VITE_IMAGE_ID}`}>
-							<button
-								onClick={() => {
-									startGame(import.meta.env.VITE_IMAGE_ID);
-								}}
-							>
-								Click
-							</button>
+						<Link
+							onClick={() => {
+								startGame(import.meta.env.VITE_IMAGE_ID);
+							}}
+							to={`/image/${import.meta.env.VITE_IMAGE_ID}`}
+						>
+							<img
+								className={styles.images}
+								src={waldoBeach}
+								alt=""
+								role="Image1"
+							/>
 						</Link>
 					</div>
 				</ImageCard>
 				<ImageCard>
 					<div className="difficultyOptions">
-						<img
-							className={styles.images}
-							src={waldoDowntown}
-							alt=""
-							role="Image2"
-						/>
 						<h2 style={{ color: "red" }}>Waldo Downtown</h2>
-						<Link to={`/image/${import.meta.env.VITE_IMAGE2_ID}`}>
-							<button
-								onClick={() => {
-									startGame(import.meta.env.VITE_IMAGE2_ID);
-								}}
-							>
-								Click
-							</button>
+						<Link
+							onClick={() => {
+								startGame(import.meta.env.VITE_IMAGE2_ID);
+							}}
+							to={`/image/${import.meta.env.VITE_IMAGE2_ID}`}
+						>
+							<img
+								className={styles.images}
+								src={waldoDowntown}
+								alt=""
+								role="Image2"
+							/>
 						</Link>
 					</div>
 				</ImageCard>
 				<ImageCard>
 					<div className="difficultyOptions">
-						<img
-							src={waldoFactory}
-							className={styles.images}
-							alt=""
-							role="Image3"
-						/>
 						<h2 style={{ color: "red" }}>Waldo Factory</h2>
-						<Link to={`/image/${import.meta.env.VITE_IMAGE3_ID}`}>
-							<button
-								onClick={() => {
-									startGame(import.meta.env.VITE_IMAGE3_ID);
-								}}
-							>
-								Click
-							</button>
+						<Link
+							onClick={() => {
+								startGame(import.meta.env.VITE_IMAGE3_ID);
+							}}
+							to={`/image/${import.meta.env.VITE_IMAGE3_ID}`}
+						>
+							<img
+								src={waldoFactory}
+								className={styles.images}
+								alt=""
+								role="Image3"
+							/>
 						</Link>
 					</div>
 				</ImageCard>

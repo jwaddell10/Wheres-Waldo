@@ -26,76 +26,64 @@ export default function LeaderBoard() {
 		<>
 			<Wrapper>
 				<h1 className={styles.text} style={{ fontSize: "20px" }}>
-					Click on the button below the image to view the scores
+					Click an image to view the scores
 				</h1>
 				<ImageWrapper>
 					<div className="difficultyOptions">
-						<img
-							className={styles.images}
-							src={waldoBeach}
-							alt=""
-							role="Image1"
-						/>
 						<h2 className={styles.text}>Waldo Beach</h2>
 						<Link
+							onClick={() => {
+								setActiveIndex(0);
+								fetchScores("669921d019b39c65bb5d5745");
+							}}
 							to={`/image/${
 								import.meta.env.VITE_IMAGE_ID
 							}/leaderboard`}
 						>
-							<button
-								onClick={() => {
-									setActiveIndex(0);
-									fetchScores("669921d019b39c65bb5d5745");
-								}}
-							>
-								Click
-							</button>
+							<img
+								className={styles.images}
+								src={waldoBeach}
+								alt=""
+								role="Image1"
+							/>
 						</Link>
 					</div>
 					<div className="difficultyOptions">
-						<img
-							className={styles.images}
-							src={waldoDowntown}
-							alt=""
-							role="Image2"
-						/>
 						<h2 className={styles.text}>Waldo Downtown</h2>
 						<Link
 							to={`/image/${
 								import.meta.env.VITE_IMAGE2_ID
 							}/leaderboard`}
+							onClick={() => {
+								setActiveIndex(1);
+								fetchScores("669921d019b39c65bb5d5747");
+							}}
 						>
-							<button
-								onClick={() => {
-									setActiveIndex(1);
-									fetchScores("669921d019b39c65bb5d5747");
-								}}
-							>
-								Click
-							</button>
+							<img
+								className={styles.images}
+								src={waldoDowntown}
+								alt=""
+								role="Image2"
+							/>
 						</Link>
 					</div>
 					<div className="difficultyOptions">
-						<img
-							src={waldoFactory}
-							className={styles.images}
-							alt=""
-							role="Image3"
-						/>
 						<h2 className={styles.text}>Waldo Factory</h2>
 						<Link
 							to={`/image/${
 								import.meta.env.VITE_IMAGE3_ID
 							}/leaderboard`}
+							onClick={() => {
+								setActiveIndex(2);
+								fetchScores("669921d019b39c65bb5d5746");
+							}}
 						>
-							<button
-								onClick={() => {
-									setActiveIndex(2);
-									fetchScores("669921d019b39c65bb5d5746");
-								}}
-							>
-								Click
-							</button>
+							<img
+								src={waldoFactory}
+								className={styles.images}
+								alt=""
+								role="Image3"
+							/>
 						</Link>
 					</div>
 				</ImageWrapper>

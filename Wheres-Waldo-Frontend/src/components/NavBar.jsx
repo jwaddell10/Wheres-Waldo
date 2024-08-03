@@ -31,8 +31,9 @@ function NavBar() {
 					LeaderBoard
 				</Link>
 			</div>
-
-			<Outlet />
+			<div>
+				<Outlet />
+			</div>
 		</>
 	);
 }
