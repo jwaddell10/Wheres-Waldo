@@ -28,6 +28,7 @@ export default function Image2() {
 	const [dropDownVisible, setDropDownVisible] = useState(false);
 	const [matchedCharacters, setMatchedCharacters] = useState([]);
 
+<<<<<<< HEAD
 	const { addCircle } = useCircle({
 		matchCircles,
 		setMatchCircles,
@@ -49,6 +50,9 @@ export default function Image2() {
 		return <div style={{color: "red"}}>Game didn't start: {error} <Link className={styles.link} to="/">Home</Link></div>
 	}
 	const addCircleAndDropDownMenu = (event) => {
+=======
+	const handleClick = (event) => {
+>>>>>>> parent of d361ea1 (initial commit backend, + tests frontend)
 		const rect = event.target.getBoundingClientRect();
 		const { width, height } = event.target.getBoundingClientRect();
 		const { offsetX, offsetY } = event.nativeEvent;
@@ -80,9 +84,35 @@ export default function Image2() {
 	};
 
 	return (
+<<<<<<< HEAD
 		<>
 			{matchedCharacters.length === characters.length && (
 				<AddScoreForm imageId={imageId} />
+=======
+		<div className="image1" style={{ position: "relative" }}>
+			<img
+				src={waldoDowntown}
+				alt="Waldo Downtown"
+				style={{ width: "100%", height: "auto" }}
+			/>
+			<svg
+				onClick={handleClick}
+				style={{
+					position: "absolute",
+					top: 0,
+					left: 0,
+					width: "100%",
+					height: "100%",
+				}}
+			>
+				{circleVisible && circles}
+			</svg>
+			{dropDownVisible && (
+				<DropDown
+					xCoordinates={coordinates.x}
+					yCoordinates={coordinates.y}
+				/>
+>>>>>>> parent of d361ea1 (initial commit backend, + tests frontend)
 			)}
 			<div className="image2" style={{ position: "relative" }}>
 			<CharacterNavBar
