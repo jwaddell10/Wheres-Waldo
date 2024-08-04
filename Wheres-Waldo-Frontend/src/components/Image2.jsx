@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import CharacterNavBar from "./helpers/CharacterNavBar";
-import Counter from "./helpers/Counter";
 import FetchCharacterInfo from "./helpers/FetchCharacterInfo";
 import checkTarget from "./helpers/CheckTarget";
 import useCircle from "./helpers/Circle";
@@ -42,10 +41,11 @@ export default function Image2() {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [matchedCharacters]);
 
-	const { gameCharacters, characterCoordinates, error, loading } =
+	const { gameCharacters, characterCoordinates, error } =
 		FetchCharacterInfo(imageId);
 
 	if (error) {
+		// eslint-disable-next-line react/no-unescaped-entities
 		return <div style={{color: "red"}}>Game didn't start: {error} <Link className={styles.link} to="/">Home</Link></div>
 	}
 	const addCircleAndDropDownMenu = (event) => {
@@ -223,8 +223,9 @@ function DropDown({
 }
 
 const device = {
-	md: '1000px',
-	lg: '1000px',
+	md: '1100px',
+	lg: '1100px',
+	xl: '1400px',
   }
   
   const media = {
@@ -235,6 +236,11 @@ const device = {
 	`,
 	lg: (...args) => css`
 	  @media (min-width: ${device.lg}) {
+		${css(...args)};
+	  }
+	`,
+	xl: (...args) => css`
+	  @media (min-width: ${device.xl}) {
 		${css(...args)};
 	  }
 	`
@@ -263,6 +269,8 @@ height: auto;
 ${media.md`
 	height: 70vh;`}
 ${media.lg`
+	height: 80vh;`}
+${media.xl`
 	height: 90vh;`}
 `
 

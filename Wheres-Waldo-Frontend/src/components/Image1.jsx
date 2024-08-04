@@ -5,7 +5,6 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import CharacterNavBar from "./helpers/CharacterNavBar";
 import { Link } from "react-router-dom";
-import Counter from "./helpers/Counter";
 import FetchCharacterInfo from "./helpers/FetchCharacterInfo";
 import useCircle from "./helpers/Circle";
 import checkTarget from "./helpers/CheckTarget";
@@ -46,6 +45,7 @@ export default function Image1() {
 		FetchCharacterInfo(imageId);
 
 	if (error) {
+		// eslint-disable-next-line react/no-unescaped-entities
 		return <div style={{ color: "red" }}>Game didn't start: {error} <Link className={styles.link} to="/">Home</Link></div>
 	}
 
@@ -215,8 +215,9 @@ function DropDown({
 }
 
 const device = {
-	md: '1000px',
-	lg: '1000px',
+	md: '1100px',
+	lg: '1100px',
+	xl: '1400px',
   }
   
   const media = {
@@ -227,6 +228,11 @@ const device = {
 	`,
 	lg: (...args) => css`
 	  @media (min-width: ${device.lg}) {
+		${css(...args)};
+	  }
+	`,
+	xl: (...args) => css`
+	  @media (min-width: ${device.xl}) {
 		${css(...args)};
 	  }
 	`
@@ -256,6 +262,8 @@ ${media.md`
 	height: 70vh;`}
 ${media.lg`
 	height: 80vh;`}
+${media.xl`
+	height: 90vh;`}
 `
 
 DropDown.propTypes = {

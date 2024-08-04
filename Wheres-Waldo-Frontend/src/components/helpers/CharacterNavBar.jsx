@@ -49,12 +49,6 @@ const StyledImage = styled.img`
 	height: 90%;
 `;
 
-const CounterWrapper = styled.div`
-	position: relative;
-	top: 70px; /* Adjust this value as needed to position the counter below the navbar */
-	margin-left: 10px;
-`;
-
 CharacterNavBar.propTypes = {
 	characters: PropTypes.array,
 };
