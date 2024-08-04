@@ -3,7 +3,17 @@
     max-width: 1000px;
     margin: 0 auto;
     background-color: white;
-    height: 20vh;
+    height: 30vh;
+}
+
+@media(max-width: 1300px) {
+    .images {
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        background-color: white;
+        height: 20vh;
+    }
 }
 
 .text {

@@ -12,6 +12,8 @@ import AddScoreForm from "./helpers/AddScoreForm";
 import EndGame from "./helpers/EndGame";
 import { Link } from "react-router-dom";
 import styles from "./NavBar.module.css"
+import { css } from 'styled-components'
+
 
 export default function Image3() {
 	const imageId = import.meta.env.VITE_IMAGE3_ID;
@@ -87,10 +89,9 @@ export default function Image3() {
 					style={{ position: "absolute", display: "flex" }}
 					characters={characters}
 				/>
-				<img
+				<StyledImage
 					src={waldoFactory}
 					alt="Waldo Factory"
-					style={{ width: "100%", height: "auto" }}
 				/>
 				<svg
 					title="circleAndDropDownMenu"
@@ -210,6 +211,24 @@ function DropDown({
 	);
 }
 
+const device = {
+	md: '1100px',
+	lg: '1100px',
+  }
+  
+  const media = {
+	md: (...args) => css`
+	  @media (max-width: ${device.md}) {
+		${css(...args)};
+	  }
+	`,
+	lg: (...args) => css`
+	  @media (min-width: ${device.lg}) {
+		${css(...args)};
+	  }
+	`
+  }
+
 const DropDownStyled = styled.section`
 	top: ${(props) => props.y + 20}px;
 	left: ${(props) => props.x + 10}px;
@@ -226,6 +245,15 @@ const DropDownItem = styled.section`
 	border: 1px solid white;
 	border-radius: 15px;
 `;
+
+const StyledImage = styled.img`
+width: 100%;
+height: auto;
+${media.md`
+	height: 70vh;`}
+${media.lg`
+	height: 80vh;`}
+`
 
 DropDown.propTypes = {
 	xCoordinates: PropTypes.number,

@@ -16,10 +16,10 @@ function App() {
 		}
 	}, []);
 	
-	const isMobile = width <= 600;
+	const isMobile = width <= 800;
 
 	if (isMobile) {
-		return <div>Sorry, this app is not accessible on devices less than 600 px</div>
+		return <div style={{ color: "red" }}>Sorry, this app is not accessible on devices less than 800 px</div>
 	}
 
 	return <RouterProvider router={router} />;

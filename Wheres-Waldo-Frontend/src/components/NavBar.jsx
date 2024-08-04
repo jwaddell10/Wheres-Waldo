@@ -5,14 +5,7 @@ import waldo from "../assets/wheres-waldo-background.jpg";
 function NavBar() {
 	return (
 		<>
-			<div
-				style={{
-					top: "0px",
-					display: "flex",
-					justifyContent: "end",
-					gap: "10px",
-				}}
-			>
+			<div>
 				<img
 					src={waldo}
 					alt=""

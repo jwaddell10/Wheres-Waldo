@@ -12,6 +12,7 @@ import checkTarget from "./helpers/CheckTarget";
 import EndGame from "./helpers/EndGame";
 import AddScoreForm from "./helpers/AddScoreForm";
 import styles from "./NavBar.module.css"
+import { css } from 'styled-components'
 
 export default function Image1() {
 	const imageId = import.meta.env.VITE_IMAGE_ID;
@@ -41,11 +42,11 @@ export default function Image1() {
 		dropDownCoordinates,
 	});
 
-	const { gameCharacters, characterCoordinates, error, loading } =
+	const { gameCharacters, characterCoordinates, error } =
 		FetchCharacterInfo(imageId);
 
 	if (error) {
-		return <div style={{color: "red"}}>Game didn't start: {error} <Link className={styles.link} to="/">Home</Link></div>
+		return <div style={{ color: "red" }}>Game didn't start: {error} <Link className={styles.link} to="/">Home</Link></div>
 	}
 
 	const addCircleAndDropDownMenu = (event) => {
@@ -90,10 +91,10 @@ export default function Image1() {
 					style={{ position: "absolute", display: "flex" }}
 					characters={characters}
 				/>
-				<img
+				<StyledImage
 					src={waldoBeach}
 					alt="Waldo Beach"
-					style={{ width: "100%", height: "auto" }}
+					// style={{ width: "100%", height: "auto" }}
 				/>
 				<svg
 					title="circleAndDropDownMenu"
@@ -213,6 +214,24 @@ function DropDown({
 	);
 }
 
+const device = {
+	md: '1000px',
+	lg: '1000px',
+  }
+  
+  const media = {
+	md: (...args) => css`
+	  @media (max-width: ${device.md}) {
+		${css(...args)};
+	  }
+	`,
+	lg: (...args) => css`
+	  @media (min-width: ${device.lg}) {
+		${css(...args)};
+	  }
+	`
+  }
+
 const DropDownStyled = styled.section`
 	top: ${(props) => props.y + 20}px;
 	left: ${(props) => props.x + 10}px;
@@ -229,6 +248,15 @@ const DropDownItem = styled.section`
 	border: 1px solid white;
 	border-radius: 15px;
 `;
+
+const StyledImage = styled.img`
+width: 100%;
+height: auto;
+${media.md`
+	height: 70vh;`}
+${media.lg`
+	height: 80vh;`}
+`
 
 DropDown.propTypes = {
 	xCoordinates: PropTypes.number,
