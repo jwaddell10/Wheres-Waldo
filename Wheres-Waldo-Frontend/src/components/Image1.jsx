@@ -4,12 +4,14 @@ import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import CharacterNavBar from "./helpers/CharacterNavBar";
+import { Link } from "react-router-dom";
 import Counter from "./helpers/Counter";
 import FetchCharacterInfo from "./helpers/FetchCharacterInfo";
 import useCircle from "./helpers/Circle";
 import checkTarget from "./helpers/CheckTarget";
 import EndGame from "./helpers/EndGame";
 import AddScoreForm from "./helpers/AddScoreForm";
+import styles from "./NavBar.module.css"
 
 export default function Image1() {
 	const imageId = import.meta.env.VITE_IMAGE_ID;
@@ -39,8 +41,12 @@ export default function Image1() {
 		dropDownCoordinates,
 	});
 
-	const { gameCharacters, characterCoordinates } =
+	const { gameCharacters, characterCoordinates, error, loading } =
 		FetchCharacterInfo(imageId);
+
+	if (error) {
+		return <div style={{color: "red"}}>Game didn't start: {error} <Link className={styles.link} to="/">Home</Link></div>
+	}
 
 	const addCircleAndDropDownMenu = (event) => {
 		const rect = event.target.getBoundingClientRect();

@@ -10,6 +10,8 @@ import checkTarget from "./helpers/CheckTarget";
 import useCircle from "./helpers/Circle";
 import AddScoreForm from "./helpers/AddScoreForm";
 import EndGame from "./helpers/EndGame";
+import { Link } from "react-router-dom";
+import styles from "./NavBar.module.css"
 
 export default function Image3() {
 	const imageId = import.meta.env.VITE_IMAGE3_ID;
@@ -38,9 +40,12 @@ export default function Image3() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [matchedCharacters]);
 
-	const { gameCharacters, characterCoordinates } =
+	const { gameCharacters, characterCoordinates, error, loading } =
 		FetchCharacterInfo(imageId);
 
+	if (error) {
+		return <div style={{color: "red"}}>Game didn't start: {error} <Link className={styles.link} to="/">Home</Link></div>
+	}
 	const addCircleAndDropDownMenu = (event) => {
 		const rect = event.target.getBoundingClientRect();
 		const { width, height } = event.target.getBoundingClientRect();
