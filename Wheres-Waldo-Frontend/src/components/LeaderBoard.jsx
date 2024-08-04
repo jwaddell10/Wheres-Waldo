@@ -15,7 +15,7 @@ export default function LeaderBoard() {
 		fetch(`http://localhost:3000/image/${imageId}/leaderboard`)
 			.then((response) => response.json())
 			.then((data) => {
-                data.sort((a, b) => a.time - b.time)
+                // data.sort((a, b) => a.time - b.time)
 				setScores(data);
 			})
 			.catch((error) => {
@@ -44,7 +44,7 @@ export default function LeaderBoard() {
 							<img
 								className={styles.images}
 								src={waldoBeach}
-								alt=""
+								alt="waldobeach"
 								role="Image1"
                                 style={{border: "3px solid red"}}
 							/>
@@ -64,7 +64,7 @@ export default function LeaderBoard() {
 							<img
 								className={styles.images}
 								src={waldoDowntown}
-								alt=""
+								alt="waldodowntown"
 								role="Image2"
                                 style={{border: "3px solid red"}}
 							/>
@@ -84,7 +84,7 @@ export default function LeaderBoard() {
 							<img
 								src={waldoFactory}
 								className={styles.images}
-								alt=""
+								alt="waldofactory"
 								role="Image3"
                                 style={{border: "3px solid red"}}
 							/>

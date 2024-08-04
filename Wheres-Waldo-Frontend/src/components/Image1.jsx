@@ -65,14 +65,9 @@ export default function Image1() {
 		let newCircle = (
 			<circle
 				key={uuidv4()}
-<<<<<<< HEAD
 				title="circle"
 				cx={dropDownX}
 				cy={dropDownY}
-=======
-				cx={x}
-				cy={y}
->>>>>>> parent of d361ea1 (initial commit backend, + tests frontend)
 				r="25"
 				stroke="black"
 				fill="white"
@@ -86,35 +81,9 @@ export default function Image1() {
 	};
 
 	return (
-<<<<<<< HEAD
 		<>
 			{matchedCharacters.length === characters.length && (
 				<AddScoreForm imageId={imageId} />
-=======
-		<div className="image1" style={{ position: "relative" }}>
-			<img
-				src={waldoBeach}
-				alt="Waldo Beach"
-				style={{ width: "100%", height: "auto" }}
-			/>
-			<svg
-				onClick={addCircleAndDropDownMenu}
-				style={{
-					position: "absolute",
-					top: 0,
-					left: 0,
-					width: "100%",
-					height: "100%",
-				}}
-			>
-				{circleVisible && circles}
-			</svg>
-			{dropDownVisible && (
-				<DropDown
-					xCoordinates={coordinates.x}
-					yCoordinates={coordinates.y}
-				/>
->>>>>>> parent of d361ea1 (initial commit backend, + tests frontend)
 			)}
 
 			<div className="image1" style={{ position: "relative" }}>

@@ -6,7 +6,6 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { test, expect } from "vitest";
 import { MemoryRouter } from "react-router-dom";
 import "@testing-library/jest-dom/vitest";
-// screen.debug()
 
 test("Image1 Component", () => {
 	// Render the component
