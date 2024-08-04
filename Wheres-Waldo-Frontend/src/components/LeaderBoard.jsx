@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import waldoBeach from "../assets/waldoBeach.jpg";
 import waldoDowntown from "../assets/waldoDowntown.jpg";
-import waldoFactory from "../assets/waldoBeach.jpg";
+import waldoFactory from "../assets/waldoFactory.jpg";
 import { Link } from "react-router-dom";
 import styles from "./HomePage.module.css";
 import PropTypes from "prop-types";
@@ -15,6 +15,7 @@ export default function LeaderBoard() {
 		fetch(`http://localhost:3000/image/${imageId}/leaderboard`)
 			.then((response) => response.json())
 			.then((data) => {
+                data.sort((a, b) => a.time - b.time)
 				setScores(data);
 			})
 			.catch((error) => {

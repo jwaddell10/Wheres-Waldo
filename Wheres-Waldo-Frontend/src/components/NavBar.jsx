@@ -23,13 +23,14 @@ function NavBar() {
 						left: "0",
 					}}
 				/>
-
-				<Link className={styles.link} to="/">
-					Home
-				</Link>
-				<Link className={styles.link} to="/leaderboard">
-					LeaderBoard
-				</Link>
+				<div style={{ position: "absolute", top: "10px", display: "flex", gap: "10px"}}>
+					<Link className={styles.link} to="/">
+						Home
+					</Link>
+					<Link className={styles.link} to="/leaderboard">
+						LeaderBoard
+					</Link>
+				</div>
 			</div>
 			<div>
 				<Outlet />

@@ -49,7 +49,7 @@ function Body() {
 		<>
 			<div className="gameRules">
 				<p style={{ color: "red" }} role="gameRules">
-					Welcome to Where's Waldo! To play, click on an image below to play. The timer starts once you
+					Welcome to Where's Waldo! To play, click on an image below. The timer starts once you
 					select your image. Good luck!
 				</p>
 			</div>
