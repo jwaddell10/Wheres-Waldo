@@ -1,9 +1,9 @@
 .images {
-    width: 300px;
-    max-width: 1200px;
+    width: 100%;
+    max-width: 1000px;
     margin: 0 auto;
     background-color: white;
-    height: 300px; 
+    height: 20vh;
 }
 
 .text {

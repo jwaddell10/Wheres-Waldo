@@ -122,7 +122,6 @@ const ImageWrapper = styled.section`
 	display: flex;
 	justify-content: space-between;
 	align-items: stretch;
-	width: 100vw;
 	max-width: 100%;
 	max-height: 100%;
 	gap: 1rem;

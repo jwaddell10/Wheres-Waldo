@@ -23,8 +23,8 @@ function NavBar() {
 						left: "0",
 					}}
 				/>
-				<div style={{ position: "absolute", top: "10px", display: "flex", gap: "10px"}}>
-					<Link className={styles.link} to="/">
+				<div style={{ position: "absolute", top: "10px", right: "10px"}}>
+					<Link style={{marginRight: "10px"}} className={styles.link} to="/">
 						Home
 					</Link>
 					<Link className={styles.link} to="/leaderboard">
