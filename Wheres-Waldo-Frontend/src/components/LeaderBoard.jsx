@@ -46,6 +46,7 @@ export default function LeaderBoard() {
 								src={waldoBeach}
 								alt=""
 								role="Image1"
+                                style={{border: "3px solid red"}}
 							/>
 						</Link>
 					</div>
@@ -65,6 +66,7 @@ export default function LeaderBoard() {
 								src={waldoDowntown}
 								alt=""
 								role="Image2"
+                                style={{border: "3px solid red"}}
 							/>
 						</Link>
 					</div>
@@ -84,6 +86,7 @@ export default function LeaderBoard() {
 								className={styles.images}
 								alt=""
 								role="Image3"
+                                style={{border: "3px solid red"}}
 							/>
 						</Link>
 					</div>
