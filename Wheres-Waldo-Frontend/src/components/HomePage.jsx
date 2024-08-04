@@ -68,6 +68,7 @@ function Body() {
 								src={waldoBeach}
 								alt=""
 								role="Image1"
+								style={{ border: "3px solid red"}}
 							/>
 						</Link>
 					</div>
@@ -86,6 +87,7 @@ function Body() {
 								src={waldoDowntown}
 								alt=""
 								role="Image2"
+								style={{ border: "3px solid red"}}
 							/>
 						</Link>
 					</div>
@@ -104,6 +106,7 @@ function Body() {
 								className={styles.images}
 								alt=""
 								role="Image3"
+								style={{ border: "3px solid red"}}
 							/>
 						</Link>
 					</div>
@@ -119,6 +122,7 @@ const ImageWrapper = styled.section`
 	display: flex;
 	justify-content: space-between;
 	align-items: stretch;
+	width: 100vw;
 	max-width: 100%;
 	max-height: 100%;
 	gap: 1rem;
