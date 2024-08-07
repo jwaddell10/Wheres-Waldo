@@ -4,7 +4,7 @@ import waldoBeach from "../assets/waldoBeach.jpg";
 import waldoDowntown from "../assets/waldoDowntown.jpg";
 import waldoFactory from "../assets/waldoFactory.jpg";
 import { Link } from "react-router-dom";
-import styles from "./HomePage.module.css";
+import styles from "./LeaderBoard.module.css"
 import PropTypes from "prop-types";
 
 export default function LeaderBoard() {
@@ -15,7 +15,7 @@ export default function LeaderBoard() {
 		fetch(`http://localhost:3000/image/${imageId}/leaderboard`)
 			.then((response) => response.json())
 			.then((data) => {
-                // data.sort((a, b) => a.time - b.time)
+				// data.sort((a, b) => a.time - b.time)
 				setScores(data);
 			})
 			.catch((error) => {
@@ -46,7 +46,7 @@ export default function LeaderBoard() {
 								src={waldoBeach}
 								alt="waldobeach"
 								role="Image1"
-                                style={{border: "3px solid red"}}
+								style={{ border: "3px solid red" }}
 							/>
 						</Link>
 					</div>
@@ -66,7 +66,7 @@ export default function LeaderBoard() {
 								src={waldoDowntown}
 								alt="waldodowntown"
 								role="Image2"
-                                style={{border: "3px solid red"}}
+								style={{ border: "3px solid red" }}
 							/>
 						</Link>
 					</div>
@@ -86,7 +86,7 @@ export default function LeaderBoard() {
 								className={styles.images}
 								alt="waldofactory"
 								role="Image3"
-                                style={{border: "3px solid red"}}
+								style={{ border: "3px solid red" }}
 							/>
 						</Link>
 					</div>
@@ -103,44 +103,30 @@ function ScoresTable({ scores, isActive }) {
 	return (
 		<>
 			{isActive && scores && scores.length > 0 && (
-				<ScoresContainer className={styles.text}>
-					{scores.map((item, index) => (
-						<ScoresTableStyle key={index}>
-							<ScoresWrapper>{index + 1}</ScoresWrapper>
-							<ScoresWrapper>Name: {item.name}</ScoresWrapper>
-							<ScoresWrapper>Time: {item.time}s</ScoresWrapper>
-						</ScoresTableStyle>
-					))}
-				</ScoresContainer>
+				<table className={styles.table} style={{ width: "100%"}}>
+					<thead>
+						<tr>
+							<th className={styles.table}>Rank</th>
+							<th className={styles.table}>Name</th>
+							<th className={styles.table}>Time</th>
+						</tr>
+					</thead>
+					<tbody className={styles.text}>
+						{scores.map((item, index) => (
+							<tr key={index}>
+								<td className={styles.table}>{index + 1}</td>
+								<td className={styles.table}>{item.name}</td>
+								<td className={styles.table}>
+									{item.time}s
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
 			)}
 		</>
 	);
 }
-
-const ScoresTableStyle = styled.li`
-	display: grid;
-	grid-template-columns: 0.5fr 1fr 1fr;
-	gap: 1rem;
-	justify-items: start;
-	padding-left: 10px;
-	padding: 0.25rem 0 0.25rem 0.5rem;
-	border: 1px solid red;
-`;
-
-const ScoresWrapper = styled.div`
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-`;
-
-const ScoresContainer = styled.ul`
-	list-style-type: none;
-	padding: 0;
-	margin-top: 10px;
-	width: 100%;
-	border: 1px solid red;
-	max-width: 600px;
-`;
 
 const ImageWrapper = styled.section`
 	display: flex;
@@ -158,6 +144,6 @@ const Wrapper = styled.section`
 `;
 
 ScoresTable.propTypes = {
-	scores: PropTypes.array,
+	scores: PropTypes.object,
 	isActive: PropTypes.bool,
 };

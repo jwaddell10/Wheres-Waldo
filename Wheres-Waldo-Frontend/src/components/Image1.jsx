@@ -10,8 +10,8 @@ import useCircle from "./helpers/Circle";
 import checkTarget from "./helpers/CheckTarget";
 import EndGame from "./helpers/EndGame";
 import AddScoreForm from "./helpers/AddScoreForm";
-import styles from "./NavBar.module.css"
-import { css } from 'styled-components'
+import styles from "./NavBar.module.css";
+import { css } from "styled-components";
 
 export default function Image1() {
 	const imageId = import.meta.env.VITE_IMAGE_ID;
@@ -26,10 +26,14 @@ export default function Image1() {
 	const [circleVisible, setCircleVisible] = useState(false);
 	const [dropDownVisible, setDropDownVisible] = useState(false);
 	const [matchedCharacters, setMatchedCharacters] = useState([]);
+	const [isOpen, setIsOpen] = useState(false);
+	const [time, setTime] = useState(0)
+
 
 	useEffect(() => {
 		if (matchedCharacters.length === characters.length) {
 			EndGame();
+			setIsOpen(true);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [matchedCharacters]);
@@ -46,10 +50,20 @@ export default function Image1() {
 
 	if (error) {
 		// eslint-disable-next-line react/no-unescaped-entities
-		return <div style={{ color: "red" }}>Game didn't start: {error} <Link className={styles.link} to="/">Home</Link></div>
+		return (
+			<div style={{ color: "red" }}>
+				Game didn't start: {error}{" "}
+				<Link className={styles.link} to="/">
+					Home
+				</Link>
+			</div>
+		);
 	}
 
 	const addCircleAndDropDownMenu = (event) => {
+		if (isOpen) {
+			return;
+		}
 		const rect = event.target.getBoundingClientRect();
 		const { width, height } = event.target.getBoundingClientRect();
 		const { offsetX, offsetY } = event.nativeEvent;
@@ -82,11 +96,18 @@ export default function Image1() {
 
 	return (
 		<>
-			{matchedCharacters.length === characters.length && (
-				<AddScoreForm imageId={imageId} />
+			{isOpen && (
+				<AddScoreForm
+					open={isOpen}
+					onClose={() => setIsOpen(false)}
+					imageId={imageId}
+				/>
 			)}
-
-			<div className="image1" style={{ position: "relative" }}>
+			<div
+				id="domPortal"
+				className="image1"
+				style={{ position: "relative" }}
+			>
 				<CharacterNavBar
 					style={{ position: "absolute", display: "flex" }}
 					characters={characters}
@@ -215,28 +236,28 @@ function DropDown({
 }
 
 const device = {
-	md: '1100px',
-	lg: '1100px',
-	xl: '1400px',
-  }
-  
-  const media = {
+	md: "1100px",
+	lg: "1100px",
+	xl: "1400px",
+};
+
+const media = {
 	md: (...args) => css`
-	  @media (max-width: ${device.md}) {
-		${css(...args)};
-	  }
+		@media (max-width: ${device.md}) {
+			${css(...args)};
+		}
 	`,
 	lg: (...args) => css`
-	  @media (min-width: ${device.lg}) {
-		${css(...args)};
-	  }
+		@media (min-width: ${device.lg}) {
+			${css(...args)};
+		}
 	`,
 	xl: (...args) => css`
-	  @media (min-width: ${device.xl}) {
-		${css(...args)};
-	  }
-	`
-  }
+		@media (min-width: ${device.xl}) {
+			${css(...args)};
+		}
+	`,
+};
 
 const DropDownStyled = styled.section`
 	top: ${(props) => props.y + 20}px;
@@ -256,15 +277,15 @@ const DropDownItem = styled.section`
 `;
 
 const StyledImage = styled.img`
-width: 100%;
-height: auto;
-${media.md`
+	width: 100%;
+	height: auto;
+	${media.md`
 	height: 70vh;`}
-${media.lg`
+	${media.lg`
 	height: 80vh;`}
 ${media.xl`
 	height: 90vh;`}
-`
+`;
 
 DropDown.propTypes = {
 	xCoordinates: PropTypes.number,

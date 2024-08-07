@@ -1,0 +1,28 @@
+.table {
+    width: 75%;
+    color: red;
+    border: 1px solid red;
+    border-collapse: collapse;
+}
+
+.text {
+    color: red;
+}
+
+.images {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: white;
+    height: 30vh;
+}
+
+@media(max-width: 1300px) {
+    .images {
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        background-color: white;
+        height: 20vh;
+    }
+}
