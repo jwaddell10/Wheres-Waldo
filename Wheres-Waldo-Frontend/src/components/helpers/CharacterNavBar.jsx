@@ -51,4 +51,5 @@ const StyledImage = styled.img`
 
 CharacterNavBar.propTypes = {
 	characters: PropTypes.array,
+	gameEnd: PropTypes.func,
 };

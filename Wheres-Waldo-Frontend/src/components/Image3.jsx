@@ -46,10 +46,10 @@ export default function Image3() {
 		FetchCharacterInfo(imageId);
 
 	if (error) {
-		// eslint-disable-next-line react/no-unescaped-entities
+		const message = "Game didn't start";
 		return (
 			<div style={{ color: "red" }}>
-				Game didn't start: {error}{" "}
+				{message} {error}
 				<Link className={styles.link} to="/">
 					Home
 				</Link>

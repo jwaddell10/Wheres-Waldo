@@ -144,6 +144,6 @@ const Wrapper = styled.section`
 `;
 
 ScoresTable.propTypes = {
-	scores: PropTypes.object,
+	scores: PropTypes.array,
 	isActive: PropTypes.bool,
 };

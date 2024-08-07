@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 //found this solution on stackoverflow... so can't take credit for it...
 export default function Counter({ gameEnd }) {
 	const [time, setTime] = useState(null);
@@ -46,3 +47,7 @@ const StyledCounterContainer = styled.section`
 	opacity: 0.8;
 	color: black;
 `;
+
+Counter.propTypes = {
+	gameEnd: PropTypes.func,
+}

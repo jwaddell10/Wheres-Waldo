@@ -46,9 +46,10 @@ export default function Image2() {
 		FetchCharacterInfo(imageId);
 
 	if (error) {
+		const message = "Game didn't start";
 		return (
 			<div style={{ color: "red" }}>
-				Game didn't start: {error}{" "}
+				{message} {error}
 				<Link className={styles.link} to="/">
 					Home
 				</Link>

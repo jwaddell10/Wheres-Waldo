@@ -27,7 +27,7 @@ export default function Image1() {
 	const [dropDownVisible, setDropDownVisible] = useState(false);
 	const [matchedCharacters, setMatchedCharacters] = useState([]);
 	const [isOpen, setIsOpen] = useState(false);
-	const [gameEnd, setGameEnd] = useState(false);
+	const [gameEnd, setGameEnd] = useState(null);
 
 	useEffect(() => {
 		if (matchedCharacters.length === characters.length) {
@@ -49,10 +49,10 @@ export default function Image1() {
 		FetchCharacterInfo(imageId);
 
 	if (error) {
-		// eslint-disable-next-line react/no-unescaped-entities
+		const message = "Game didn't start";
 		return (
 			<div style={{ color: "red" }}>
-				Game didn't start: {error}{" "}
+				{message} {error}
 				<Link className={styles.link} to="/">
 					Home
 				</Link>
