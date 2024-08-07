@@ -5,7 +5,7 @@ import Counter from "./Counter";
 export default function CharacterNavBar({ characters }) {
 	return (
 		<>
-			<div style={{ position: "absolute" }}>
+			<div style={{ position: "absolute", backdropFilter: "grayscale(0)" }}>
 				<StyledNavBar>
 					{characters &&
 						characters.map((character, index) => (

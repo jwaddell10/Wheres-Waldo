@@ -27,8 +27,7 @@ export default function Image1() {
 	const [dropDownVisible, setDropDownVisible] = useState(false);
 	const [matchedCharacters, setMatchedCharacters] = useState([]);
 	const [isOpen, setIsOpen] = useState(false);
-	const [time, setTime] = useState(0)
-
+	const [time, setTime] = useState(0);
 
 	useEffect(() => {
 		if (matchedCharacters.length === characters.length) {
