@@ -46,7 +46,6 @@ export default function Image2() {
 		FetchCharacterInfo(imageId);
 
 	if (error) {
-		// eslint-disable-next-line react/no-unescaped-entities
 		return (
 			<div style={{ color: "red" }}>
 				Game didn't start: {error}{" "}

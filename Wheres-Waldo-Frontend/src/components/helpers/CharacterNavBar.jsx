@@ -2,7 +2,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import Counter from "./Counter";
 
-export default function CharacterNavBar({ characters }) {
+export default function CharacterNavBar({ characters, gameEnd }) {
 	return (
 		<>
 			<div style={{ position: "absolute", backdropFilter: "grayscale(0)" }}>
@@ -20,7 +20,7 @@ export default function CharacterNavBar({ characters }) {
 							</StyledDiv>
 						))}
 				</StyledNavBar>
-				<Counter />
+				<Counter gameEnd={gameEnd}/>
 			</div>
 		</>
 	);

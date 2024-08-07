@@ -1,11 +1,20 @@
 import PropTypes from "prop-types";
 import ReactDom from "react-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function AddScoreForm({ open, onClose, imageId }) {
 	const navigate = useNavigate();
 	const [displayMessage, setDisplayMessage] = useState(false);
+	const [shouldNavigate, setShouldNavigate] = useState(false);
+
+	useEffect(() => {
+		if (shouldNavigate) {
+			setTimeout(() => {
+				navigate("/");
+			}, "3000");
+		}
+	});
 
 	if (!open) {
 		return null;
@@ -14,11 +23,8 @@ export default function AddScoreForm({ open, onClose, imageId }) {
 	const submitScore = (event) => {
 		event.preventDefault();
 		try {
-			console.log("submit runs");
 			setDisplayMessage(true);
 			const form = event.target;
-			console.log(event, "event");
-			console.log(form, "form");
 			const formData = new FormData(form);
 			const formDataObj = Object.fromEntries(formData.entries());
 			fetch(`http://localhost:3000/image/${imageId}/leaderboard`, {
@@ -29,7 +35,7 @@ export default function AddScoreForm({ open, onClose, imageId }) {
 				},
 				body: JSON.stringify({ formDataObj }),
 			});
-			navigate("/");
+			setShouldNavigate(true);
 		} catch (error) {
 			console.log("error", error);
 		}
@@ -38,18 +44,13 @@ export default function AddScoreForm({ open, onClose, imageId }) {
 	return ReactDom.createPortal(
 		<>
 			<div style={OVERLAY_STYLES}></div>
-			<form
-				style={ADD_TO_FORM_STYLES}
-				onSubmit={(event) => {
-					submitScore(event);
-				}}
-			>
+			<form style={ADD_TO_FORM_STYLES} onSubmit={submitScore}>
 				{displayMessage ? (
 					<div>
-						{" "}
 						<div>
 							Your time was submitted. Check the leaderboard to
-							see your ranking.
+							see your ranking. You will be redirected in a
+							moment...
 						</div>
 					</div>
 				) : (
@@ -64,7 +65,13 @@ export default function AddScoreForm({ open, onClose, imageId }) {
 					placeholder="Enter your username"
 					required
 				/>
-				<button onClick={onClose} type="submit">
+				<button
+					onClick={() => {
+						submitScore();
+						onClose();
+					}}
+					type="submit"
+				>
 					Submit
 				</button>
 			</form>

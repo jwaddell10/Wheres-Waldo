@@ -27,11 +27,12 @@ export default function Image1() {
 	const [dropDownVisible, setDropDownVisible] = useState(false);
 	const [matchedCharacters, setMatchedCharacters] = useState([]);
 	const [isOpen, setIsOpen] = useState(false);
-	const [time, setTime] = useState(0);
+	const [gameEnd, setGameEnd] = useState(false);
 
 	useEffect(() => {
 		if (matchedCharacters.length === characters.length) {
 			EndGame();
+			setGameEnd(true);
 			setIsOpen(true);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -110,6 +111,7 @@ export default function Image1() {
 				<CharacterNavBar
 					style={{ position: "absolute", display: "flex" }}
 					characters={characters}
+					gameEnd={gameEnd}
 				/>
 				<StyledImage
 					src={waldoBeach}

@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 //found this solution on stackoverflow... so can't take credit for it...
-export default function Counter() {
+export default function Counter({ gameEnd }) {
 	const [time, setTime] = useState(null);
 
 	const initTime = new Date();
@@ -22,6 +22,9 @@ export default function Counter() {
 	};
 
 	useEffect(() => {
+		if (gameEnd) {
+			return;
+		}
 		const intervalId = setInterval(() => {
 			const left = new Date() - initTime;
 			showTimer(left);
@@ -29,7 +32,7 @@ export default function Counter() {
 		return () => {
 			clearInterval(intervalId);
 		};
-	}, []);
+	}, [gameEnd]);
 
 	return (
 		<>
