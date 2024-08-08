@@ -47,33 +47,36 @@ export default function AddScoreForm({ open, onClose, imageId }) {
 			<form style={ADD_TO_FORM_STYLES} onSubmit={submitScore}>
 				{displayMessage ? (
 					<div>
-						<div>
-							Your time was submitted. Check the leaderboard to
-							see your ranking. You will be redirected in a
-							moment...
+						<div style={{ marginBottom: "10px" }}>
+							Time submitted! Check leaderboard to
+							see ranking. Redirecting...
 						</div>
 					</div>
 				) : (
-					<div>
-						Congrats on finishing! Enter your name to be added to
-						the leaderboard
+					<div style={{ marginBottom: "10px" }}>
+						Congrats! Enter name to be added to
+						leaderboard
 					</div>
 				)}
-				<input
-					type="text"
-					name="user"
-					placeholder="Enter your username"
-					required
-				/>
-				<button
-					onClick={() => {
-						submitScore();
-						onClose();
-					}}
-					type="submit"
-				>
-					Submit
-				</button>
+				<div style={{ display: "flex", justifyContent: "center"}}>
+					<input
+						type="text"
+						name="user"
+						placeholder="Username..."
+						required
+						style={{ backgroundColor: "white", borderRadius: "10px", color: "black" }}
+					/>
+					<button
+						onClick={() => {
+							submitScore();
+							onClose();
+						}}
+						style={{ backgroundColor: "red" }}
+						type="submit"
+					>
+						Submit
+					</button>
+				</div>
 			</form>
 		</>,
 		document.getElementById("domPortal")
@@ -81,12 +84,13 @@ export default function AddScoreForm({ open, onClose, imageId }) {
 }
 
 const ADD_TO_FORM_STYLES = {
+	width: "30vw",
 	position: "fixed",
 	top: "50%",
 	left: "50%",
 	transform: "translate(-50%, -50%)",
-	backgroundColor: "#FFF",
-	borderRadius: "50px",
+	backgroundColor: "#cadcfc",
+	borderRadius: "10px",
 	color: "black",
 	padding: "50px",
 	zIndex: 1000,
@@ -104,4 +108,6 @@ const OVERLAY_STYLES = {
 
 AddScoreForm.propTypes = {
 	imageId: PropTypes.string,
+	open: PropTypes.boolean,
+	onClose: PropTypes.func,
 };

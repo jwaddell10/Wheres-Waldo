@@ -49,7 +49,7 @@ export default function Image1() {
 		FetchCharacterInfo(imageId);
 
 	if (error) {
-		const message = "Game didn't start";
+		const message = "Game didn't start.";
 		return (
 			<div style={{ color: "red" }}>
 				{message} {error}
@@ -98,7 +98,9 @@ export default function Image1() {
 		<>
 			{isOpen && (
 				<AddScoreForm
-					open={isOpen}
+					open={() => {
+						isOpen;
+					}}
 					onClose={() => setIsOpen(false)}
 					imageId={imageId}
 				/>
@@ -116,7 +118,6 @@ export default function Image1() {
 				<StyledImage
 					src={waldoBeach}
 					alt="Waldo Beach"
-					// style={{ width: "100%", height: "auto" }}
 				/>
 				<svg
 					title="circleAndDropDownMenu"

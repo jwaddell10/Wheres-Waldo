@@ -15,7 +15,7 @@ export default function LeaderBoard() {
 		fetch(`http://localhost:3000/image/${imageId}/leaderboard`)
 			.then((response) => response.json())
 			.then((data) => {
-				// data.sort((a, b) => a.time - b.time)
+				data.sort((a, b) => a.time - b.time)
 				setScores(data);
 			})
 			.catch((error) => {
@@ -26,6 +26,7 @@ export default function LeaderBoard() {
 	return (
 		<>
 			<Wrapper>
+				<h1 className={styles.text} >Leaderboard</h1>
 				<h1 className={styles.text} style={{ fontSize: "20px" }}>
 					Click an image to view the scores
 				</h1>

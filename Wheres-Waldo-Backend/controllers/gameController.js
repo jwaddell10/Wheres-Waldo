@@ -15,7 +15,6 @@ exports.endGame = asyncHandler(async (req, res, next) => {
 	endTime = req.requestTime;
 	const duration = endTime - gameStartTime;
 	seconds = duration / 1000;
-	console.log(seconds, 'this is endtime')
 	res.json(seconds)
 });
 
@@ -27,8 +26,6 @@ exports.addUser = asyncHandler(async (req, res, next) => {
 		time: seconds,
 		puzzle: puzzle,
 	});
-
-	console.log(createdUser, 'createduser')
 
 	await createdUser.save();
 });

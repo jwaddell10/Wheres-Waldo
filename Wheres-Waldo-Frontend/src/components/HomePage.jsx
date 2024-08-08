@@ -50,7 +50,7 @@ function Body() {
 		<>
 			<div className="gameRules">
 				<p style={{ color: "red" }} role="gameRules">
-					Welcome to Where's Waldo! To play, click on an image below. The timer starts once you
+					Welcome to Where's Waldo! To play, click image below. Timer starts once you
 					select your image. Good luck!
 				</p>
 			</div>
@@ -125,7 +125,6 @@ const ImageWrapper = styled.section`
 	align-items: stretch;
 	max-width: 100%;
 	max-height: 100%;
-	gap: 1rem;
 `;
 
 export default HomePage;
