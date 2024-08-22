@@ -5,13 +5,19 @@ import React from "react";
 import LeaderBoard from "../components/LeaderBoard";
 import { render, fireEvent, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { afterAll, afterEach, beforeAll, test, expect } from "vitest";
+import { afterAll, afterEach, beforeAll, test, expect, vitest } from "vitest";
 import { http, HttpResponse } from "msw";
 import { setupServer } from "msw/node";
 import "@testing-library/jest-dom/vitest";
 import userEvent from '@testing-library/user-event'
 
-// const imageId = import.meta.env.VITE_IMAGE_ID;
+vitest.mock('components/apiCalls/getLeaderboard.js', {
+  getLeaderboard: vitest.fn(() => {
+    {data: 'Something'}
+  })
+})
+
+const imageId = import.meta.env.VITE_IMAGE_ID;
 
 // const server = setupServer(
 //   http.get(`/image/${imageId}/leaderboard`, () => {
@@ -34,7 +40,7 @@ import userEvent from '@testing-library/user-event'
 
 
 test("LeaderBoard component", async () => {
-  // const user = userEvent.setup();
+  const user = userEvent.setup();
   // server.use(
 
   // )
@@ -46,12 +52,14 @@ test("LeaderBoard component", async () => {
   );
 
   // Find the button
-  // const clickAbleImage = await screen.findByAltText('waldobeach');
+  const clickAbleImage = await screen.findByAltText('waldobeach');
+  
+  // Click the button
+  user.click(clickAbleImage);
 
-  // // Click the button
-  // user.click(clickAbleImage);
+  expect(screen.getByText(/TestUser/)).toBeInTheDocument();
 
-  // // Wait for the API call to complete and the data to be rendered
+  // Wait for the API call to complete and the data to be rendered
   // await waitFor(() => {
   //   expect(screen.getByText(/TestUser/)).toBeInTheDocument();
   //   expect(screen.getByText(/123/)).toBeInTheDocument();

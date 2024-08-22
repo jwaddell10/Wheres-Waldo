@@ -19,9 +19,7 @@ function Header() {
 	return (
 		<>
 			<div className="title">
-				<h1 className={styles.text} role="title">
-					Where's Waldo
-				</h1>
+				<h1 className={styles.text}>Where's Waldo</h1>
 			</div>
 		</>
 	);
@@ -50,8 +48,8 @@ function Body() {
 		<>
 			<div className="gameRules">
 				<p style={{ color: "red" }} role="gameRules">
-					Welcome to Where's Waldo! To play, click image below. Timer starts once you
-					select your image. Good luck!
+					Welcome to Where's Waldo! To play, click image below. Timer
+					starts once you select your image. Good luck!
 				</p>
 			</div>
 			<ImageWrapper>
@@ -67,9 +65,8 @@ function Body() {
 							<img
 								className={styles.images}
 								src={waldoBeach}
-								alt=""
-								role="Image1"
-								style={{ border: "3px solid red"}}
+								alt="waldo beach"
+								style={{ border: "3px solid red" }}
 							/>
 						</Link>
 					</div>
@@ -86,9 +83,8 @@ function Body() {
 							<img
 								className={styles.images}
 								src={waldoDowntown}
-								alt=""
-								role="Image2"
-								style={{ border: "3px solid red"}}
+								alt="waldo downtown"
+								style={{ border: "3px solid red" }}
 							/>
 						</Link>
 					</div>
@@ -105,9 +101,8 @@ function Body() {
 							<img
 								src={waldoFactory}
 								className={styles.images}
-								alt=""
-								role="Image3"
-								style={{ border: "3px solid red"}}
+								alt="waldo factory"
+								style={{ border: "3px solid red" }}
 							/>
 						</Link>
 					</div>
@@ -125,6 +120,7 @@ const ImageWrapper = styled.section`
 	align-items: stretch;
 	max-width: 100%;
 	max-height: 100%;
+	gap: 1rem;
 `;
 
 export default HomePage;

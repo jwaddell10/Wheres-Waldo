@@ -10,16 +10,20 @@ function App() {
 		setWidth(window.innerWidth);
 	}
 	useEffect(() => {
-		window.addEventListener('resize', handleWindowSizeChange);
+		window.addEventListener("resize", handleWindowSizeChange);
 		return () => {
-			window.removeEventListener('resize', handleWindowSizeChange);
-		}
+			window.removeEventListener("resize", handleWindowSizeChange);
+		};
 	}, []);
-	
+
 	const isMobile = width <= 800;
 
 	if (isMobile) {
-		return <div style={{ color: "red" }}>Sorry, this app is not accessible on devices less than 800 px</div>
+		return (
+			<div style={{ color: "red" }}>
+				Sorry, this app is not accessible on devices less than 800 px
+			</div>
+		);
 	}
 
 	return <RouterProvider router={router} />;

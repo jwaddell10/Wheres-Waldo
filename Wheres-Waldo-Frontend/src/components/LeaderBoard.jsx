@@ -6,21 +6,19 @@ import waldoFactory from "../assets/waldoFactory.jpg";
 import { Link } from "react-router-dom";
 import styles from "./LeaderBoard.module.css"
 import PropTypes from "prop-types";
+import { getLeaderboard } from "./apiCalls/getLeaderboard";
 
 export default function LeaderBoard() {
 	const [scores, setScores] = useState([]);
 	const [activeIndex, setActiveIndex] = useState(null);
 
 	const fetchScores = async (imageId) => {
-		fetch(`http://localhost:3000/image/${imageId}/leaderboard`)
-			.then((response) => response.json())
-			.then((data) => {
-				data.sort((a, b) => a.time - b.time)
-				setScores(data);
-			})
-			.catch((error) => {
-				throw new Error(error);
-			});
+		console.log('hey')
+
+		await getLeaderboard({imageId}).then((data) => {
+			data.sort((a, b) => a.time - b.time)
+			setScores(data);
+		})
 	};
 
 	return (

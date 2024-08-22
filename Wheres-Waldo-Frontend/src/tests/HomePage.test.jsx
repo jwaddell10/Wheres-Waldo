@@ -13,11 +13,11 @@ test("HomePage tests", async () => {
     render(<MemoryRouter><HomePage /></MemoryRouter>);
 
     //title and gamerules display on the screen
-    expect(screen.getByRole('title'))
-    expect(screen.getByRole('gameRules'))
+    expect(screen.getByText(`Where's Waldo`))
+    expect(screen.getByText(`Welcome to Where's Waldo! To play, click image below. Timer starts once you select your image. Good luck!`))
 
     //images display on screen
-    expect(screen.getByRole("Image1"))
-    expect(screen.getByRole("Image2"))
-    expect(screen.getByRole("Image3"))
+    expect(screen.getByText("Waldo Beach"))
+    expect(screen.getByText("Waldo Downtown"))
+    expect(screen.getByText("Waldo Factory"))
 });
