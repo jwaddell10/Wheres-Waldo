@@ -29,7 +29,7 @@ function Body() {
 	const startGame = async (imageId) => {
 		try {
 			const response = await fetch(
-				`http://localhost:3000/image/${imageId}/gameStart`,
+				import.meta.env.API_URL`/image/${imageId}/gameStart`,
 				{
 					method: "POST",
 					headers: {

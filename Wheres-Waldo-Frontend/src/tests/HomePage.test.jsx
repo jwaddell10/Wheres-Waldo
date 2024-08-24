@@ -1,10 +1,9 @@
 /**
  * @jest-environment jsdom
  */
-import { render, fireEvent, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { expect, test } from "vitest";
 import HomePage from "../components/HomePage";
-import NavBar from "../components/NavBar";
 import { MemoryRouter } from "react-router-dom";
 
 test("HomePage tests", async () => {

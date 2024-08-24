@@ -5,7 +5,7 @@ export default function useFetchScores() {
 
     const fetchScores = async () => {
 
-        const response = await fetch(`http://localhost:3000/leaderboard`)
+        const response = await fetch(import.meta.env.API_URL`leaderboard`)
         const data = await response.json();
         setScores(data)
         return data;

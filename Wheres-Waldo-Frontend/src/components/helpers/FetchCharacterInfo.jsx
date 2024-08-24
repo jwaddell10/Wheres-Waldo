@@ -9,7 +9,7 @@ export default function FetchCharacterInfo(imageId) {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetch(`http://localhost:3000/image/${imageId}`);
+				const response = await fetch(import.meta.env.API_URL`image/${imageId}`);
 				if (!response.ok) {
 					throw new Error('Network response was not ok');
 				}
