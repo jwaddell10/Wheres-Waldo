@@ -22,14 +22,6 @@ async function main() {
 }
 
 app.set("trust proxy", 1);
-app.use(
-	session({
-		secret: "keyboard cat",
-		resave: false,
-		saveUninitialized: true,
-		cookie: { secure: true },
-	})
-);
 
 const requestTime = function (req, res, next) {
 	req.requestTime = Date.now();
