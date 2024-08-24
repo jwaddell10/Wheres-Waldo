@@ -3,6 +3,8 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
+		"start": "node ./dist/bin/www",
+		"devstart": "nodemon ./dist/bin/www"
 	},
 	"dependencies": {
 		"cloudinary": "^2.2.0",
