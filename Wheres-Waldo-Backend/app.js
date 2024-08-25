@@ -5,12 +5,13 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const session = require("express-session");
+const port = process.env.PORT || 8000;
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-require('dotenv').config({ path: 'ENV_FILENAME' });
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
 
 var app = express();
 
@@ -57,6 +58,10 @@ app.use(function (err, req, res, next) {
 	// render the error page
 	res.status(err.status || 500);
 	res.render("error");
+});
+
+app.listen(port, () => {
+    console.log(`App listening at http://localhost:${port}`);
 });
 
 process.on("unhandledRejection", (reason, promise) => {

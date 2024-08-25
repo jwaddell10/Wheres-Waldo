@@ -28,6 +28,7 @@ function Header() {
 function Body() {
 	const startGame = async (imageId) => {
 		try {
+			console.log('start game runs')
 			const response = await fetch(
 				import.meta.env.API_URL`/image/${imageId}/gameStart`,
 				{

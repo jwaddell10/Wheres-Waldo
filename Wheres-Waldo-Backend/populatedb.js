@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Character = require("./models/character.js");
 const Puzzle = require("./models/puzzle.js");
 const cloudinary = require("cloudinary").v2;
-require("dotenv").config();
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
 const { getImages } = require("./services/cloudinary.js")
 const characters = [];
 const puzzles = [];
