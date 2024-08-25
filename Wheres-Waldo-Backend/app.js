@@ -10,7 +10,7 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
+require('dotenv').config()
 
 var app = express();
 
