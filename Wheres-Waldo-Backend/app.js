@@ -59,9 +59,6 @@ app.use(function (err, req, res, next) {
 	res.render("error");
 });
 
-app.listen(process.env.PORT || 5000 )
-
-
 process.on("unhandledRejection", (reason, promise) => {
 	console.log(reason, promise);
 	// Application specific error-handling here
