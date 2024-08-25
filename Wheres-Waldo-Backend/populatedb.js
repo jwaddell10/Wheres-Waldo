@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Character = require("./models/character.js");
 const Puzzle = require("./models/puzzle.js");
 const cloudinary = require("cloudinary").v2;
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
+require('dotenv').config()
 const { getImages } = require("./services/cloudinary.js")
 const characters = [];
 const puzzles = [];
@@ -14,6 +14,7 @@ const images = async () => {
 }
 
 const mongoDB = process.env.MONGODB_KEY;
+
 main().catch((err) => console.log(err));
 async function main() {
 	await mongoose.connect(mongoDB);
