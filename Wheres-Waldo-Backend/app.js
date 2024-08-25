@@ -5,7 +5,6 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const session = require("express-session");
-const port = process.env.PORT || 8000;
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -60,9 +59,8 @@ app.use(function (err, req, res, next) {
 	res.render("error");
 });
 
-app.listen(port, () => {
-    console.log(`App listening at http://localhost:${port}`);
-});
+app.listen(process.env.PORT || 5000 )
+
 
 process.on("unhandledRejection", (reason, promise) => {
 	console.log(reason, promise);
