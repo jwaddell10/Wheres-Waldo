@@ -19,7 +19,6 @@ main().catch((err) => console.log(err));
 async function main() {
 	await mongoose.connect(mongoDB);
 	console.log("connected");
-
 	await Promise.all([Puzzle.deleteMany(), Character.deleteMany()]);
 
 	await createPuzzle();
