@@ -10,13 +10,14 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-require("dotenv").config();
+require('dotenv').config({ path: 'ENV_FILENAME' });
 
 var app = express();
 
 const mongoDB = process.env.MONGODB_KEY;
 main().catch((err) => console.log(err));
 async function main() {
+	console.log('connecting')
 	await mongoose.connect(mongoDB);
 	console.log("connected");
 }
