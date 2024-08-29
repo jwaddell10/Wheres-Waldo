@@ -13,7 +13,6 @@ export default function LeaderBoard() {
 	const [activeIndex, setActiveIndex] = useState(null);
 
 	const fetchScores = async (imageId) => {
-		console.log('hey')
 
 		await getLeaderboard({imageId}).then((data) => {
 			data.sort((a, b) => a.time - b.time)

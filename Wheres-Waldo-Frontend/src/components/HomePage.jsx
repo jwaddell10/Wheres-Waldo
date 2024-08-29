@@ -29,7 +29,7 @@ function Body() {
 	const startGame = async (imageId) => {
 		try {
 			const response = await fetch(
-				import.meta.env.API_URL`/image/${imageId}/gameStart`,
+				`${import.meta.env.VITE_API_URL}/image/${imageId}/gameStart`,
 				{
 					method: "POST",
 					headers: {
@@ -37,6 +37,10 @@ function Body() {
 					},
 				}
 			);
+
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
 
 			return response;
 		} catch (error) {

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Character = require("./models/character.js");
 const Puzzle = require("./models/puzzle.js");
 const cloudinary = require("cloudinary").v2;
-require("dotenv").config();
+require('dotenv').config()
 const { getImages } = require("./services/cloudinary.js")
 const characters = [];
 const puzzles = [];
@@ -10,15 +10,16 @@ const puzzles = [];
 const images = async () => {
     const variable = await getImages()
     const imageUrl = variable.resources.map((item) => item.secure_url)
+	console.log(imageUrl, 'imageurl')
     return imageUrl
 }
 
 const mongoDB = process.env.MONGODB_KEY;
+
 main().catch((err) => console.log(err));
 async function main() {
 	await mongoose.connect(mongoDB);
 	console.log("connected");
-
 	await Promise.all([Puzzle.deleteMany(), Character.deleteMany()]);
 
 	await createPuzzle();

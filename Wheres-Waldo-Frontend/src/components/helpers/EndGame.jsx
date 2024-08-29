@@ -1,8 +1,7 @@
-export default async function EndGame() {
-	const imageId = import.meta.env.VITE_IMAGE_ID;
+export default async function EndGame({imageId}) {
 	try {
 		const response = await fetch(
-			import.meta.env.API_URL`image/${imageId}/gameEnd`,
+			`http://localhost:3000/image/${imageId}/gameEnd`,
 			{
 				method: "POST",
 				headers: {
@@ -11,7 +10,7 @@ export default async function EndGame() {
 			}
 		);
 
-		const data = await response.json()
+		const data = await response.json();
 
 		return data;
 	} catch (error) {

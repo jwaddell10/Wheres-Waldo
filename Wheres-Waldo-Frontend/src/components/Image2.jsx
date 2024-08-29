@@ -36,7 +36,7 @@ export default function Image2() {
 
 	useEffect(() => {
 		if (matchedCharacters.length === characters.length) {
-			EndGame();
+			EndGame(imageId);
 			setIsOpen(true);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps

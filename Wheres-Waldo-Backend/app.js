@@ -4,22 +4,30 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-const session = require("express-session");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-require("dotenv").config();
+require('dotenv').config()
 
 var app = express();
 
 const mongoDB = process.env.MONGODB_KEY;
 main().catch((err) => console.log(err));
 async function main() {
+	console.log('connecting')
 	await mongoose.connect(mongoDB);
 	console.log("connected");
 }
+
+const corsOptions = {
+	origin: "*",
+	credentials: true, //access-control-allow-credentials:true
+	optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 app.set("trust proxy", 1);
 

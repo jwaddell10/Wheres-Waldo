@@ -27,7 +27,7 @@ export default function AddScoreForm({ open, onClose, imageId }) {
 			const form = event.target;
 			const formData = new FormData(form);
 			const formDataObj = Object.fromEntries(formData.entries());
-			fetch(import.meta.env.API_URL`/image/${imageId}/leaderboard`, {
+			fetch(`${import.meta.env.VITE_API_URL}/image/${imageId}/leaderboard`, {
 				method: "POST",
 				headers: {
 					Accept: "application/json",

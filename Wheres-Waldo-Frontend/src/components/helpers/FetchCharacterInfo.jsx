@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export default function FetchCharacterInfo(imageId) {
 	const [gameCharacters, setGameCharacters] = useState(null);
@@ -9,9 +9,13 @@ export default function FetchCharacterInfo(imageId) {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetch(import.meta.env.API_URL`image/${imageId}`);
+				console.log(import.meta.env.VITE_API_URL);
+				const response = await fetch(
+					`${import.meta.env.VITE_API_URL}/image/${imageId}`
+				);
+
 				if (!response.ok) {
-					throw new Error('Network response was not ok');
+					throw new Error("Network response was not ok");
 				}
 				const data = await response.json();
 				const characterCoords = data.characters.map(
