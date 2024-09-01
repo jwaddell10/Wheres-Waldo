@@ -1,4 +1,4 @@
-import waldoDowntown from "../public/assets/waldoDowntown.jpg";
+import waldoDowntown from "../assets/waldoDowntown.jpg";
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
