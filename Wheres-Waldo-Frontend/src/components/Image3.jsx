@@ -1,4 +1,4 @@
-import waldoFactory from "../assets/waldoFactory.jpg";
+import waldoFactory from "../public/assets/waldoFactory.jpg";
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
