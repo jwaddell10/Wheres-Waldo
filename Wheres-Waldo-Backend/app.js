@@ -9,13 +9,17 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-require('dotenv').config()
+require("dotenv").config();
 
 var app = express();
 
 const corsOptions = {
-	origin: "https://wheres-waldo-rho.vercel.app",
-	optionSuccessStatus: 200,
+	origin: [
+		"https://wheres-waldo-rho.vercel.app",
+		"http://localhost:3000",
+		"http://localhost:4173",
+	],
+	optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
@@ -23,7 +27,7 @@ app.use(cors(corsOptions));
 const mongoDB = process.env.MONGODB_KEY;
 main().catch((err) => console.log(err));
 async function main() {
-	console.log('connecting')
+	console.log("connecting");
 	await mongoose.connect(mongoDB);
 	console.log("connected");
 }

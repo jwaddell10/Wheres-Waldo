@@ -9,5 +9,4 @@ export default defineConfig({
   },
   assetsInclude: ['**/*.jpg'],
   plugins: [react()],
-  publicDir: 'src/assets', // Add this line
 })
