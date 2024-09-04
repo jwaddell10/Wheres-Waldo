@@ -27,6 +27,7 @@ export default function Image3() {
 	const [dropDownVisible, setDropDownVisible] = useState(false);
 	const [matchedCharacters, setMatchedCharacters] = useState([]);
 	const [isOpen, setIsOpen] = useState(false);
+	const [gameEnd, setGameEnd] = useState(null);
 
 	const { addCircle } = useCircle({
 		matchCircles,
@@ -36,7 +37,8 @@ export default function Image3() {
 
 	useEffect(() => {
 		if (matchedCharacters.length === characters.length) {
-			EndGame(imageId);
+			EndGame();
+			setGameEnd(true);
 			setIsOpen(true);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -104,6 +106,7 @@ export default function Image3() {
 				<CharacterNavBar
 					style={{ position: "absolute", display: "flex" }}
 					characters={characters}
+					gameEnd={gameEnd}
 				/>
 				<StyledImage src={waldoFactory} alt="Waldo Factory" />
 				<svg

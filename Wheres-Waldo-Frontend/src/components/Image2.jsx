@@ -26,6 +26,7 @@ export default function Image2() {
 	const [circleVisible, setCircleVisible] = useState(false);
 	const [dropDownVisible, setDropDownVisible] = useState(false);
 	const [matchedCharacters, setMatchedCharacters] = useState([]);
+	const [gameEnd, setGameEnd] = useState(null);
 	const [isOpen, setIsOpen] = useState(false);
 
 	const { addCircle } = useCircle({
@@ -36,7 +37,8 @@ export default function Image2() {
 
 	useEffect(() => {
 		if (matchedCharacters.length === characters.length) {
-			EndGame(imageId);
+			EndGame();
+			setGameEnd(true);
 			setIsOpen(true);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -107,6 +109,7 @@ export default function Image2() {
 				<CharacterNavBar
 					style={{ position: "absolute", display: "flex" }}
 					characters={characters}
+					gameEnd={gameEnd}
 				/>
 				<StyledImage src={waldoDowntown} alt="Waldo Downtown" />
 				<svg
