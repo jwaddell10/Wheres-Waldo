@@ -14,8 +14,8 @@ export default function CharacterNavBar({ characters, gameEnd }) {
 								key={index}
 							>
 								<StyledImage
-									src={`../src/assets/${character}.jpg`}
-									alt=""
+									src={`/${character}.jpg`}
+									alt="character"
 								/>
 							</StyledDiv>
 						))}
