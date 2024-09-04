@@ -1,7 +1,7 @@
 export default async function EndGame({imageId}) {
 	try {
 		const response = await fetch(
-			`http://localhost:3000/image/${imageId}/gameEnd`,
+			`${import.meta.env.VITE_API_URL}/image/${imageId}/gameEnd`,
 			{
 				method: "POST",
 				headers: {
