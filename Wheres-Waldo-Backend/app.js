@@ -13,11 +13,6 @@ require('dotenv').config()
 
 var app = express();
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
-
 const mongoDB = process.env.MONGODB_KEY;
 main().catch((err) => console.log(err));
 async function main() {
@@ -26,18 +21,13 @@ async function main() {
 	console.log("connected");
 }
 
-const allowedOrigins = ['https://wheres-waldo-rho.vercel.app', 'http://localhost:3000'];
+const corsOptions = {
+	origin: "*",
+	credentials: true, //access-control-allow-credentials:true
+	optionSuccessStatus: 200,
+};
 
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true
-}));
+app.use(cors(corsOptions));
 
 app.set("trust proxy", 1);
 
