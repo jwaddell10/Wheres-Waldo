@@ -12,10 +12,6 @@ import EndGame from "./helpers/EndGame";
 import AddScoreForm from "./helpers/AddScoreForm";
 import styles from "./NavBar.module.css";
 import { css } from "styled-components";
-import odlaw from "../assets/odlaw.jpg";
-import wally from "../assets/wally.jpg";
-import wenda from "../assets/wenda.jpg";
-import wizard from "../assets/wizard.jpg";
 
 export default function Image1() {
 	const imageId = import.meta.env.VITE_IMAGE_ID;
