@@ -13,6 +13,13 @@ require('dotenv').config()
 
 var app = express();
 
+const corsOptions = {
+	origin: "https://wheres-waldo-rho.vercel.app/",
+	optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+
 const mongoDB = process.env.MONGODB_KEY;
 main().catch((err) => console.log(err));
 async function main() {
@@ -20,14 +27,6 @@ async function main() {
 	await mongoose.connect(mongoDB);
 	console.log("connected");
 }
-
-const corsOptions = {
-	origin: "https://wheres-waldo-rho.vercel.app/",
-	credentials: true, //access-control-allow-credentials:true
-	optionSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
 
 app.set("trust proxy", 1);
 
