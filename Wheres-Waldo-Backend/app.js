@@ -21,13 +21,7 @@ async function main() {
 	console.log("connected");
 }
 
-const corsOptions = {
-	origin: "*",
-	credentials: true, //access-control-allow-credentials:true
-	optionSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
+app.use(cors({ origin: 'https://wheres-waldo-rho.vercel.app/' }));
 
 app.set("trust proxy", 1);
 
