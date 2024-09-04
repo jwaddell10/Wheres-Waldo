@@ -22,7 +22,7 @@ async function main() {
 }
 
 const corsOptions = {
-	origin: "*",
+	origin: "https://wheres-waldo-rho.vercel.app/",
 	credentials: true, //access-control-allow-credentials:true
 	optionSuccessStatus: 200,
 };
