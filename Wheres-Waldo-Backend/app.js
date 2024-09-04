@@ -14,7 +14,7 @@ require('dotenv').config()
 var app = express();
 
 const corsOptions = {
-	origin: "https://wheres-waldo-rho.vercel.app/",
+	origin: "https://wheres-waldo-rho.vercel.app",
 	optionSuccessStatus: 200,
 };
 
