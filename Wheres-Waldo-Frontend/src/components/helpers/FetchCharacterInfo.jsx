@@ -9,7 +9,6 @@ export default function FetchCharacterInfo(imageId) {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				console.log(import.meta.env.VITE_API_URL);
 				const response = await fetch(
 					`${import.meta.env.VITE_API_URL}/image/${imageId}`
 				);

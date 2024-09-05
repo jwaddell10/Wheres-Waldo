@@ -37,7 +37,7 @@ export default function Image2() {
 
 	useEffect(() => {
 		if (matchedCharacters.length === characters.length) {
-			EndGame();
+			EndGame(imageId);
 			setGameEnd(true);
 			setIsOpen(true);
 		}

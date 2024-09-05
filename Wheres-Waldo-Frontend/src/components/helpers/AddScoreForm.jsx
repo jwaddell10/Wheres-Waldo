@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function AddScoreForm({ open, onClose, imageId }) {
+	console.log(imageId, 'imageid addscore')
 	const navigate = useNavigate();
 	const [displayMessage, setDisplayMessage] = useState(false);
 	const [shouldNavigate, setShouldNavigate] = useState(false);
@@ -108,6 +109,6 @@ const OVERLAY_STYLES = {
 
 AddScoreForm.propTypes = {
 	imageId: PropTypes.string,
-	open: PropTypes.boolean,
+	open: PropTypes.func,
 	onClose: PropTypes.func,
 };

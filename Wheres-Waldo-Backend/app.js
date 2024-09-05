@@ -18,6 +18,7 @@ const corsOptions = {
 		"https://wheres-waldo-rho.vercel.app",
 		"http://localhost:3000",
 		"http://localhost:4173",
+		"http://localhost:5173"
 	],
 	optionsSuccessStatus: 200,
 };
