@@ -26,6 +26,7 @@ exports.addUser = asyncHandler(async (req, res, next) => {
 		time: seconds,
 		puzzle: puzzle,
 	});
-
-	await createdUser.save();
+console.log(createdUser, 'createdueser')
+	// await createdUser.save();
+	res.json(createdUser)
 });

@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function AddScoreForm({ open, onClose, imageId }) {
-	console.log(imageId, 'imageid addscore')
+	console.log(imageId, "imageid addscore");
 	const navigate = useNavigate();
 	const [displayMessage, setDisplayMessage] = useState(false);
 	const [shouldNavigate, setShouldNavigate] = useState(false);
+	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	useEffect(() => {
 		if (shouldNavigate) {
@@ -21,22 +22,35 @@ export default function AddScoreForm({ open, onClose, imageId }) {
 		return null;
 	}
 
-	const submitScore = (event) => {
+	const submitScore = async (event) => {
 		event.preventDefault();
+		if (isSubmitting) {
+			return;
+		}
 		try {
 			setDisplayMessage(true);
+			setIsSubmitting(true);
 			const form = event.target;
 			const formData = new FormData(form);
 			const formDataObj = Object.fromEntries(formData.entries());
-			fetch(`${import.meta.env.VITE_API_URL}/image/${imageId}/leaderboard`, {
-				method: "POST",
-				headers: {
-					Accept: "application/json",
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ formDataObj }),
-			});
-			setShouldNavigate(true);
+			const response = await fetch(
+				`${import.meta.env.VITE_API_URL}/image/${imageId}/leaderboard`,
+				{
+					method: "POST",
+					headers: {
+						Accept: "application/json",
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ formDataObj }),
+				}
+			);
+
+			const data = await response.json();
+			console.log(data, "data");
+
+			if (data) {
+				setShouldNavigate(true);
+			}
 		} catch (error) {
 			console.log("error", error);
 		}
@@ -49,23 +63,26 @@ export default function AddScoreForm({ open, onClose, imageId }) {
 				{displayMessage ? (
 					<div>
 						<div style={{ marginBottom: "10px" }}>
-							Time submitted! Check leaderboard to
-							see ranking. Redirecting...
+							Time submitted! Check leaderboard to see ranking.
+							Redirecting...
 						</div>
 					</div>
 				) : (
 					<div style={{ marginBottom: "10px" }}>
-						Congrats! Enter name to be added to
-						leaderboard
+						Congrats! Enter name to be added to leaderboard
 					</div>
 				)}
-				<div style={{ display: "flex", justifyContent: "center"}}>
+				<div style={{ display: "flex", justifyContent: "center" }}>
 					<input
 						type="text"
 						name="user"
 						placeholder="Username..."
 						required
-						style={{ backgroundColor: "white", borderRadius: "10px", color: "black" }}
+						style={{
+							backgroundColor: "white",
+							borderRadius: "10px",
+							color: "black",
+						}}
 					/>
 					<button
 						onClick={() => {
