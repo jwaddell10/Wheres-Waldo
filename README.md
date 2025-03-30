@@ -1,7 +1,8 @@
 <h1 align="center">Welcome to Wheres-Waldo 👋</h1>
 <p>Fun game based on classic Where's Waldo game. User has 3 map choices (easy, medium, hard). See if you can get the new high score on the leaderboard!
-
 </p>
+
+<h2>Live Site:</h2>https://wheres-waldo-rho.vercel.app/
 
 <h2>Features:</h2>
 1. 3 maps--easy, medium, and hard--to allow for variety in gameplay</br>
