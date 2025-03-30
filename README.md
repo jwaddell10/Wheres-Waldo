@@ -4,12 +4,22 @@
 
 > Fun game based on classic Where's Waldo game. User has 3 map choices (easy, medium, hard). See if you can get the new high score on the leaderboard!
 
-### 🏠 [Homepage](Wheres-Waldo-Frontend/src/assets/WaldoHomepage.png)
+### 🏠 Homepage<img width="1680" alt="Screenshot 2025-03-29 at 7 03 06 PM" src="https://github.com/user-attachments/assets/5c274dc6-7fb9-402d-a8a2-2bc366c655c8" />
 
-## Install
+### Gameplay
+
+![](media/waldogameplay.gif)
+
+### Leaderboard--can you get a new high score?
+
+<img width="1679" alt="Screenshot 2025-03-29 at 8 28 36 PM" src="https://github.com/user-attachments/assets/38776250-272f-47f5-97f2-d87ce9490e4c" />
+
+## Setup instructions
 
 ```sh
+git clone git@github.com:jwaddell10/Wheres-Waldo.git
 npm install
+npm run dev
 ```
 
 ## Author
