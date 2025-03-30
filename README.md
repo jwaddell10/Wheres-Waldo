@@ -1,8 +1,16 @@
 <h1 align="center">Welcome to Wheres-Waldo 👋</h1>
-<p>
+<p>Fun game based on classic Where's Waldo game. User has 3 map choices (easy, medium, hard). See if you can get the new high score on the leaderboard!
+
 </p>
 
-> Fun game based on classic Where's Waldo game. User has 3 map choices (easy, medium, hard). See if you can get the new high score on the leaderboard!
+<h2>Features:</h2>
+1. 3 maps--easy, medium, and hard--to allow for variety in gameplay</br>
+2. Visually appealing design and UI</br>
+3. Leaderboard enables users to save their score
+
+<h2>Tech Stack:</h2>
+<p>MongoDB, Express, React, Node (MERN Stack Application)</p>
+
 
 ### 🏠 Homepage<img width="1680" alt="Screenshot 2025-03-29 at 7 03 06 PM" src="https://github.com/user-attachments/assets/5c274dc6-7fb9-402d-a8a2-2bc366c655c8" />
 
